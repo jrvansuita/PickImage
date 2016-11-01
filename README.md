@@ -6,6 +6,8 @@ This class was created to use in Android projects.
 # Porpouse
 Shows a DialogFragment with Camera or Gallery options. The user can choose from where provider wants to pick an image.
 
+# Screeshot
+![test](screenshot/img.png? "Dialog")
 
 # Usage
 
