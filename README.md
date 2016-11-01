@@ -1,5 +1,5 @@
 # PickImage
-[![](https://jitpack.io/v/jrvansuita/IconHandler.svg)](https://jitpack.io/#jrvansuita/IconHandler)
+[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
 
 This class was created to use in Android projects.
 
