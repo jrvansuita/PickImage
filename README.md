@@ -30,10 +30,10 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 
 # Implamentation
 
-    * Step #1 - Show the dialog.
+* Step #1 - Show the dialog.
     PickImageDialog.on(MainActivity.this, new PickSetup());
 
-    * Step #1 - Your AppCompatActivity have to implement IPickResult.
+* Step #1 - Your AppCompatActivity have to implement IPickResult.
     @Override
       public void onPickImageResult(Bitmap bitmap) {
           //TODO: use bitmap.
