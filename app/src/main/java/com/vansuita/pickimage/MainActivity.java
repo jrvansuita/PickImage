@@ -21,8 +21,14 @@ public class MainActivity extends AppCompatActivity implements IPickResult {
         findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PickSetup p = new PickSetup();
-                PickImageDialog.on(MainActivity.this, p);
+                PickSetup setup = new PickSetup();
+
+                //setup.setBackgroundColor(yourColor);
+                //setup.setTitle(yourTitle);
+                //setup.setDimAmount(yourFloat);
+                //setup.setTitleColor(yourColor);
+
+                PickImageDialog.on(MainActivity.this, setup);
             }
         });
 
