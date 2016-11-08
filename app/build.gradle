@@ -19,5 +19,5 @@ dependencies {
     //compile project(':library')
 
 
-    compile 'com.github.jrvansuita:PickImage:v1.0.0'
+    compile 'com.github.jrvansuita:PickImage:v1.0.1'
 }

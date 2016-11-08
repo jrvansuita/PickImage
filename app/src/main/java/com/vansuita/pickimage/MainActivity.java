@@ -1,6 +1,7 @@
 package com.vansuita.pickimage;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,7 +11,7 @@ import com.vansuita.library.IPickResult;
 import com.vansuita.library.PickImageDialog;
 import com.vansuita.library.PickSetup;
 
-public class MainActivity extends AppCompatActivity implements IPickResult {
+public class MainActivity extends AppCompatActivity implements IPickResult.IPickResultBitmap,IPickResult.IPickResultUri {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,4 +40,8 @@ public class MainActivity extends AppCompatActivity implements IPickResult {
         ((ImageView) findViewById(R.id.result_image)).setImageBitmap(bitmap);
     }
 
+    @Override
+    public void onPickImageResult(Uri bitmap) {
+        ((ImageView) findViewById(R.id.result_image)).setImageURI(bitmap);
+    }
 }
