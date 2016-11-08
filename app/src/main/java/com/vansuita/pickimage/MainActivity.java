@@ -38,4 +38,5 @@ public class MainActivity extends AppCompatActivity implements IPickResult {
     public void onPickImageResult(Bitmap bitmap) {
         ((ImageView) findViewById(R.id.result_image)).setImageBitmap(bitmap);
     }
+
 }
