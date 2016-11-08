@@ -52,7 +52,8 @@ public class PickImageDialog extends DialogFragment {
     private TextView tvGallery;
     private TextView tvCancel;
 
-    private IPickResult pickResultListener;
+    private IPickResult.IPickResultBitmap bitmapListener;
+    private IPickResult.IPickResultUri uriListener;
 
     @Override
     public void onAttach(Context context) {
@@ -61,10 +62,15 @@ public class PickImageDialog extends DialogFragment {
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            pickResultListener = (IPickResult) context;
+            if (context instanceof IPickResult.IPickResultBitmap)
+                bitmapListener = (IPickResult.IPickResultBitmap) context;
+
+            if (context instanceof IPickResult.IPickResultUri)
+                uriListener = (IPickResult.IPickResultUri) context;
+
+
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString()
-                    + " must implement IPickResult");
+            throw new ClassCastException(context.toString() + " must implement IPickResult.?");
         }
     }
 
@@ -149,21 +155,26 @@ public class PickImageDialog extends DialogFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             dismiss();
-            Bitmap bitmap = null;
 
-            if (requestCode == FROM_CAMERA) {
-                bitmap = (Bitmap) data.getExtras().get("data");
-            } else if (requestCode == FROM_GALLERY) {
+            if (bitmapListener != null) {
                 try {
-                    bitmap = Util.decodeUri(data.getData(), getActivity());
+                    Bitmap bitmap = null;
+
+                    if (requestCode == FROM_CAMERA) {
+                        bitmap = (Bitmap) data.getExtras().get("data");
+                    } else if (requestCode == FROM_GALLERY) {
+                        bitmap = Util.decodeUri(data.getData(), getActivity());
+                    }
+
+                    bitmapListener.onPickImageResult(bitmap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
-            if (pickResultListener != null)
-            pickResultListener.onPickImageResult(bitmap);
-
+            if (uriListener != null) {
+                uriListener.onPickImageResult(data.getData());
+            }
         }
     }
 
