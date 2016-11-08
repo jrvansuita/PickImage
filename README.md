@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-	        compile 'com.github.jrvansuita:PickImage:v1.0.0'
+           compile 'com.github.jrvansuita:PickImage:v1.0.1'
 	}
 
 # Samples
@@ -36,11 +36,18 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 ### Step #1 - Show the dialog.
     PickImageDialog.on(MainActivity.this, new PickSetup());
 
-### Step #2 - Your AppCompatActivity have to implement IPickResult.
+### Step #2 - Your AppCompatActivity have to implement IPickResult.IPickResultBitmap or IPickResult.IPickResultUri .
     @Override
-      public void onPickImageResult(Bitmap bitmap) {
+    public void onPickImageResult(Bitmap bitmap) {
           //TODO: use bitmap.
       }
+      
+    //Or
+      
+    @Override
+    public void onPickImageResult(Uri bitmap) {
+       //TODO: use bitmap uri.
+    }
 
 ### Step #3 - Customize you Dialog using PickSetup.
     PickSetup setup = new PickSetup();
