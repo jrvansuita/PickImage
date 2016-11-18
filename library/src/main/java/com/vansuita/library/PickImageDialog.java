@@ -164,12 +164,13 @@ public class PickImageDialog extends DialogFragment {
                     if (requestCode == FROM_CAMERA) {
                         bitmap = (Bitmap) data.getExtras().get("data");
 
+                        if (setup.isFlipped())
+                            bitmap = Util.flip(bitmap);
+
                     } else if (requestCode == FROM_GALLERY) {
                         bitmap = Util.decodeUri(data.getData(), getActivity());
                     }
 
-                    if (setup.isFlipped())
-                        bitmap = Util.flip(bitmap);
 
                     bitmapListener.onPickImageResult(bitmap);
                 } catch (Exception e) {
