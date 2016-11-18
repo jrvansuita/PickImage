@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
                 //setup.setTitle(yourTitle);
                 //setup.setDimAmount(yourFloat);
                 //setup.setTitleColor(yourColor);
+                //setup.setFlip(true);
 
                 PickImageDialog.on(MainActivity.this, setup);
             }

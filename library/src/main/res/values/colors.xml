@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="option_pressed">#e9e4e4</color>
+    <color name="option_text_pressed">#000000</color>
+    <color name="option_text">#080808</color>
+
+</resources>

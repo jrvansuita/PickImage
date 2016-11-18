@@ -86,12 +86,13 @@ public class PickImageDialog extends DialogFragment {
         return cvRoot;
     }
 
+    private PickSetup setup;
 
     private void setUp() {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        PickSetup setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
+        setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
 
         cvRoot.setCardBackgroundColor(setup.getBackgroundColor());
         tvTitle.setTextColor(setup.getTitleColor());
@@ -162,9 +163,13 @@ public class PickImageDialog extends DialogFragment {
 
                     if (requestCode == FROM_CAMERA) {
                         bitmap = (Bitmap) data.getExtras().get("data");
+
                     } else if (requestCode == FROM_GALLERY) {
                         bitmap = Util.decodeUri(data.getData(), getActivity());
                     }
+
+                    if (setup.isFlipped())
+                        bitmap = Util.flip(bitmap);
 
                     bitmapListener.onPickImageResult(bitmap);
                 } catch (Exception e) {
@@ -177,6 +182,4 @@ public class PickImageDialog extends DialogFragment {
             }
         }
     }
-
-
 }

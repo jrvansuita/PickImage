@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -33,6 +34,12 @@ public class Util {
         background(v, new BitmapDrawable(v.getResources(), b));
     }
 
+
+    public static Bitmap flip(Bitmap bitmap){
+        Matrix m = new Matrix();
+        m.preScale(-1, 1);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
+    }
 
     public static Bitmap decodeUri(Uri selectedImage, Context context) throws FileNotFoundException {
 

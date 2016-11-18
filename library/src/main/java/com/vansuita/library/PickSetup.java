@@ -17,7 +17,7 @@ public class PickSetup implements Serializable {
     private int titleColor;
     private int optionsColor;
     private float dimAmount;
-
+    private boolean flip;
 
 
 
@@ -66,12 +66,23 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+
+    public boolean isFlipped() {
+        return flip;
+    }
+
+    public PickSetup setFlip(boolean flip) {
+        this.flip = flip;
+        return this;
+    }
+
     public PickSetup() {
         this.title = "Choose";
         this.backgroundColor = Color.WHITE;
         this.titleColor = Color.DKGRAY;
         this.optionsColor = Color.GRAY;
         this.dimAmount = 0.3f;
+        this.flip = false;
     }
 
 
