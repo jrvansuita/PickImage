@@ -11,7 +11,10 @@ import com.vansuita.library.IPickResult;
 import com.vansuita.library.PickImageDialog;
 import com.vansuita.library.PickSetup;
 
-public class MainActivity extends AppCompatActivity implements IPickResult.IPickResultBitmap,IPickResult.IPickResultUri {
+public class MainActivity extends AppCompatActivity implements IPickResult.IPickResultBitmap
+        , IPickResult.IPickResultUri
+        //, IPickResult.IPickClick
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,4 +48,15 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
     public void onPickImageResult(Uri bitmap) {
         ((ImageView) findViewById(R.id.result_image)).setImageURI(bitmap);
     }
+
+
+    /*@Override
+    public void onGaleryClick() {
+        Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onCameraClick() {
+        Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
+    }*/
 }

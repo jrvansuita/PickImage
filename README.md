@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v1.0.2'
+           compile 'com.github.jrvansuita:PickImage:v1.0.4'
 	}
 
 # Samples
@@ -55,4 +55,18 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setTitle(yourTitle);
     setup.setDimAmount(yourFloat);
     setup.setTitleColor(yourColor);
-    
+    setup.setFlip(true);
+
+# Additionals
+ If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.
+ You may want to take a look at the sample app.
+ 
+     @Override
+     public void onGaleryClick() {
+         //TODO: Your onw implementation
+     }
+ 
+     @Override
+     public void onCameraClick() {
+         //TODO: Your onw implementation
+     }

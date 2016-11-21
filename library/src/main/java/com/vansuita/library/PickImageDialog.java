@@ -54,24 +54,21 @@ public class PickImageDialog extends DialogFragment {
 
     private IPickResult.IPickResultBitmap bitmapListener;
     private IPickResult.IPickResultUri uriListener;
+    private IPickResult.IPickClick clickListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            if (context instanceof IPickResult.IPickResultBitmap)
-                bitmapListener = (IPickResult.IPickResultBitmap) context;
+        if (context instanceof IPickResult.IPickResultBitmap)
+            bitmapListener = (IPickResult.IPickResultBitmap) context;
 
-            if (context instanceof IPickResult.IPickResultUri)
-                uriListener = (IPickResult.IPickResultUri) context;
+        if (context instanceof IPickResult.IPickResultUri)
+            uriListener = (IPickResult.IPickResultUri) context;
 
 
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement IPickResult.?");
-        }
+        if (context instanceof IPickResult.IPickClick)
+            clickListener = (IPickResult.IPickClick) context;
     }
 
     @Nullable
@@ -130,12 +127,17 @@ public class PickImageDialog extends DialogFragment {
             }
         });
 
+
         tvCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, FROM_CAMERA);
+                if (clickListener != null) {
+                    clickListener.onCameraClick();
+                }else {
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                        startActivityForResult(takePictureIntent, FROM_CAMERA);
+                    }
                 }
             }
         });
@@ -143,9 +145,13 @@ public class PickImageDialog extends DialogFragment {
         tvGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, FROM_GALLERY);
+                if (clickListener != null) {
+                    clickListener.onGaleryClick();
+                }else {
+                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent.setType("image/*");
+                    startActivityForResult(intent, FROM_GALLERY);
+                }
             }
         });
     }

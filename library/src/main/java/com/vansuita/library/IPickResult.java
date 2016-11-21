@@ -18,4 +18,10 @@ public class IPickResult {
         void onPickImageResult(Uri bitmap);
     }
 
+
+    public interface IPickClick{
+        void onGaleryClick();
+        void onCameraClick();
+    }
+
 }
