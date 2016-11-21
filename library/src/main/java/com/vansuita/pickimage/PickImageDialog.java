@@ -1,4 +1,4 @@
-package com.vansuita.library;
+package com.vansuita.pickimage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +19,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+
+
 import static android.app.Activity.RESULT_OK;
-import static com.vansuita.library.R.layout.dialog;
+import static com.vansuita.pickimage.R.layout.dialog;
+
 
 /**
  * Created by jrvansuita on 01/11/16.
@@ -95,6 +98,7 @@ public class PickImageDialog extends DialogFragment {
         tvTitle.setTextColor(setup.getTitleColor());
         tvCamera.setTextColor(setup.getOptionsColor());
         tvGallery.setTextColor(setup.getOptionsColor());
+        tvCancel.setText(setup.getCancelText());
 
         tvTitle.setText(setup.getTitle());
 

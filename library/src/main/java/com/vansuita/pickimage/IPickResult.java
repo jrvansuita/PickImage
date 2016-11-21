@@ -1,4 +1,4 @@
-package com.vansuita.library;
+package com.vansuita.pickimage;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

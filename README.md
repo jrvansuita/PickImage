@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v1.0.4'
+           compile 'com.github.jrvansuita:PickImage:v1.0.5'
 	}
 
 # Samples
@@ -56,6 +56,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setDimAmount(yourFloat);
     setup.setTitleColor(yourColor);
     setup.setFlip(true);
+    setup.setCancelText("Test");
 
 # Additionals
  If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.

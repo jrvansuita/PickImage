@@ -1,4 +1,4 @@
-package com.vansuita.library;
+package com.vansuita.pickimage;
 
 import android.graphics.Color;
 
@@ -15,12 +15,21 @@ public class PickSetup implements Serializable {
     private String title;
     private int backgroundColor;
     private int titleColor;
+    private String cancelText;
     private int optionsColor;
     private float dimAmount;
     private boolean flip;
 
 
 
+    public String getCancelText() {
+        return cancelText;
+    }
+
+    public PickSetup setCancelText(String text) {
+        this.cancelText = text;
+        return this;
+    }
     public String getTitle() {
         return title;
     }
@@ -83,6 +92,7 @@ public class PickSetup implements Serializable {
         this.optionsColor = Color.GRAY;
         this.dimAmount = 0.3f;
         this.flip = false;
+        this.cancelText = "Cancel";
     }
 
 

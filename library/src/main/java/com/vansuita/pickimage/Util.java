@@ -1,4 +1,4 @@
-package com.vansuita.library;
+package com.vansuita.pickimage;
 
 import android.annotation.TargetApi;
 import android.content.Context;

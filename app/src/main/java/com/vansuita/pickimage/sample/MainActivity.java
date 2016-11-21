@@ -1,4 +1,4 @@
-package com.vansuita.pickimage;
+package com.vansuita.pickimage.sample;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.vansuita.library.IPickResult;
-import com.vansuita.library.PickImageDialog;
-import com.vansuita.library.PickSetup;
+import com.vansuita.pickimage.IPickResult;
+import com.vansuita.pickimage.PickImageDialog;
+import com.vansuita.pickimage.PickSetup;
 
 public class MainActivity extends AppCompatActivity implements IPickResult.IPickResultBitmap
         , IPickResult.IPickResultUri
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
                 //setup.setDimAmount(yourFloat);
                 //setup.setTitleColor(yourColor);
                 //setup.setFlip(true);
+                //setup.setCancelText("Test");
 
                 PickImageDialog.on(MainActivity.this, setup);
             }
