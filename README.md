@@ -71,3 +71,6 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
      public void onCameraClick() {
          //TODO: Your onw implementation
      }
+     
+# License
+See the [LICENSE](/LICENSE.txt). file for license rights and limitations (MIT).
