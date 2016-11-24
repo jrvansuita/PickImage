@@ -67,6 +67,13 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setCancelText("Test");
     setup.setImageSize(500);
 
+### Step #4 - Handle possible errors.
+    @Override
+    public void onPickError(Exception e) {
+        //TODO: handle the error.
+    }
+
+
 # Additionals
  If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.
  You may want to take a look at the sample app.
