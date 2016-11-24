@@ -24,4 +24,8 @@ public class IPickResult {
         void onCameraClick();
     }
 
+    public interface IPickError{
+        void onPickError(Exception e);
+    }
+
 }

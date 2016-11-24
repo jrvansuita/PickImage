@@ -19,6 +19,7 @@ public class PickSetup implements Serializable {
     private int optionsColor;
     private float dimAmount;
     private boolean flip;
+    private int imageSize;
 
 
 
@@ -75,6 +76,13 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+    public int getImageSize() {
+        return imageSize;
+    }
+
+    public void setImageSize(int imageSize) {
+        this.imageSize = imageSize;
+    }
 
     public boolean isFlipped() {
         return flip;
@@ -93,6 +101,7 @@ public class PickSetup implements Serializable {
         this.dimAmount = 0.3f;
         this.flip = false;
         this.cancelText = "Cancel";
+        this.imageSize = 300;
     }
 
 

@@ -11,7 +11,8 @@ import com.vansuita.pickimage.IPickResult;
 import com.vansuita.pickimage.PickImageDialog;
 import com.vansuita.pickimage.PickSetup;
 
-public class MainActivity extends AppCompatActivity implements IPickResult.IPickResultBitmap
+public class MainActivity extends AppCompatActivity implements IPickResult.IPickError
+        , IPickResult.IPickResultBitmap
         , IPickResult.IPickResultUri
         //, IPickResult.IPickClick
 {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
                 //setup.setTitleColor(yourColor);
                 //setup.setFlip(true);
                 //setup.setCancelText("Test");
+                //setup.setImageSize(500);
 
                 PickImageDialog.on(MainActivity.this, setup);
             }
@@ -40,14 +42,29 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
 
     }
 
+
+    @Override
+    public void onPickError(Exception e) {
+        //TODO: handle the error.
+    }
+
+
     @Override
     public void onPickImageResult(Bitmap bitmap) {
-        ((ImageView) findViewById(R.id.result_image)).setImageBitmap(bitmap);
+        ImageView imageView = ((ImageView) findViewById(R.id.result_image));
+
+        imageView.setImageBitmap(bitmap);
     }
 
     @Override
-    public void onPickImageResult(Uri bitmap) {
-        ((ImageView) findViewById(R.id.result_image)).setImageURI(bitmap);
+    public void onPickImageResult(Uri bitmapUri) {
+        ImageView imageView = ((ImageView) findViewById(R.id.result_image));
+
+        //Mandatory to refresh image from Uri.
+        imageView.setImageURI(null);
+
+        //Setting the real returned image.
+        imageView.setImageURI(bitmapUri);
     }
 
 

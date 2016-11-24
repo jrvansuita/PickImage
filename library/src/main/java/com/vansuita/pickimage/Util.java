@@ -1,7 +1,9 @@
 package com.vansuita.pickimage;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -9,8 +11,13 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.view.WindowManager;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
@@ -34,31 +41,52 @@ public class Util {
         background(v, new BitmapDrawable(v.getResources(), b));
     }
 
+    public static void launchGalery(DialogFragment frag, int code) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        frag.startActivityForResult(intent, code);
+    }
 
-    public static Bitmap flip(Bitmap bitmap){
+
+    public static void launchCamera(DialogFragment frag, int code) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(frag.getActivity().getPackageManager()) != null) {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri());
+            frag.startActivityForResult(intent, code);
+        }
+    }
+
+
+    public static File tempFile() {
+        File dir = new File(Environment.getExternalStorageDirectory(), IPickResult.class.getSimpleName());
+        dir.mkdirs();
+
+        return new File(dir, "temp.jpg");
+    }
+
+    public static Uri tempUri() {
+        return Uri.fromFile(tempFile());
+    }
+
+    public static Bitmap flip(Bitmap bitmap) {
         Matrix m = new Matrix();
         m.preScale(-1, 1);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
     }
 
-    public static Bitmap decodeUri(Uri selectedImage, Context context) throws FileNotFoundException {
-
+    public static Bitmap decodeUri(Uri selectedImage, Context context, int requiredSize) throws FileNotFoundException {
         // Decode image size
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o);
 
-        // The new size we want to scale to
-        final int REQUIRED_SIZE = 140;
-
         // Find the correct scale value. It should be the power of 2.
         int width_tmp = o.outWidth, height_tmp = o.outHeight;
         int scale = 1;
         while (true) {
-            if (width_tmp / 2 < REQUIRED_SIZE
-                    || height_tmp / 2 < REQUIRED_SIZE) {
+            if (width_tmp / 2 < requiredSize || height_tmp / 2 < requiredSize)
                 break;
-            }
+
             width_tmp /= 2;
             height_tmp /= 2;
             scale *= 2;
@@ -68,7 +96,18 @@ public class Util {
         BitmapFactory.Options o2 = new BitmapFactory.Options();
         o2.inSampleSize = scale;
         return BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o2);
-
     }
+
+
+    public static void setDimAmount(float dim, Dialog dialog) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            dialog.getWindow().setDimAmount(dim);
+        } else {
+            WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+            lp.dimAmount = dim;
+            dialog.getWindow().setAttributes(lp);
+        }
+    }
+
 
 }

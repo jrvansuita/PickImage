@@ -31,7 +31,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
  You can take a look at the sample app [located on this project](/app/).
 
 
-# Implamentation
+# Implementation
 
 ### Step #1 - Show the dialog.
     PickImageDialog.on(MainActivity.this, new PickSetup());
@@ -39,14 +39,22 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 ### Step #2 - Your AppCompatActivity have to implement IPickResult.IPickResultBitmap or IPickResult.IPickResultUri .
     @Override
     public void onPickImageResult(Bitmap bitmap) {
-          //TODO: use bitmap.
+          ImageView imageView = ((ImageView) findViewById(R.id.image_view));
+          
+          imageView.setImageBitmap(bitmap);
       }
       
     //Or
       
     @Override
     public void onPickImageResult(Uri bitmap) {
-       //TODO: use bitmap uri.
+       ImageView imageView = ((ImageView) findViewById(R.id.image_view));
+       
+       //Mandatory to refresh image from Uri.
+       imageView.setImageURI(null);
+       
+       //Setting the real returned image.
+       imageView.setImageURI(bitmapUri);
     }
 
 ### Step #3 - Customize you Dialog using PickSetup.
@@ -57,6 +65,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setTitleColor(yourColor);
     setup.setFlip(true);
     setup.setCancelText("Test");
+    setup.setImageSize(500);
 
 # Additionals
  If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.

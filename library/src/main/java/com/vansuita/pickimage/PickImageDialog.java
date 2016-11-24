@@ -1,13 +1,14 @@
 package com.vansuita.pickimage;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-
 
 import static android.app.Activity.RESULT_OK;
 import static com.vansuita.pickimage.R.layout.dialog;
+import static com.vansuita.pickimage.Util.tempUri;
 
 
 /**
@@ -58,6 +57,7 @@ public class PickImageDialog extends DialogFragment {
     private IPickResult.IPickResultBitmap bitmapListener;
     private IPickResult.IPickResultUri uriListener;
     private IPickResult.IPickClick clickListener;
+    private IPickResult.IPickError errorListener;
 
     @Override
     public void onAttach(Context context) {
@@ -72,6 +72,10 @@ public class PickImageDialog extends DialogFragment {
 
         if (context instanceof IPickResult.IPickClick)
             clickListener = (IPickResult.IPickClick) context;
+
+
+        if (context instanceof IPickResult.IPickError)
+            errorListener = (IPickResult.IPickError) context;
     }
 
     @Nullable
@@ -82,6 +86,8 @@ public class PickImageDialog extends DialogFragment {
         bindView();
         setUp();
         bindListeners();
+
+        requestPermissions();
 
         return cvRoot;
     }
@@ -102,9 +108,8 @@ public class PickImageDialog extends DialogFragment {
 
         tvTitle.setText(setup.getTitle());
 
-        setDimAcount(setup.getDimAmount());
+        Util.setDimAmount(setup.getDimAmount(), getDialog());
     }
-
 
     private void bindView() {
         tvTitle = (TextView) cvRoot.findViewById(R.id.title);
@@ -113,84 +118,100 @@ public class PickImageDialog extends DialogFragment {
         tvCancel = (TextView) cvRoot.findViewById(R.id.cancel);
     }
 
-    private void setDimAcount(float dim) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            getDialog().getWindow().setDimAmount(dim);
-        } else {
-            WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
-            lp.dimAmount = dim;
-            getDialog().getWindow().setAttributes(lp);
-        }
+    private void bindListeners() {
+        tvCancel.setOnClickListener(listener);
+        tvCamera.setOnClickListener(listener);
+        tvGallery.setOnClickListener(listener);
     }
 
-    private void bindListeners() {
-        tvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.cancel) {
                 dismiss();
-            }
-        });
 
-
-        tvCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (view.getId() == R.id.camera) {
                 if (clickListener != null) {
                     clickListener.onCameraClick();
-                }else {
-                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivityForResult(takePictureIntent, FROM_CAMERA);
-                    }
+                } else {
+                    Util.launchCamera(PickImageDialog.this, FROM_CAMERA);
                 }
-            }
-        });
 
-        tvGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else if (view.getId() == R.id.gallery) {
                 if (clickListener != null) {
                     clickListener.onGaleryClick();
-                }else {
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, FROM_GALLERY);
+                } else {
+                    Util.launchGalery(PickImageDialog.this, FROM_GALLERY);
                 }
-            }
-        });
-    }
 
+            }
+        }
+    };
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            dismiss();
+        dismiss();
 
-            if (bitmapListener != null) {
-                try {
+        if (resultCode == RESULT_OK)
+            try {
+                if (bitmapListener != null) {
+
                     Bitmap bitmap = null;
 
                     if (requestCode == FROM_CAMERA) {
-                        bitmap = (Bitmap) data.getExtras().get("data");
+                        bitmap = Util.decodeUri(tempUri(), getContext(), setup.getImageSize());
+
+                        // Not getting the sample image
+                        // bitmap = (Bitmap) data.getExtras().get("data");
 
                         if (setup.isFlipped())
                             bitmap = Util.flip(bitmap);
 
                     } else if (requestCode == FROM_GALLERY) {
-                        bitmap = Util.decodeUri(data.getData(), getActivity());
+                        bitmap = Util.decodeUri(data.getData(), getContext(), setup.getImageSize());
                     }
 
-
                     bitmapListener.onPickImageResult(bitmap);
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-            }
 
-            if (uriListener != null) {
-                uriListener.onPickImageResult(data.getData());
+                if (uriListener != null) {
+                    if (requestCode == FROM_CAMERA) {
+                        uriListener.onPickImageResult(tempUri());
+                    } else if (requestCode == FROM_GALLERY) {
+                        uriListener.onPickImageResult(data.getData());
+                    }
+                }
+            } catch (Exception e) {
+                errorListener.onPickError(e);
+            }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (int i = 0; i < grantResults.length; i++) {
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                dismissAllowingStateLoss();
+                break;
             }
         }
     }
+
+    public boolean requestPermissions() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if ((getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
+                    getActivity().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                return true;
+            }else{
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA}, 1);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
