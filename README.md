@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v1.0.5'
+           compile 'com.github.jrvansuita:PickImage:v1.0.6'
 	}
 
 # Samples

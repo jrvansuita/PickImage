@@ -61,6 +61,9 @@ public class Util {
         File dir = new File(Environment.getExternalStorageDirectory(), IPickResult.class.getSimpleName());
         dir.mkdirs();
 
+
+        //Here I have to create a better name for the file.
+        //Also, always have to clear the directory to keep only one image.
         return new File(dir, "temp.jpg");
     }
 
