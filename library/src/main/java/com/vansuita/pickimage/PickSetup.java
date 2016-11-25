@@ -20,7 +20,7 @@ public class PickSetup implements Serializable {
     private float dimAmount;
     private boolean flip;
     private int imageSize;
-
+    private EPickTypes[] pickTypes;
 
 
     public String getCancelText() {
@@ -31,6 +31,7 @@ public class PickSetup implements Serializable {
         this.cancelText = text;
         return this;
     }
+
     public String getTitle() {
         return title;
     }
@@ -76,12 +77,23 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+
+    public EPickTypes[] getPickTypes() {
+        return pickTypes;
+    }
+
+    public PickSetup setPickTypes(EPickTypes... pickTypes) {
+        this.pickTypes = pickTypes;
+        return this;
+    }
+
     public int getImageSize() {
         return imageSize;
     }
 
-    public void setImageSize(int imageSize) {
+    public PickSetup setImageSize(int imageSize) {
         this.imageSize = imageSize;
+        return this;
     }
 
     public boolean isFlipped() {
@@ -94,14 +106,14 @@ public class PickSetup implements Serializable {
     }
 
     public PickSetup() {
-        this.title = "Choose";
-        this.backgroundColor = Color.WHITE;
-        this.titleColor = Color.DKGRAY;
-        this.optionsColor = Color.GRAY;
-        this.dimAmount = 0.3f;
-        this.flip = false;
-        this.cancelText = "Cancel";
-        this.imageSize = 300;
+        setTitle("Choose")
+                .setBackgroundColor(Color.WHITE)
+                .setTitleColor(Color.DKGRAY)
+                .setDimAmount(0.3f)
+                .setFlip(false)
+                .setCancelText("Cancel")
+                .setImageSize(300)
+                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY);
     }
 
 

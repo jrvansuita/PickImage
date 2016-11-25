@@ -112,5 +112,13 @@ public class Util {
         }
     }
 
+    public static void gone(View v, boolean gone) {
+        if (gone) {
+            v.setVisibility(View.GONE);
+        } else {
+            v.setVisibility(View.VISIBLE);
+        }
+    }
+
 
 }

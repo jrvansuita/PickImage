@@ -66,6 +66,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setFlip(true);
     setup.setCancelText("Test");
     setup.setImageSize(500);
+    setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
 
 ### Step #4 - Handle possible errors.
     @Override

@@ -102,11 +102,17 @@ public class PickImageDialog extends DialogFragment {
 
         cvRoot.setCardBackgroundColor(setup.getBackgroundColor());
         tvTitle.setTextColor(setup.getTitleColor());
-        tvCamera.setTextColor(setup.getOptionsColor());
-        tvGallery.setTextColor(setup.getOptionsColor());
-        tvCancel.setText(setup.getCancelText());
 
+        if (setup.getOptionsColor() > 0) {
+            tvCamera.setTextColor(setup.getOptionsColor());
+            tvGallery.setTextColor(setup.getOptionsColor());
+        }
+
+        tvCancel.setText(setup.getCancelText());
         tvTitle.setText(setup.getTitle());
+
+        Util.gone(tvCamera, !EPickTypes.CAMERA.inside(setup.getPickTypes()));
+        Util.gone(tvGallery, !EPickTypes.GALERY.inside(setup.getPickTypes()));
 
         Util.setDimAmount(setup.getDimAmount(), getDialog());
     }
@@ -202,9 +208,9 @@ public class PickImageDialog extends DialogFragment {
     public boolean requestPermissions() {
         if (Build.VERSION.SDK_INT >= 23) {
             if ((getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) &&
-                    getActivity().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                    getActivity().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                 return true;
-            }else{
+            } else {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.CAMERA}, 1);
                 return false;

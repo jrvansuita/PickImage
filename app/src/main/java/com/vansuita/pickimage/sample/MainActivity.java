@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
                 //setup.setFlip(true);
                 //setup.setCancelText("Test");
                 //setup.setImageSize(500);
+                //setup.setPickTypes(EPickTypes.GALERY);
 
                 PickImageDialog.on(MainActivity.this, setup);
             }
