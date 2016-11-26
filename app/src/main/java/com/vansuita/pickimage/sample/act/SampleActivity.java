@@ -39,22 +39,27 @@ public class SampleActivity extends AppCompatActivity implements IPickResult.IPi
                 //setup.setPickTypes(EPickTypes.GALERY);
 
                 PickImageDialog.on(SampleActivity.this, setup)
-                        .setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+
+
+
+                        /*.setOnBitmapResult(new IPickResult.IPickResultBitmap() {
                             @Override
                             public void onPickImageResult(Bitmap bitmap) {
                                 //TODO: getting the bitmap.
                             }
                         }).setOnBitmapResult(new IPickResult.IPickResultBitmap() {
-                            @Override
-                            public void onPickImageResult(Bitmap bitmap) {
-                                 //TODO: getting the bitmap.
-                        }
-                        }).setOnError(new IPickResult.IPickError() {
-                            @Override
-                            public void onPickError(Exception e) {
-                                //TODO: handle the error.
-                        }
-                        });
+                    @Override
+                    public void onPickImageResult(Bitmap bitmap) {
+                        //TODO: getting the bitmap.
+                    }
+                }).setOnError(new IPickResult.IPickError() {
+                    @Override
+                    public void onPickError(Exception e) {
+                        //TODO: handle the error.
+                    }
+                })*/
+
+                ;
             }
         });
 
