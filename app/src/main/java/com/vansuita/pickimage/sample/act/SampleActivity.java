@@ -39,18 +39,22 @@ public class SampleActivity extends AppCompatActivity implements IPickResult.IPi
                 //setup.setPickTypes(EPickTypes.GALERY);
 
                 PickImageDialog.on(SampleActivity.this, setup)
-
-                //If you want to use this library inside a fragment you can set the listeners like this.
-                /*.setOnBitmapResult(new IPickResult.IPickResultBitmap() {
-                    @Override
-                    public void onPickImageResult(Bitmap bitmap) {
-                        ImageView imageView = ((ImageView) findViewById(R.id.result_image));
-
-                        imageView.setImageBitmap(bitmap);
-                    }
-                })*/
-
-                ;
+                        .setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+                            @Override
+                            public void onPickImageResult(Bitmap bitmap) {
+                                //TODO: getting the bitmap.
+                            }
+                        }).setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+                            @Override
+                            public void onPickImageResult(Bitmap bitmap) {
+                                 //TODO: getting the bitmap.
+                        }
+                        }).setOnError(new IPickResult.IPickError() {
+                            @Override
+                            public void onPickError(Exception e) {
+                                //TODO: handle the error.
+                        }
+                        });
             }
         });
 

@@ -67,20 +67,23 @@ public class PickImageDialog extends DialogFragment {
 
     private IPickResult.IPickResultUri onUriResult;
 
-    public void setOnUriResult(IPickResult.IPickResultUri onUriResult) {
+    public PickImageDialog setOnUriResult(IPickResult.IPickResultUri onUriResult) {
         this.onUriResult = onUriResult;
+        return this;
     }
 
     private IPickResult.IPickClick onClick;
 
-    public void setOnClick(IPickResult.IPickClick onClick) {
+    public PickImageDialog setOnClick(IPickResult.IPickClick onClick) {
         this.onClick = onClick;
+        return this;
     }
 
     private IPickResult.IPickError OnError;
 
-    public void setOnError(IPickResult.IPickError onError) {
+    public PickImageDialog setOnError(IPickResult.IPickError onError) {
         OnError = onError;
+        return this;
     }
 
     @Nullable

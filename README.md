@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v1.0.7'
+           compile 'com.github.jrvansuita:PickImage:v1.0.8'
 	}
 
 # Samples
@@ -88,6 +88,27 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
      public void onCameraClick() {
          //TODO: Your onw implementation
      }
+     
+# Supporting Fragments.
+ You can set the listeners manually to the library. Normally, the listener always will be the Activity. But you can replace the callback like this.
+      
+    PickImageDialog.on(SampleActivity.this, setup)
+                        .setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+                            @Override
+                            public void onPickImageResult(Bitmap bitmap) {
+                                //TODO: getting the bitmap.
+                            }
+                        }).setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+                            @Override
+                            public void onPickImageResult(Bitmap bitmap) {
+                                 //TODO: getting the bitmap.
+                        }
+                        }).setOnError(new IPickResult.IPickError() {
+                            @Override
+                            public void onPickError(Exception e) {
+                                //TODO: handle the error.
+                        }
+                        });
      
 # License
 See the [LICENSE](/LICENSE.txt). file for license rights and limitations (MIT).
