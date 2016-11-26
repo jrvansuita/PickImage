@@ -76,11 +76,13 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 
 
 # Additionals
+
+### Own click implementations.
  If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.
  You may want to take a look at the sample app.
  
      @Override
-     public void onGaleryClick() {
+     public void onGalleryClick() {
          //TODO: Your onw implementation
      }
  
@@ -89,7 +91,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
          //TODO: Your onw implementation
      }
      
-# Supporting Fragments.
+### Supporting Fragments.
  You can set the listeners manually to the library. Normally, the listener always will be the Activity. But you can replace the callback like this.
       
     PickImageDialog.on(SampleActivity.this, setup)
