@@ -11,7 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +38,14 @@ public class PickImageDialog extends DialogFragment {
         return frag;
     }
 
-    public static PickImageDialog on(AppCompatActivity activity, PickSetup setup) {
+    public static PickImageDialog on(FragmentActivity activity, PickSetup setup) {
         PickImageDialog d = PickImageDialog.newInstance(setup);
         d.show(activity.getSupportFragmentManager(), "dialog");
         return d;
+    }
+
+    public static PickImageDialog on(FragmentActivity activity) {
+        return on(activity, new PickSetup());
     }
 
     private static final String SETUP_TAG = "SETUP_TAG";
@@ -54,28 +58,29 @@ public class PickImageDialog extends DialogFragment {
     private TextView tvGallery;
     private TextView tvCancel;
 
-    private IPickResult.IPickResultBitmap bitmapListener;
-    private IPickResult.IPickResultUri uriListener;
-    private IPickResult.IPickClick clickListener;
-    private IPickResult.IPickError errorListener;
+    private IPickResult.IPickResultBitmap onBitmapResult;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public PickImageDialog setOnBitmapResult(IPickResult.IPickResultBitmap onBitmapResult) {
+        this.onBitmapResult = onBitmapResult;
+        return this;
+    }
 
-        if (context instanceof IPickResult.IPickResultBitmap)
-            bitmapListener = (IPickResult.IPickResultBitmap) context;
+    private IPickResult.IPickResultUri onUriResult;
 
-        if (context instanceof IPickResult.IPickResultUri)
-            uriListener = (IPickResult.IPickResultUri) context;
+    public void setOnUriResult(IPickResult.IPickResultUri onUriResult) {
+        this.onUriResult = onUriResult;
+    }
 
+    private IPickResult.IPickClick onClick;
 
-        if (context instanceof IPickResult.IPickClick)
-            clickListener = (IPickResult.IPickClick) context;
+    public void setOnClick(IPickResult.IPickClick onClick) {
+        this.onClick = onClick;
+    }
 
+    private IPickResult.IPickError OnError;
 
-        if (context instanceof IPickResult.IPickError)
-            errorListener = (IPickResult.IPickError) context;
+    public void setOnError(IPickResult.IPickError onError) {
+        OnError = onError;
     }
 
     @Nullable
@@ -115,7 +120,24 @@ public class PickImageDialog extends DialogFragment {
         Util.gone(tvGallery, !EPickTypes.GALERY.inside(setup.getPickTypes()));
 
         Util.setDimAmount(setup.getDimAmount(), getDialog());
+
+        onAttaching(getActivity());
     }
+
+    public void onAttaching(Context context) {
+        if (onBitmapResult == null && context instanceof IPickResult.IPickResultBitmap)
+            onBitmapResult = (IPickResult.IPickResultBitmap) context;
+
+        if (onUriResult == null && context instanceof IPickResult.IPickResultUri)
+            onUriResult = (IPickResult.IPickResultUri) context;
+
+        if (onClick == null && context instanceof IPickResult.IPickClick)
+            onClick = (IPickResult.IPickClick) context;
+
+        if (OnError == null && context instanceof IPickResult.IPickError)
+            OnError = (IPickResult.IPickError) context;
+    }
+
 
     private void bindView() {
         tvTitle = (TextView) cvRoot.findViewById(R.id.title);
@@ -137,15 +159,15 @@ public class PickImageDialog extends DialogFragment {
                 dismiss();
 
             } else if (view.getId() == R.id.camera) {
-                if (clickListener != null) {
-                    clickListener.onCameraClick();
+                if (onClick != null) {
+                    onClick.onCameraClick();
                 } else {
                     Util.launchCamera(PickImageDialog.this, FROM_CAMERA);
                 }
 
             } else if (view.getId() == R.id.gallery) {
-                if (clickListener != null) {
-                    clickListener.onGaleryClick();
+                if (onClick != null) {
+                    onClick.onGalleryClick();
                 } else {
                     Util.launchGalery(PickImageDialog.this, FROM_GALLERY);
                 }
@@ -161,7 +183,7 @@ public class PickImageDialog extends DialogFragment {
 
         if (resultCode == RESULT_OK)
             try {
-                if (bitmapListener != null) {
+                if (onBitmapResult != null) {
 
                     Bitmap bitmap = null;
 
@@ -178,18 +200,18 @@ public class PickImageDialog extends DialogFragment {
                         bitmap = Util.decodeUri(data.getData(), getContext(), setup.getImageSize());
                     }
 
-                    bitmapListener.onPickImageResult(bitmap);
+                    onBitmapResult.onPickImageResult(bitmap);
                 }
 
-                if (uriListener != null) {
+                if (onUriResult != null) {
                     if (requestCode == FROM_CAMERA) {
-                        uriListener.onPickImageResult(tempUri());
+                        onUriResult.onPickImageResult(tempUri());
                     } else if (requestCode == FROM_GALLERY) {
-                        uriListener.onPickImageResult(data.getData());
+                        onUriResult.onPickImageResult(data.getData());
                     }
                 }
             } catch (Exception e) {
-                errorListener.onPickError(e);
+                OnError.onPickError(e);
             }
     }
 

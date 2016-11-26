@@ -1,4 +1,4 @@
-package com.vansuita.pickimage.sample;
+package com.vansuita.pickimage.sample.act;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,8 +10,9 @@ import android.widget.ImageView;
 import com.vansuita.pickimage.IPickResult;
 import com.vansuita.pickimage.PickImageDialog;
 import com.vansuita.pickimage.PickSetup;
+import com.vansuita.pickimage.sample.R;
 
-public class MainActivity extends AppCompatActivity implements IPickResult.IPickError
+public class SampleActivity extends AppCompatActivity implements IPickResult.IPickError
         , IPickResult.IPickResultBitmap
         , IPickResult.IPickResultUri
         //, IPickResult.IPickClick
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.sample_layout);
 
 
         findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
@@ -37,7 +38,19 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
                 //setup.setImageSize(500);
                 //setup.setPickTypes(EPickTypes.GALERY);
 
-                PickImageDialog.on(MainActivity.this, setup);
+                PickImageDialog.on(SampleActivity.this, setup)
+
+                //If you want to use this library inside a fragment you can set the listeners like this.
+                /*.setOnBitmapResult(new IPickResult.IPickResultBitmap() {
+                    @Override
+                    public void onPickImageResult(Bitmap bitmap) {
+                        ImageView imageView = ((ImageView) findViewById(R.id.result_image));
+
+                        imageView.setImageBitmap(bitmap);
+                    }
+                })*/
+
+                ;
             }
         });
 
@@ -70,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements IPickResult.IPick
 
 
     /*@Override
-    public void onGaleryClick() {
+    public void onGalleryClick() {
         Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
     }
 

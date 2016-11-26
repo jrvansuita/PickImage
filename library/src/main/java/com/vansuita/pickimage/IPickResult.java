@@ -13,18 +13,17 @@ public class IPickResult {
         void onPickImageResult(Bitmap bitmap);
     }
 
-
     public interface IPickResultUri {
         void onPickImageResult(Uri bitmap);
     }
 
+    public interface IPickClick {
+        void onGalleryClick();
 
-    public interface IPickClick{
-        void onGaleryClick();
         void onCameraClick();
     }
 
-    public interface IPickError{
+    public interface IPickError {
         void onPickError(Exception e);
     }
 
