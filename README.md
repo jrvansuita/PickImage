@@ -113,5 +113,9 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
          //TODO: Your onw implementation
      }
      
+## How to dismiss the dialog.
+     PickImageDialog dialog = PickImageDialog.on(...);
+     dialog.dismiss();
+     
 # License
 See the [LICENSE](/LICENSE.txt). file for license rights and limitations (MIT).

@@ -33,7 +33,7 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
                 //setup.setFlip(true);
                 //setup.setCancelText("Test");
                 //setup.setImageSize(500);
-                //setup.setPickTypes(EPickTypes.GALERY);
+                //setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
                 //setup.setProgressText("Loading...");
                 //setup.setProgressTextColor(Color.BLUE);
 
