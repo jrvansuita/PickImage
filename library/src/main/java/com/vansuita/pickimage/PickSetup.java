@@ -15,6 +15,8 @@ public class PickSetup implements Serializable {
     private String title;
     private int backgroundColor;
     private int titleColor;
+    private int progressTextColor;
+    private String progressText;
     private String cancelText;
     private int optionsColor;
     private float dimAmount;
@@ -105,6 +107,25 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+
+    public int getProgressTextColor() {
+        return progressTextColor;
+    }
+
+    public PickSetup setProgressTextColor(int progressTextColor) {
+        this.progressTextColor = progressTextColor;
+        return this;
+    }
+
+    public String getProgressText() {
+        return progressText;
+    }
+
+    public PickSetup setProgressText(String progressText) {
+        this.progressText = progressText;
+        return this;
+    }
+
     public PickSetup() {
         setTitle("Choose")
                 .setBackgroundColor(Color.WHITE)
@@ -113,7 +134,9 @@ public class PickSetup implements Serializable {
                 .setFlip(false)
                 .setCancelText("Cancel")
                 .setImageSize(300)
-                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY);
+                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY)
+                .setProgressText("Loading...");
+
     }
 
 

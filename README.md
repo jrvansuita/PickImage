@@ -24,7 +24,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 #### Step 2. Add the dependency
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v1.0.8'
+           compile 'com.github.jrvansuita:PickImage:v2.0.0'
 	}
 
 # Samples
@@ -35,27 +35,53 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 
 ### Step #1 - Show the dialog.
     PickImageDialog.on(MainActivity.this, new PickSetup());
+    
+    //or 
+    
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup());
 
-### Step #2 - Your AppCompatActivity have to implement IPickResult.IPickResultBitmap or IPickResult.IPickResultUri .
+### Step #2 - Applying the listeners.
+
+#### Method #2.1 - Your AppCompatActivity have to implement IPickResult.
+
     @Override
-    public void onPickImageResult(Bitmap bitmap) {
-          ImageView imageView = ((ImageView) findViewById(R.id.image_view));
-          
-          imageView.setImageBitmap(bitmap);
-      }
-      
-    //Or
-      
-    @Override
-    public void onPickImageResult(Uri bitmap) {
-       ImageView imageView = ((ImageView) findViewById(R.id.image_view));
-       
-       //Mandatory to refresh image from Uri.
-       imageView.setImageURI(null);
-       
-       //Setting the real returned image.
-       imageView.setImageURI(bitmapUri);
-    }
+        public void onPickResult(PickResult r) {
+            if (r.getError() == null) {
+                ImageView imageView = ((ImageView) findViewById(R.id.result_image));
+    
+                //If you want the Bitmap.
+                imageView.setImageBitmap(r.getBitmap());
+    
+                //If you want the Uri.
+                //Mandatory to refresh image from Uri.
+                imageView.setImageURI(null);
+    
+                //Setting the real returned image.
+                imageView.setImageURI(r.getUri());
+            } else {
+                //Handle possible errors
+                //TODO: do what you have to do with r.getError();
+            }
+        }
+        
+#### Method #2.2 - Sets the listeners on the dialog constructor.
+    PickImageDialog.on(getSupportFragmentManager(), new IPickResult() {
+                    @Override
+                    public void onPickResult(PickResult r) {
+                       //TODO: do what you have to...
+                    }
+                });
+                
+#### Method #2.3 - Sets the listeners like this.
+
+    PickImageDialog.on(getSupportFragmentManager())
+                   .setOnPickResult(new IPickResult() {
+                      @Override
+                      public void onPickResult(PickResult r) {
+                         //TODO: do what you have to...
+                      }
+                });
+
 
 ### Step #3 - Customize you Dialog using PickSetup.
     PickSetup setup = new PickSetup();
@@ -67,18 +93,14 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     setup.setCancelText("Test");
     setup.setImageSize(500);
     setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
-
-### Step #4 - Handle possible errors.
-    @Override
-    public void onPickError(Exception e) {
-        //TODO: handle the error.
-    }
+    setup.setProgressText("Loading...");
+    setup.setProgressTextColor(Color.BLUE);
 
 
 # Additionals
 
 ### Own click implementations.
- If you want to write your own pick images functionalities, your class have to implements IPickResult.IPickClick like in the example below.
+ If you want to write your own pick images functionalities, your class have to implements IPickClick like in the example below.
  You may want to take a look at the sample app.
  
      @Override
@@ -90,27 +112,6 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
      public void onCameraClick() {
          //TODO: Your onw implementation
      }
-     
-### Supporting Fragments.
- You can set the listeners manually to the library. Normally, the listener always will be the Activity. But you can replace the callback like this.
-      
-    PickImageDialog.on(SampleActivity.this, setup)
-                        .setOnBitmapResult(new IPickResult.IPickResultBitmap() {
-                            @Override
-                            public void onPickImageResult(Bitmap bitmap) {
-                                //TODO: getting the bitmap.
-                            }
-                        }).setOnBitmapResult(new IPickResult.IPickResultBitmap() {
-                            @Override
-                            public void onPickImageResult(Bitmap bitmap) {
-                                 //TODO: getting the bitmap.
-                        }
-                        }).setOnError(new IPickResult.IPickError() {
-                            @Override
-                            public void onPickError(Exception e) {
-                                //TODO: handle the error.
-                        }
-                        });
      
 # License
 See the [LICENSE](/LICENSE.txt). file for license rights and limitations (MIT).

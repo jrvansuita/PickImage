@@ -14,8 +14,11 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.vansuita.pickimage.bean.PickResult;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,14 +54,19 @@ public class Util {
     public static void launchCamera(DialogFragment frag, int code) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(frag.getActivity().getPackageManager()) != null) {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri());
+
+            Uri uri = FileProvider.getUriForFile(frag.getContext(),
+                    BuildConfig.APPLICATION_ID + ".provider",
+                    tempFile());
+
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             frag.startActivityForResult(intent, code);
         }
     }
 
 
     public static File tempFile() {
-        File dir = new File(Environment.getExternalStorageDirectory(), IPickResult.class.getSimpleName());
+        File dir = new File(Environment.getExternalStorageDirectory(), PickResult.class.getSimpleName());
         dir.mkdirs();
 
 

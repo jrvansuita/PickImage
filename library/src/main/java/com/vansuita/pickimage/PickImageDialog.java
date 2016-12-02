@@ -7,17 +7,24 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+
+import com.vansuita.pickimage.bean.PickResult;
+import com.vansuita.pickimage.listeners.IPickClick;
+import com.vansuita.pickimage.listeners.IPickResult;
 
 import static android.app.Activity.RESULT_OK;
 import static com.vansuita.pickimage.R.layout.dialog;
@@ -38,14 +45,31 @@ public class PickImageDialog extends DialogFragment {
         return frag;
     }
 
-    public static PickImageDialog on(FragmentActivity activity, PickSetup setup) {
-        PickImageDialog d = PickImageDialog.newInstance(setup);
-        d.show(activity.getSupportFragmentManager(), "dialog");
+    public static PickImageDialog on(FragmentManager fm, PickSetup setup, IPickResult pickResult) {
+        PickImageDialog d = PickImageDialog.newInstance(setup == null ? new PickSetup() : setup);
+        d.setOnPickResult(pickResult);
+        d.show(fm, "dialog");
         return d;
     }
 
+    public static PickImageDialog on(FragmentManager fm, IPickResult pickResult) {
+        return on(fm, null, pickResult);
+    }
+
+    public static PickImageDialog on(FragmentManager fm, PickSetup setup) {
+        return on(fm, setup, null);
+    }
+
+    public static PickImageDialog on(FragmentActivity activity, PickSetup setup) {
+        return on(activity.getSupportFragmentManager(), setup);
+    }
+
     public static PickImageDialog on(FragmentActivity activity) {
-        return on(activity, new PickSetup());
+        return on(activity, null);
+    }
+
+    public static PickImageDialog on(FragmentManager fm) {
+        return on(fm, new PickSetup());
     }
 
     private static final String SETUP_TAG = "SETUP_TAG";
@@ -57,32 +81,22 @@ public class PickImageDialog extends DialogFragment {
     private TextView tvCamera;
     private TextView tvGallery;
     private TextView tvCancel;
+    private TextView tvProgress;
 
-    private IPickResult.IPickResultBitmap onBitmapResult;
+    private View vFirstLayer;
+    private View vSecondLayer;
 
-    public PickImageDialog setOnBitmapResult(IPickResult.IPickResultBitmap onBitmapResult) {
-        this.onBitmapResult = onBitmapResult;
+    private IPickResult onPickResult;
+
+    public PickImageDialog setOnPickResult(IPickResult onPickResult) {
+        this.onPickResult = onPickResult;
         return this;
     }
 
-    private IPickResult.IPickResultUri onUriResult;
+    private IPickClick onClick;
 
-    public PickImageDialog setOnUriResult(IPickResult.IPickResultUri onUriResult) {
-        this.onUriResult = onUriResult;
-        return this;
-    }
-
-    private IPickResult.IPickClick onClick;
-
-    public PickImageDialog setOnClick(IPickResult.IPickClick onClick) {
+    public PickImageDialog setOnClick(IPickClick onClick) {
         this.onClick = onClick;
-        return this;
-    }
-
-    private IPickResult.IPickError OnError;
-
-    public PickImageDialog setOnError(IPickResult.IPickError onError) {
-        OnError = onError;
         return this;
     }
 
@@ -116,9 +130,14 @@ public class PickImageDialog extends DialogFragment {
             tvGallery.setTextColor(setup.getOptionsColor());
         }
 
+        if (setup.getProgressTextColor() > 0)
+            tvProgress.setTextColor(setup.getProgressTextColor());
+
         tvCancel.setText(setup.getCancelText());
         tvTitle.setText(setup.getTitle());
+        tvProgress.setText(setup.getProgressText());
 
+        visibleProgress(false);
         Util.gone(tvCamera, !EPickTypes.CAMERA.inside(setup.getPickTypes()));
         Util.gone(tvGallery, !EPickTypes.GALERY.inside(setup.getPickTypes()));
 
@@ -128,17 +147,12 @@ public class PickImageDialog extends DialogFragment {
     }
 
     public void onAttaching(Context context) {
-        if (onBitmapResult == null && context instanceof IPickResult.IPickResultBitmap)
-            onBitmapResult = (IPickResult.IPickResultBitmap) context;
 
-        if (onUriResult == null && context instanceof IPickResult.IPickResultUri)
-            onUriResult = (IPickResult.IPickResultUri) context;
+        if (onClick == null && context instanceof IPickClick)
+            onClick = (IPickClick) context;
 
-        if (onClick == null && context instanceof IPickResult.IPickClick)
-            onClick = (IPickResult.IPickClick) context;
-
-        if (OnError == null && context instanceof IPickResult.IPickError)
-            OnError = (IPickResult.IPickError) context;
+        if (onPickResult == null && context instanceof IPickResult)
+            onPickResult = (IPickResult) context;
     }
 
 
@@ -147,6 +161,10 @@ public class PickImageDialog extends DialogFragment {
         tvCamera = (TextView) cvRoot.findViewById(R.id.camera);
         tvGallery = (TextView) cvRoot.findViewById(R.id.gallery);
         tvCancel = (TextView) cvRoot.findViewById(R.id.cancel);
+        tvProgress = (TextView) cvRoot.findViewById(R.id.loading_text);
+
+        vFirstLayer = cvRoot.findViewById(R.id.first_layer);
+        vSecondLayer = cvRoot.findViewById(R.id.second_layer);
     }
 
     private void bindListeners() {
@@ -179,43 +197,22 @@ public class PickImageDialog extends DialogFragment {
         }
     };
 
+
+    private void visibleProgress(boolean show){
+        Util.gone(vFirstLayer, show);
+        Util.gone(vSecondLayer, !show);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        dismiss();
 
-        if (resultCode == RESULT_OK)
-            try {
-                if (onBitmapResult != null) {
-
-                    Bitmap bitmap = null;
-
-                    if (requestCode == FROM_CAMERA) {
-                        bitmap = Util.decodeUri(tempUri(), getContext(), setup.getImageSize());
-
-                        // Not getting the sample image
-                        // bitmap = (Bitmap) data.getExtras().get("data");
-
-                        if (setup.isFlipped())
-                            bitmap = Util.flip(bitmap);
-
-                    } else if (requestCode == FROM_GALLERY) {
-                        bitmap = Util.decodeUri(data.getData(), getContext(), setup.getImageSize());
-                    }
-
-                    onBitmapResult.onPickImageResult(bitmap);
-                }
-
-                if (onUriResult != null) {
-                    if (requestCode == FROM_CAMERA) {
-                        onUriResult.onPickImageResult(tempUri());
-                    } else if (requestCode == FROM_GALLERY) {
-                        onUriResult.onPickImageResult(data.getData());
-                    }
-                }
-            } catch (Exception e) {
-                OnError.onPickError(e);
-            }
+        if (resultCode == RESULT_OK) {
+            visibleProgress(true);
+            new AsyncResult(requestCode).execute(data);
+        } else {
+            dismiss();
+        }
     }
 
 
@@ -245,4 +242,61 @@ public class PickImageDialog extends DialogFragment {
         return true;
     }
 
+
+    private class AsyncResult extends AsyncTask<Intent, Void, PickResult> {
+
+        private int requestCode;
+
+        public AsyncResult(int requestCode) {
+            this.requestCode = requestCode;
+        }
+
+        @Override
+        protected PickResult doInBackground(Intent... intents) {
+
+            PickResult result = new PickResult();
+
+            try {
+                Intent data = intents[0];
+
+                Bitmap bitmap = null;
+
+                if (requestCode == FROM_CAMERA) {
+                    bitmap = Util.decodeUri(tempUri(), getContext(), setup.getImageSize());
+
+                    if (setup.isFlipped())
+                        bitmap = Util.flip(bitmap);
+
+                } else if (requestCode == FROM_GALLERY) {
+                    bitmap = Util.decodeUri(data.getData(), getContext(), setup.getImageSize());
+                }
+
+                result.setBitmap(bitmap);
+
+                Uri uri = null;
+                if (requestCode == FROM_CAMERA) {
+                    uri = tempUri();
+                } else if (requestCode == FROM_GALLERY) {
+                    uri = data.getData();
+                }
+
+                result.setUri(uri);
+
+            } catch (Exception e) {
+                result.setError(e);
+            } finally {
+                return result;
+            }
+        }
+
+
+        @Override
+        protected void onPostExecute(PickResult r) {
+            if (onPickResult != null) {
+                onPickResult.onPickResult(r);
+            }
+
+            dismiss();
+        }
+    }
 }
