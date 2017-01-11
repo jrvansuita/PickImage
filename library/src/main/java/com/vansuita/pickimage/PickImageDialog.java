@@ -198,7 +198,7 @@ public class PickImageDialog extends DialogFragment {
     };
 
 
-    private void visibleProgress(boolean show){
+    private void visibleProgress(boolean show) {
         Util.gone(vFirstLayer, show);
         Util.gone(vSecondLayer, !show);
     }
@@ -276,8 +276,10 @@ public class PickImageDialog extends DialogFragment {
                 Uri uri = null;
                 if (requestCode == FROM_CAMERA) {
                     uri = tempUri();
+                    result.setPath(uri.getPath());
                 } else if (requestCode == FROM_GALLERY) {
                     uri = data.getData();
+                    result.setPath(Util.getRealPathFromURI(getContext(), uri));
                 }
 
                 result.setUri(uri);

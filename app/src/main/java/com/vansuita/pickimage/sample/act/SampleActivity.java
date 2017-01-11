@@ -98,12 +98,14 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
 
             //Setting the real returned image.
             imageView.setImageURI(r.getUri());
+
+            //Image path
+            r.getPath();
         } else {
             //Handle possible errors
             //TODO: do what you have to do with r.getError();
         }
     }
-
 
     /*@Override
     public void onGalleryClick() {

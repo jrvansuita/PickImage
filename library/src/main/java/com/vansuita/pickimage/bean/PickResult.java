@@ -10,8 +10,8 @@ import android.net.Uri;
 public class PickResult {
     private Bitmap bitmap;
     private Uri uri;
+    private String path;
     private Exception error;
-
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -37,10 +37,12 @@ public class PickResult {
         this.error = error;
     }
 
-    public PickResult(Bitmap bitmap, Uri uri, Exception error) {
-        this.bitmap = bitmap;
-        this.uri = uri;
-        this.error = error;
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     public PickResult() {
