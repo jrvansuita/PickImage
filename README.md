@@ -58,6 +58,9 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
     
                 //Setting the real returned image.
                 imageView.setImageURI(r.getUri());
+                
+                //Image path.
+                r.getPath();
             } else {
                 //Handle possible errors
                 //TODO: do what you have to do with r.getError();
