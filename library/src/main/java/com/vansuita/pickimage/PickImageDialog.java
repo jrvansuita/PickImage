@@ -183,7 +183,7 @@ public class PickImageDialog extends DialogFragment {
                 if (onClick != null) {
                     onClick.onCameraClick();
                 } else {
-                    Util.launchCamera(PickImageDialog.this, FROM_CAMERA);
+                    Util.launchCamera(PickImageDialog.this, setup.getAuthority(), FROM_CAMERA);
                 }
 
             } else if (view.getId() == R.id.gallery) {
