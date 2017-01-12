@@ -52,12 +52,12 @@ public class Util {
     }
 
 
-    public static void launchCamera(DialogFragment frag, int code) {
+    public static void launchCamera(DialogFragment frag, String authority, int code) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(frag.getActivity().getPackageManager()) != null) {
 
             Uri uri = FileProvider.getUriForFile(frag.getContext(),
-                    BuildConfig.APPLICATION_ID + ".provider",
+                    authority,
                     tempFile());
 
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);

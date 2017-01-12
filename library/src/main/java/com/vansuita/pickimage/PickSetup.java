@@ -23,6 +23,7 @@ public class PickSetup implements Serializable {
     private boolean flip;
     private int imageSize;
     private EPickTypes[] pickTypes;
+    private String authority;
 
 
     public String getCancelText() {
@@ -126,6 +127,14 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     public PickSetup() {
         setTitle("Choose")
                 .setBackgroundColor(Color.WHITE)
@@ -135,7 +144,8 @@ public class PickSetup implements Serializable {
                 .setCancelText("Cancel")
                 .setImageSize(300)
                 .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY)
-                .setProgressText("Loading...");
+                .setProgressText("Loading...")
+                .setAuthority(BuildConfig.APPLICATION_ID + ".provider");
 
     }
 
