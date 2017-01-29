@@ -16,11 +16,7 @@
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 
 
-# PickImage
-
-
-<!-- Buy me a cup of coffe -->
- <a href='https://ko-fi.com/A406JCM' hspace="1" vspace="1" target='_blank' align="right"><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+# PickImage<!-- Buy me a cup of coffe --> <a href='https://ko-fi.com/A406JCM' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 
 
