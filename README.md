@@ -1,12 +1,14 @@
 
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
+<a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:license-MIT-blue.svg" alt="MIT License" /></a>
+
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
 
 # PickImage
 
-This class was created to use in Android projects. It shows a DialogFragment with Camera or Gallery options. The user can choose from which provider wants to pick an image.
+This is an [**Android**](https://developer.android.com) project. It shows a [DialogFragment](https://developer.android.com/reference/android/app/DialogFragment.html) with Camera or Gallery options. The user can choose from which provider wants to pick an image.
 
 <br />
 
