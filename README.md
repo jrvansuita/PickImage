@@ -8,7 +8,7 @@
 
 This class was created to use in Android projects.
 
-# Porpouse
+# Porpouse 
 Shows a DialogFragment with Camera or Gallery options. The user can choose from where provider wants to pick an image.
 
 # Screenshot
