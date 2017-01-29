@@ -1,10 +1,19 @@
 
+<!-- Library Logo -->
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+
+<!-- Minimun android Api -->
 <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
+
+<!-- License -->
 <a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:license-MIT-blue.svg" alt="MIT License" /></a>
 
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
+
+
+
+<a target="_blank" href="http://www.methodscount.com/?lib=com.github.jrvansuita%3APickImage%3Av2.0.2"><img src="https://img.shields.io/badge/methods-409-e91e63.svg" /></a>
 
 # PickImage
 
@@ -141,5 +150,3 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
      PickImageDialog dialog = PickImageDialog.on(...);
      dialog.dismiss();
      
-# License
-See the [LICENSE](/LICENSE.txt). file for license rights and limitations (MIT).
