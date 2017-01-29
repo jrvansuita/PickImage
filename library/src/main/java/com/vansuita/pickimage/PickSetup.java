@@ -1,6 +1,9 @@
 package com.vansuita.pickimage;
 
 import android.graphics.Color;
+import android.support.annotation.IntDef;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
 
 import java.io.Serializable;
 
@@ -23,8 +26,21 @@ public class PickSetup implements Serializable {
     private boolean flip;
     private int imageSize;
     private EPickTypes[] pickTypes;
+
+    private int cameraIcon;
+    private int galleryIcon;
+
     private String authority;
 
+    @LinearLayoutCompat.OrientationMode
+    private int buttonsOrientation;
+
+
+    @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
+    public @interface IconGravity {}
+
+    @IconGravity
+    private int iconGravity;
 
     public String getCancelText() {
         return cancelText;
@@ -131,11 +147,53 @@ public class PickSetup implements Serializable {
         return authority;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public PickSetup setApplicationId(String authority) {
+        if (authority == null && authority.isEmpty())
+            throw new Error("Application id can't be null or empty.");
+
+        this.authority = authority + ".com.vansuita.pickimage.provider";
+
+        return this;
     }
 
-    public PickSetup() {
+    @LinearLayoutCompat.OrientationMode
+    public int getButtonsOrientation() {
+        return buttonsOrientation;
+    }
+
+    public PickSetup setButtonsOrientation(@LinearLayoutCompat.OrientationMode int buttonsOrientation) {
+        this.buttonsOrientation = buttonsOrientation;
+        return this;
+    }
+
+    public int getCameraIcon() {
+        return cameraIcon;
+    }
+
+    public PickSetup setCameraIcon(int cameraIcon) {
+        this.cameraIcon = cameraIcon;
+        return this;
+    }
+
+    public int getGalleryIcon() {
+        return galleryIcon;
+    }
+
+    public PickSetup setGalleryIcon(int galleryIcon) {
+        this.galleryIcon = galleryIcon;
+        return this;
+    }
+
+    @IconGravity
+    public int getIconGravity() {
+        return iconGravity;
+    }
+
+    public void setIconGravity(@IconGravity int iconGravity) {
+        this.iconGravity = iconGravity;
+    }
+
+    public PickSetup(String applicationId) {
         setTitle("Choose")
                 .setBackgroundColor(Color.WHITE)
                 .setTitleColor(Color.DKGRAY)
@@ -145,8 +203,10 @@ public class PickSetup implements Serializable {
                 .setImageSize(300)
                 .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY)
                 .setProgressText("Loading...")
-                .setAuthority(BuildConfig.APPLICATION_ID + ".provider");
-
+                .setButtonsOrientation(LinearLayoutCompat.VERTICAL)
+                .setCameraIcon(R.drawable.camera)
+                .setGalleryIcon(R.drawable.gallery)
+                .setApplicationId(applicationId);
     }
 
 

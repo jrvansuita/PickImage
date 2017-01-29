@@ -1,6 +1,10 @@
-# PickImage
+
+<img src="https://github.com/jrvansuita/PickImage/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10">
+<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ICE_CREAM_SANDWICH"><img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" alt="API" /></a>
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
+
+# PickImage
 
 This class was created to use in Android projects.
 
@@ -34,15 +38,31 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 # Implementation
 
 ### Step #1 - Show the dialog.
-    PickImageDialog.on(MainActivity.this, new PickSetup());
+    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
     
     //or 
     
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup());
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
 
-### Step #2 - Applying the listeners.
+### Step #2 - Override library file provider authority to avoid INSTALL_FAILED_CONFLICTING_PROVIDER ([See](https://developer.android.com/guide/topics/manifest/provider-element.html#auth)).
 
-#### Method #2.1 - Your AppCompatActivity have to implement IPickResult.
+    <manifest ...>
+    
+        ... 
+    
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </manifest>   
+
+### Step #3 - Applying the listeners.
+
+#### Method #3.1 - Your AppCompatActivity have to implement IPickResult.
 
     @Override
         public void onPickResult(PickResult r) {
@@ -67,7 +87,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
             }
         }
         
-#### Method #2.2 - Sets the listeners on the dialog constructor.
+#### Method #3.2 - Sets the listeners on the dialog constructor.
     PickImageDialog.on(getSupportFragmentManager(), new IPickResult() {
                     @Override
                     public void onPickResult(PickResult r) {
@@ -75,7 +95,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
                     }
                 });
                 
-#### Method #2.3 - Sets the listeners like this.
+#### Method #3.3 - Sets the listeners like this.
 
     PickImageDialog.on(getSupportFragmentManager())
                    .setOnPickResult(new IPickResult() {
@@ -86,7 +106,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
                 });
 
 
-### Step #3 - Customize you Dialog using PickSetup.
+### Step #4 - Customize you Dialog using PickSetup.
     PickSetup setup = new PickSetup();
     setup.setBackgroundColor(yourColor);
     setup.setTitle(yourTitle);
@@ -103,7 +123,7 @@ Shows a DialogFragment with Camera or Gallery options. The user can choose from 
 # Additionals
 
 ### Own click implementations.
- If you want to write your own pick images functionalities, your class have to implements IPickClick like in the example below.
+ If you want to write your own button click event, your class have to implements IPickClick like in the example below.
  You may want to take a look at the sample app.
  
      @Override

@@ -16,15 +16,20 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.listeners.IPickClick;
 import com.vansuita.pickimage.listeners.IPickResult;
+
+import java.util.Arrays;
 
 import static android.app.Activity.RESULT_OK;
 import static com.vansuita.pickimage.R.layout.dialog;
@@ -38,6 +43,9 @@ import static com.vansuita.pickimage.Util.tempUri;
 public class PickImageDialog extends DialogFragment {
 
     public static PickImageDialog newInstance(PickSetup setup) {
+        if (setup == null)
+            throw new Error("Not defined a PickSetup - .on() method");
+
         PickImageDialog frag = new PickImageDialog();
         Bundle args = new Bundle();
         args.putSerializable(SETUP_TAG, setup);
@@ -46,37 +54,39 @@ public class PickImageDialog extends DialogFragment {
     }
 
     public static PickImageDialog on(FragmentManager fm, PickSetup setup, IPickResult pickResult) {
-        PickImageDialog d = PickImageDialog.newInstance(setup == null ? new PickSetup() : setup);
+        PickImageDialog d = PickImageDialog.newInstance(setup);
         d.setOnPickResult(pickResult);
         d.show(fm, "dialog");
         return d;
-    }
-
-    public static PickImageDialog on(FragmentManager fm, IPickResult pickResult) {
-        return on(fm, null, pickResult);
     }
 
     public static PickImageDialog on(FragmentManager fm, PickSetup setup) {
         return on(fm, setup, null);
     }
 
+    public static PickImageDialog on(FragmentManager fm, String applicationID, IPickResult pickResult) {
+        return on(fm, new PickSetup(applicationID), pickResult);
+    }
+
+    public static PickImageDialog on(FragmentManager fm, String applicationID) {
+        return on(fm, applicationID, null);
+    }
+
     public static PickImageDialog on(FragmentActivity activity, PickSetup setup) {
         return on(activity.getSupportFragmentManager(), setup);
     }
 
-    public static PickImageDialog on(FragmentActivity activity) {
-        return on(activity, null);
+    public static PickImageDialog on(FragmentActivity activity, String applicationID) {
+        return on(activity, new PickSetup(applicationID));
     }
 
-    public static PickImageDialog on(FragmentManager fm) {
-        return on(fm, new PickSetup());
-    }
 
     private static final String SETUP_TAG = "SETUP_TAG";
     private static final int FROM_CAMERA = 1;
     private static final int FROM_GALLERY = 2;
 
     private CardView cvRoot;
+    private LinearLayout llButtons;
     private TextView tvTitle;
     private TextView tvCamera;
     private TextView tvGallery;
@@ -141,6 +151,13 @@ public class PickImageDialog extends DialogFragment {
         Util.gone(tvCamera, !EPickTypes.CAMERA.inside(setup.getPickTypes()));
         Util.gone(tvGallery, !EPickTypes.GALERY.inside(setup.getPickTypes()));
 
+        llButtons.setOrientation(setup.getButtonsOrientation() == LinearLayoutCompat.HORIZONTAL ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+
+        Util.setIcon(tvCamera, setup.getCameraIcon(), setup.getIconGravity());
+        Util.setIcon(tvGallery, setup.getGalleryIcon(), setup.getIconGravity());
+
+
+
         Util.setDimAmount(setup.getDimAmount(), getDialog());
 
         onAttaching(getActivity());
@@ -157,6 +174,7 @@ public class PickImageDialog extends DialogFragment {
 
 
     private void bindView() {
+        llButtons = (LinearLayout) cvRoot.findViewById(R.id.buttons_holder);
         tvTitle = (TextView) cvRoot.findViewById(R.id.title);
         tvCamera = (TextView) cvRoot.findViewById(R.id.camera);
         tvGallery = (TextView) cvRoot.findViewById(R.id.gallery);

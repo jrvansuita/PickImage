@@ -11,6 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
 
+    <android.support.v7.widget.SwitchCompat
+        android:text="asajs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/test"
         android:layout_width="wrap_content"

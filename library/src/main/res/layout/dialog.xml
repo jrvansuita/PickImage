@@ -55,24 +55,31 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/buttons_holder"
+                android:minWidth="250dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/camera"
                     style="@style/option"
-                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:gravity="left|center_vertical"
                     android:layout_weight="0.5"
-                    android:drawableTop="@mipmap/camera"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/camera"
                     android:text="@string/camera" />
 
                 <TextView
                     android:id="@+id/gallery"
                     style="@style/option"
+                    android:layout_width="match_parent"
+                    android:gravity="left|center_vertical"
+                    android:drawablePadding="10dp"
                     android:layout_weight="0.5"
-                    android:drawableTop="@mipmap/gallery"
+                    android:drawableLeft="@drawable/gallery"
                     android:text="@string/gallery" />
 
             </LinearLayout>
@@ -82,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:text="@string/cancel"
                 android:textAllCaps="true"
                 android:textColor="@color/cancel_selector"

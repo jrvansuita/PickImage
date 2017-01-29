@@ -2,6 +2,8 @@ package com.vansuita.pickimage.sample.act;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,6 +11,7 @@ import com.vansuita.pickimage.PickImageDialog;
 import com.vansuita.pickimage.PickSetup;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.listeners.IPickResult;
+import com.vansuita.pickimage.sample.BuildConfig;
 import com.vansuita.pickimage.sample.R;
 
 public class SampleActivity extends AppCompatActivity implements IPickResult
@@ -24,7 +27,7 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
         findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PickSetup setup = new PickSetup();
+                PickSetup setup = new PickSetup(BuildConfig.APPLICATION_ID);
 
                 //setup.setBackgroundColor(yourColor);
                 //setup.setTitle(yourTitle);
@@ -36,6 +39,10 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
                 //setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
                 //setup.setProgressText("Loading...");
                 //setup.setProgressTextColor(Color.BLUE);
+                setup.setButtonsOrientation(LinearLayoutCompat.VERTICAL);
+                setup.setGalleryIcon(R.mipmap.gallery_colored);
+                setup.setCameraIcon(R.mipmap.camera_colored);
+                setup.setIconGravity(Gravity.BOTTOM);
 
 
                 PickImageDialog.on(SampleActivity.this, setup);
@@ -59,7 +66,7 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
                             }
                         });*/
 
-                //You can set the listerners like this.
+                //You can set the listeners like this.
                 /*.setOnPickResult(new IPickResult() {
                     @Override
                     public void onPickResult(PickResult r) {

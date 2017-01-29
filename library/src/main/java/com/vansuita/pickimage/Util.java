@@ -16,8 +16,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.FileProvider;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.vansuita.pickimage.bean.PickResult;
 
@@ -137,12 +139,39 @@ public class Util {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             return cursor.getString(column_index);
-        }catch (Exception e){
+        } catch (Exception e) {
             return contentUri.getPath();
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
+        }
+    }
+
+
+    public static void setIcon(TextView tv, int icon, int gravity) {
+        int left;
+        int right = 0;
+        int bottom = 0;
+        int top = 0;
+
+        if (gravity > 0) {
+            left = gravity == Gravity.LEFT ? icon : 0;
+            right = gravity == Gravity.RIGHT ? icon : 0;
+            bottom = gravity == Gravity.BOTTOM ? icon : 0;
+            top = gravity == Gravity.TOP ? icon : 0;
+        } else {
+            left = icon;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            tv.setCompoundDrawablesRelativeWithIntrinsicBounds(left, top, right, bottom);
+        } else {
+            tv.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        }
+
+        if (bottom + top != 0) {
+            tv.setGravity(Gravity.CENTER);
         }
     }
 
