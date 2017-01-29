@@ -2,14 +2,14 @@
 <!-- Library Logo -->
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 
-<!-- Minimun android Api -->
-<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
+<!-- JitPack integration -->
+[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<!-- Android Arsenal -->
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
 
 <!-- License -->
-<a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:license-MIT-blue.svg" alt="MIT License" /></a>
+<a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:license-MIT-blue.svg" alt="MIT License" /></a><!-- Minimun Android Api -->
+<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
 
-[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
 
 
 
