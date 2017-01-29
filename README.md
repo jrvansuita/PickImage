@@ -1,15 +1,14 @@
 
-<img src="https://github.com/jrvansuita/PickImage/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10">
-<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#ICE_CREAM_SANDWICH"><img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" alt="API" /></a>
+<img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
+<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)
 
 # PickImage
 
-This class was created to use in Android projects.
+This class was created to use in Android projects. It shows a DialogFragment with Camera or Gallery options. The user can choose from which provider wants to pick an image.
 
-# Porpouse 
-Shows a DialogFragment with Camera or Gallery options. The user can choose from where provider wants to pick an image.
+<br />
 
 # Screenshot
 ![test](screenshot/img.png? "Dialog")
