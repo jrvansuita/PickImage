@@ -70,13 +70,14 @@ _The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https:/
     
 ### Step #2 - Showing the dialog.
 _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
-  
-    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
+
+    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
     
     //or 
     
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
-
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
+    
+    
 ### Step #3 - Applying the listeners.
 
 #### Method #3.1 - Make your AppCompatActivity implements IPickResult.
