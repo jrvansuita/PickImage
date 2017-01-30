@@ -176,8 +176,5 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <a href="mailto:vansuita.jr@gmail.com" target="_blank">
   <img src="https://s20.postimg.org/slli3vn5l/email.png" alt="E-mail" witdh="44" height="44" hspace="10">
 </a>
-<a href="skype:arleu.vansuita?userinfo" target="_blank">
-  <img src="https://s20.postimg.org/kmlqmjxfd/skype.png" alt="Skype" witdh="44" height="44" hspace="10">
-</a>
 
 
