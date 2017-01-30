@@ -52,7 +52,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Implementation
 
 #### Step #1. Overriding the library file provider authority to avoid installation conflicts.
-_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step._
+######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step._
 
     <manifest ...>
     
@@ -69,14 +69,14 @@ _The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https:/
     </manifest> 
     
 #### Step #2 - Showing the dialog.
-_It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
+######_It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
 
     PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
     
     //or 
     
     PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
-     
+    
 #### Step #3 - Applying the listeners.
 
 ##### Method #3.1 - Make your AppCompatActivity implements IPickResult.
