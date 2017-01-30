@@ -51,13 +51,11 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 # Implementation
 
-#### Step #1. Overriding the library file provider authority to avoid installation conflicts.
-######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step._
+#### Step #1. Overriding the library file provider authority to avoid installation conflicts. 
+######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this provider declaration._
 
     <manifest ...>
-    
         ... 
-    
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.com.vansuita.pickimage.provider"
@@ -134,8 +132,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Additionals
 
 #### Own click implementations.
- If you want to write your own button click event, your class have to implements IPickClick like in the example below.
- You may want to take a look at the sample app.
+ ######_If you want to write your own button click event, your class have to implements IPickClick like in the example below.
+ You may want to take a look at the sample app._
  
      @Override
      public void onGalleryClick() {
