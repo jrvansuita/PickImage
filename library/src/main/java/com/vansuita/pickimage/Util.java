@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -34,6 +36,7 @@ import com.vansuita.pickimage.bean.PickResult;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by jrvansuita on 01/11/16.
@@ -65,11 +68,21 @@ public class Util {
 
     public static void launchCamera(DialogFragment frag, String authority, int code) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         if (intent.resolveActivity(frag.getActivity().getPackageManager()) != null) {
 
             Uri uri = FileProvider.getUriForFile(frag.getContext(),
                     authority,
                     tempFile());
+
+
+            //Testing this...
+            List<ResolveInfo> resInfoList = frag.getActivity().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                frag.getActivity().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+            // ----- //
 
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
             frag.startActivityForResult(intent, code);

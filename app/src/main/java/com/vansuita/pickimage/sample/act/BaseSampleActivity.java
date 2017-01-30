@@ -131,35 +131,35 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
         return prefs.getBoolean(getString(key), false);
     }
 
-   protected void customize(PickSetup setup){
-       setup.setTitle(getStr(R.string.key_dialog_title));
-       setup.setTitleColor(getInt(R.string.key_title_color));
+    protected void customize(PickSetup setup) {
+        setup.setTitle(getStr(R.string.key_dialog_title));
+        setup.setTitleColor(getInt(R.string.key_title_color));
 
-       setup.setBackgroundColor(getInt(R.string.key_background_color));
+        setup.setBackgroundColor(getInt(R.string.key_background_color));
 
-       setup.setProgressText(getStr(R.string.key_progress_text));
-       setup.setProgressTextColor(getInt(R.string.key_progress_text_color));
+        setup.setProgressText(getStr(R.string.key_progress_text));
+        setup.setProgressTextColor(getInt(R.string.key_progress_text_color));
 
-       setup.setCancelText(getStr(R.string.key_cancel_text));
-       setup.setCancelTextColor(getInt(R.string.key_cancel_text_color));
+        setup.setCancelText(getStr(R.string.key_cancel_text));
+        setup.setCancelTextColor(getInt(R.string.key_cancel_text_color));
 
-       setup.setButtonTextColor(getInt(R.string.key_button_text_color));
+        setup.setButtonTextColor(getInt(R.string.key_button_text_color));
 
-       setup.setDimAmount(getFloat(R.string.key_dim_amount));
-       setup.setFlip(getBool(R.string.key_flip_image));
-       setup.setImageSize(getNum(R.string.key_image_size));
+        setup.setDimAmount(getFloat(R.string.key_dim_amount));
+        setup.setFlip(getBool(R.string.key_flip_image));
+        setup.setImageSize(getNum(R.string.key_image_size));
 
-       setup.setPickTypes(EPickTypes.fromInt(getNum(R.string.key_buttons_available)));
+        setup.setPickTypes(EPickTypes.fromInt(getNum(R.string.key_buttons_available)));
 
-       setup.setCameraButtonText(getStr(R.string.key_camera_button_text));
-       setup.setGalleryButtonText(getStr(R.string.key_gallery_button_text));
-       setup.setIconGravityInt(getNum(R.string.key_icon_gravity));
+        setup.setCameraButtonText(getStr(R.string.key_camera_button_text));
+        setup.setGalleryButtonText(getStr(R.string.key_gallery_button_text));
+        setup.setIconGravityInt(getNum(R.string.key_icon_gravity));
 
-       setup.setButtonOrientationInt(getNum(R.string.key_buttons_orientation));
+        setup.setButtonOrientationInt(getNum(R.string.key_buttons_orientation));
 
-       if (getBool(R.string.key_colored_icons)) {
-           setup.setGalleryIcon(R.mipmap.gallery_colored);
-           setup.setCameraIcon(R.mipmap.camera_colored);
-       }
-   }
+        if (getBool(R.string.key_colored_icons)) {
+            setup.setGalleryIcon(R.mipmap.gallery_colored);
+            setup.setCameraIcon(R.mipmap.camera_colored);
+        }
+    }
 }
