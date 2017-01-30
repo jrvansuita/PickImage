@@ -173,7 +173,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <a href="https://github.com/jrvansuita" target="_blank">
   <img src="https://s20.postimg.org/jf37glhx5/github.png" alt="Github" witdh="44" height="44" hspace="10">
 </a>
-<a href="play.google.com/store/apps/dev?id=8002078663318221363" target="_blank">
+<a href="https://play.google.com/store/apps/dev?id=8002078663318221363" target="_blank">
   <img src="https://s20.postimg.org/5iuz4plo9/android.png" alt="Google Play Store" witdh="44" height="44" hspace="10">
 </a>
 <a href="mailto:vansuita.jr@gmail.com" target="_blank" >
