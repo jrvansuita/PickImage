@@ -19,12 +19,22 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 [![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)<!--Open Source --> [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 
-# Screenshot
-![test](screenshot/img.png? "Dialog")
+# Screenshots
+<img src="images/dialogs/light_vertical_left_simple.png" height='auto' width='280'/>
+<img src="images/dialogs/light_horizontal_top_simple.png" height='auto' width='280'/>
+<img src="images/dialogs/light_horizontal_left_simple.png" height='auto' width='280'/>
+<img src="images/dialogs/light_vertical_left_colored.png" height='auto' width='280'/>
+<img src="images/dialogs/light_horizontal_top_colored.png" height='auto' width='280'/>
+<img src="images/dialogs/light_horizontal_left_colored.png" height='auto' width='280'/>
+<img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/>
+<img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/>
+<img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
+
+
 
 # Setup
 
-#### Step 1. Add the JitPack repository to your build file:
+### Step #1. Add the JitPack repository to your build file:
 
     allprojects {
 		repositories {
@@ -33,7 +43,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 		}
 	}
 
-#### Step 2. Add the dependency
+### Step #2. Add the dependency
 
     dependencies {
            compile 'com.github.jrvansuita:PickImage:v2.0.2'
@@ -41,14 +51,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 # Implementation
 
-### Step #1 - Show the dialog.
-    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
-    
-    //or 
-    
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
-
-### Step #2 - Override library file provider authority to avoid INSTALL_FAILED_CONFLICTING_PROVIDER ([See](https://developer.android.com/guide/topics/manifest/provider-element.html#auth)).
+### Step #1. Overriding the library file provider authority to avoid installation conflicts.
+_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step._
 
     <manifest ...>
     
@@ -62,11 +66,20 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-    </manifest>   
+    </manifest> 
+    
+### Step #2 - Showing the dialog.
+_It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
+  
+    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
+    
+    //or 
+    
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
 
 ### Step #3 - Applying the listeners.
 
-#### Method #3.1 - Your AppCompatActivity have to implement IPickResult.
+#### Method #3.1 - Make your AppCompatActivity implements IPickResult.
 
     @Override
         public void onPickResult(PickResult r) {
@@ -90,18 +103,10 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
                 //TODO: do what you have to do with r.getError();
             }
         }
-        
-#### Method #3.2 - Sets the listeners on the dialog constructor.
-    PickImageDialog.on(getSupportFragmentManager(), new IPickResult() {
-                    @Override
-                    public void onPickResult(PickResult r) {
-                       //TODO: do what you have to...
-                    }
-                });
-                
-#### Method #3.3 - Sets the listeners like this.
+           
+#### Method #3.2 - Set the listener using the public method.
 
-    PickImageDialog.on(getSupportFragmentManager())
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID))
                    .setOnPickResult(new IPickResult() {
                       @Override
                       public void onPickResult(PickResult r) {
@@ -123,11 +128,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
     setup.setProgressText("Loading...");
     setup.setProgressTextColor(Color.BLUE);
 
-
-
 # Samples
  You can take a look at the sample app [located on this project](/app/).
-
 
 # Additionals
 
@@ -145,7 +147,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
          //TODO: Your onw implementation
      }
      
-## How to dismiss the dialog.
+## For dismissing the dialog.
      PickImageDialog dialog = PickImageDialog.on(...);
      dialog.dismiss();
      
