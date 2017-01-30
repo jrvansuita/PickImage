@@ -132,8 +132,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Additionals
 
 #### Own click implementations.
-###### _If you want to write your own button click event, your class have to implements IPickClick like in the example below.
- You may want to take a look at the sample app._
+###### _If you want to write your own button click event, your class have to implements IPickClick like in the example below. You may want to take a look at the sample app._
  
      @Override
      public void onGalleryClick() {
