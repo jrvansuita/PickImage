@@ -156,6 +156,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
  You can take a look at the sample app [located on this project](/app/).
  
 
+</br>
+</br>
  
 
 <a href="https://plus.google.com/+JuniorVansuita" target="_blank">
