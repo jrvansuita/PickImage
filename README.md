@@ -30,8 +30,6 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/>
 <img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
 
-
-
 # Setup
 
 #### Step #1. Add the JitPack repository to your build file:
@@ -135,9 +133,6 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
                 .setCameraIcon(yourIcon);
     /*... and more to come. */
        
-# Samples
- You can take a look at the sample app [located on this project](/app/).
-
 # Additionals
 
 #### Own click implementations.
@@ -157,3 +152,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
      PickImageDialog dialog = PickImageDialog.on(...);
      dialog.dismiss();
      
+# Sample app code.
+ You can take a look at the sample app [located on this project](/app/).
+
+# Running sample app.
+<iframe src="https://appetize.io/embed/ry2tu9rjakgbbk2x0ctuz2hh4g?device=nexus7&scale=60&autoplay=true&orientation=portrait&deviceColor=black" width="728px" height="1268px" frameborder="0" scrolling="no"></iframe>
