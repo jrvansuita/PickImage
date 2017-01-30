@@ -8,7 +8,7 @@
 This is an [**Android**](https://developer.android.com) project. It shows a [DialogFragment](https://developer.android.com/reference/android/app/DialogFragment.html) with Camera or Gallery options. The user can choose from which provider wants to pick an image.
 
 </br> 
-</br> 
+</br>
 
 <!-- JitPack integration -->
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<!-- Android Arsenal -->
@@ -154,6 +154,3 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
      
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
-
-# Running sample app.
-<iframe src="https://appetize.io/embed/ry2tu9rjakgbbk2x0ctuz2hh4g?device=nexus7&scale=60&autoplay=true&orientation=portrait&deviceColor=black" width="728px" height="1268px" frameborder="0" scrolling="no"></iframe>
