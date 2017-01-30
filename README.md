@@ -155,7 +155,9 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
  
- # Follow me
+# Follow me 
+ 
+<div style='background-color:#989898;'> 
 <a href="https://plus.google.com/+JuniorVansuita">
   <img src="https://s20.postimg.org/59xees8vt/google_plus.png" alt="Google+" witdh="64" height="64" hspace="10">
 </a>
@@ -177,3 +179,4 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <a href="skype:arleu.vansuita?userinfo">
   <img src="https://s20.postimg.org/kmlqmjxfd/skype.png" alt="Skype" witdh="64" height="64" hspace="10">
 </a>
+<div>
