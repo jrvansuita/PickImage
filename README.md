@@ -34,7 +34,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 # Setup
 
-### Step #1. Add the JitPack repository to your build file:
+#### Step #1. Add the JitPack repository to your build file:
 
     allprojects {
 		repositories {
@@ -43,7 +43,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 		}
 	}
 
-### Step #2. Add the dependency
+#### Step #2. Add the dependency
 
     dependencies {
            compile 'com.github.jrvansuita:PickImage:v2.0.2'
@@ -51,7 +51,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 # Implementation
 
-### Step #1. Overriding the library file provider authority to avoid installation conflicts.
+#### Step #1. Overriding the library file provider authority to avoid installation conflicts.
 _The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step._
 
     <manifest ...>
@@ -68,19 +68,18 @@ _The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https:/
         </provider>
     </manifest> 
     
-### Step #2 - Showing the dialog.
+#### Step #2 - Showing the dialog.
 _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
 
-    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
+    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
     
     //or 
     
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
-    
-    
-### Step #3 - Applying the listeners.
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
+     
+#### Step #3 - Applying the listeners.
 
-#### Method #3.1 - Make your AppCompatActivity implements IPickResult.
+##### Method #3.1 - Make your AppCompatActivity implements IPickResult.
 
     @Override
         public void onPickResult(PickResult r) {
@@ -105,7 +104,7 @@ _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/van
             }
         }
            
-#### Method #3.2 - Set the listener using the public method.
+##### Method #3.2 - Set the listener using the public method.
 
     PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID))
                    .setOnPickResult(new IPickResult() {
@@ -116,7 +115,7 @@ _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/van
                 });
 
 
-### Step #4 - Customize you Dialog using PickSetup.
+#### Step #4 - Customize you Dialog using PickSetup.
     PickSetup setup = new PickSetup();
     setup.setBackgroundColor(yourColor);
     setup.setTitle(yourTitle);
@@ -134,7 +133,7 @@ _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/van
 
 # Additionals
 
-### Own click implementations.
+#### Own click implementations.
  If you want to write your own button click event, your class have to implements IPickClick like in the example below.
  You may want to take a look at the sample app.
  
@@ -148,7 +147,7 @@ _It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/van
          //TODO: Your onw implementation
      }
      
-## For dismissing the dialog.
+#### For dismissing the dialog.
      PickImageDialog dialog = PickImageDialog.on(...);
      dialog.dismiss();
      
