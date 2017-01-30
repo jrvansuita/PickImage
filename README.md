@@ -114,18 +114,27 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 
 #### Step #4 - Customize you Dialog using PickSetup.
-    PickSetup setup = new PickSetup();
-    setup.setBackgroundColor(yourColor);
-    setup.setTitle(yourTitle);
-    setup.setDimAmount(yourFloat);
-    setup.setTitleColor(yourColor);
-    setup.setFlip(true);
-    setup.setCancelText("Test");
-    setup.setImageSize(500);
-    setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
-    setup.setProgressText("Loading...");
-    setup.setProgressTextColor(Color.BLUE);
-
+    PickSetup setup = new PickSetup(BuildConfig.APPLICATION_ID)
+                .setTitle(yourText)
+                .setTitleColor(yourColor)
+                .setBackgroundColor(yourColor)
+                .setProgressText(yourText)
+                .setProgressTextColor(yourColor)
+                .setCancelText(yourText)
+                .setCancelTextColor(yourColor)
+                .setButtonTextColor(yourColor)
+                .setDimAmount(yourFloat)
+                .setFlip(true)
+                .setImageSize(500)
+                .setPickTypes(EPickTypes.GALLERY, EPickTypes.CAMERA)
+                .setCameraButtonText(yourText)
+                .setGalleryButtonText(yourText)
+                .setIconGravity(Gravity.LEFT)
+                .setButtonOrientation(LinearLayoutCompat.VERTICAL)
+                .setGalleryIcon(yourIcon)
+                .setCameraIcon(yourIcon);
+    /*... and more to come. */
+       
 # Samples
  You can take a look at the sample app [located on this project](/app/).
 
