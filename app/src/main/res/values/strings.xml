@@ -1,3 +1,46 @@
 <resources>
-    <string name="app_name">PickImage</string>
+    <string name="app_name">Pick Image Sample</string>
+    <string name="colors">Colors</string>
+    <string name="titles_labels">Titles and Labels</string>
+    <string name="provide_text">Provide a text</string>
+    <string name="dialog_title">Dialog Title</string>
+    <string name="progress_text">Progress Text </string>
+    <string name="cancel_text">Cancel Button Text</string>
+    <string name="camera_button_text">Camera Button Text</string>
+    <string name="gallery_button_text">Gallery Button Text</string>
+    <string name="background_color">Dialog Background Color</string>
+    <string name="title_color">Dialog Title Color</string>
+    <string name="button_text_color">Buttons Text Color</string>
+    <string name="cancel_text_color">Cancel Text Color</string>
+    <string name="progress_text_color">Progress Text Color</string>
+
+    <string name="additional_customization">Additional Customization</string>
+    <string name="flip_image">Flip image after shot</string>
+    <string name="colored_icons">Colored icons</string>
+    <string name="image_size">Image size</string>
+    <string name="dim_amount">Dim amount behind the dialog</string>
+    <string name="buttons_available">Buttons available</string>
+    <string name="buttons_orientation">Buttons orientation</string>
+    <string name="icon_gravity">Icon gravity</string>
+    <string name="tip">Press on the box below to pick an image!</string>
+
+    <string name="key_text_preference_group">key_text_preference_group</string>
+    <string name="key_additional_preference_group">key_additional_preference_group</string>
+    <string name="key_dialog_title">key_dialog_title</string>
+    <string name="key_progress_text">key_progress_text</string>
+    <string name="key_cancel_text">key_cancel_text</string>
+    <string name="key_camera_button_text">key_camera_button_text</string>
+    <string name="key_gallery_button_text">key_gallery_button_text</string>
+    <string name="key_background_color">key_background_color</string>
+    <string name="key_title_color">key_title_color</string>
+    <string name="key_cancel_text_color">key_cancel_text_color</string>
+    <string name="key_button_text_color">key_button_text_color</string>
+    <string name="key_progress_text_color">key_progress_text_color</string>
+    <string name="key_flip_image">key_flip_image</string>
+    <string name="key_colored_icons">key_colored_icons</string>
+    <string name="key_dim_amount">key_dim_amount</string>
+    <string name="key_image_size">key_image_size</string>
+    <string name="key_buttons_available">key_buttons_available</string>
+    <string name="key_buttons_orientation">key_buttons_orientation</string>
+    <string name="key_icon_gravity">key_icon_gravity</string>
 </resources>

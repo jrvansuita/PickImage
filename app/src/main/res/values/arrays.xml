@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pick_types_labels">
+        <item>Only Camera</item>
+        <item>Only Gallery</item>
+        <item>All Providers</item>
+    </string-array>
+
+    <string-array name="pick_types_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="orientation_labels">
+        <item>Vertical</item>
+        <item>Horizontal</item>
+    </string-array>
+
+    <string-array name="orientation_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="gravity_labels">
+        <item>Left</item>
+        <item>Top</item>
+        <item>Right</item>
+        <item>Bottom</item>
+    </string-array>
+
+    <string-array name="gravity_values">
+        <item>3</item>
+        <item>48</item>
+        <item>5</item>
+        <item>80</item>
+    </string-array>
+
+</resources>

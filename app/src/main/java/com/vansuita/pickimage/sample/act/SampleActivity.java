@@ -1,110 +1,67 @@
 package com.vansuita.pickimage.sample.act;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.annotation.Nullable;
 
 import com.vansuita.pickimage.PickImageDialog;
 import com.vansuita.pickimage.PickSetup;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.sample.BuildConfig;
-import com.vansuita.pickimage.sample.R;
 
-public class SampleActivity extends AppCompatActivity implements IPickResult
-        //, IPickClick
-{
+public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick*/ {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sample_layout);
+        /* Set your layout and bind your views here */
+        /* ... ... ... */
+    }
 
+    @Override
+    protected void onImageViewClick() {
+        PickSetup setup = new PickSetup(BuildConfig.APPLICATION_ID);
 
-        findViewById(R.id.test).setOnClickListener(new View.OnClickListener() {
+        super.customize(setup);
+
+        PickImageDialog.on(SampleActivity.this, setup);
+
+        //If you don't have an Activity, you can set the FragmentManager
+        /*PickImageDialog.on(getSupportFragmentManager(), setup, new IPickResult() {
             @Override
-            public void onClick(View view) {
-                PickSetup setup = new PickSetup(BuildConfig.APPLICATION_ID);
-
-                //setup.setBackgroundColor(yourColor);
-                //setup.setTitle(yourTitle);
-                //setup.setDimAmount(yourFloat);
-                //setup.setTitleColor(yourColor);
-                //setup.setFlip(true);
-                //setup.setCancelText("Test");
-                //setup.setImageSize(500);
-                //setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
-                //setup.setProgressText("Loading...");
-                //setup.setProgressTextColor(Color.BLUE);
-                setup.setButtonsOrientation(LinearLayoutCompat.VERTICAL);
-                setup.setGalleryIcon(R.mipmap.gallery_colored);
-                setup.setCameraIcon(R.mipmap.camera_colored);
-                setup.setIconGravity(Gravity.BOTTOM);
-
-
-                PickImageDialog.on(SampleActivity.this, setup);
-
-
-                //If you do not have an Activity, you can set the FragmentManager
-                /*PickImageDialog.on(getSupportFragmentManager(), new IPickResult() {
-                    @Override
-                    public void onPickResult(PickResult r) {
-
-                    }
-                });*/
-
-
-                //Setting the listeners on the constructor.
-             /*   PickImageDialog.on(getSupportFragmentManager())
-                        .setOnPickResult(new IPickResult() {
-                            @Override
-                            public void onPickResult(PickResult r) {
-
-                            }
-                        });*/
-
-                //You can set the listeners like this.
-                /*.setOnPickResult(new IPickResult() {
-                    @Override
-                    public void onPickResult(PickResult r) {
-                        r.getBitmap();
-                        r.getError();
-                        r.getUri();
-
-                    }
-                }).setOnClick(new IPickClick() {
-                    @Override
-                    public void onGalleryClick() {
-
-                    }
-
-                    @Override
-                    public void onCameraClick() {
-
-                    }
-                });*/
+            public void onPickResult(PickResult r) {
+                r.getBitmap();
+                r.getError();
+                r.getUri();
             }
-        });
+        });*/
 
+        //For overriding the click events you can do this
+        /*PickImageDialog.on(getSupportFragmentManager(), setup).setOnClick(new IPickClick() {
+            @Override
+            public void onGalleryClick() {
+
+            }
+
+            @Override
+            public void onCameraClick() {
+
+            }
+        });*/
     }
 
     @Override
     public void onPickResult(PickResult r) {
         if (r.getError() == null) {
-            ImageView imageView = ((ImageView) findViewById(R.id.result_image));
-
             //If you want the Bitmap.
-            imageView.setImageBitmap(r.getBitmap());
+            getImageView().setImageBitmap(r.getBitmap());
 
             //If you want the Uri.
             //Mandatory to refresh image from Uri.
-            imageView.setImageURI(null);
+            getImageView().setImageURI(null);
 
             //Setting the real returned image.
-            imageView.setImageURI(r.getUri());
+            getImageView().setImageURI(r.getUri());
 
             //Image path
             r.getPath();
@@ -112,9 +69,14 @@ public class SampleActivity extends AppCompatActivity implements IPickResult
             //Handle possible errors
             //TODO: do what you have to do with r.getError();
         }
+
+        scrollToTop();
     }
 
-    /*@Override
+    /*
+    If you use setOnClick(this), you have to implements this bellow methods
+
+    @Override
     public void onGalleryClick() {
         Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
     }

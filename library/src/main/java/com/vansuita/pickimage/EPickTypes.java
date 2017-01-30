@@ -7,9 +7,17 @@ import java.util.Arrays;
  */
 
 public enum EPickTypes {
-    CAMERA(), GALERY();
+    CAMERA(), GALLERY();
 
     public boolean inside(EPickTypes[] array) {
         return Arrays.asList(array).contains(this);
+    }
+
+    public static EPickTypes[] fromInt(int val) {
+        if (val > values().length - 1){
+            return new EPickTypes[] {CAMERA, GALLERY};
+        }else{
+            return new EPickTypes[] {values()[val]};
+        }
     }
 }

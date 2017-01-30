@@ -17,7 +17,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutCompat;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +27,6 @@ import android.widget.TextView;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.listeners.IPickClick;
 import com.vansuita.pickimage.listeners.IPickResult;
-
-import java.util.Arrays;
 
 import static android.app.Activity.RESULT_OK;
 import static com.vansuita.pickimage.R.layout.dialog;
@@ -85,7 +82,7 @@ public class PickImageDialog extends DialogFragment {
     private static final int FROM_CAMERA = 1;
     private static final int FROM_GALLERY = 2;
 
-    private CardView cvRoot;
+    private CardView card;
     private LinearLayout llButtons;
     private TextView tvTitle;
     private TextView tvCamera;
@@ -113,15 +110,15 @@ public class PickImageDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        cvRoot = (CardView) inflater.inflate(dialog, null, false);
+        View view = inflater.inflate(dialog, null, false);
 
-        bindView();
+        bindView(view);
         setUp();
         bindListeners();
 
         requestPermissions();
 
-        return cvRoot;
+        return view;
     }
 
     private PickSetup setup;
@@ -132,30 +129,51 @@ public class PickImageDialog extends DialogFragment {
 
         setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
 
-        cvRoot.setCardBackgroundColor(setup.getBackgroundColor());
-        tvTitle.setTextColor(setup.getTitleColor());
+        boolean showCamera = EPickTypes.CAMERA.inside(setup.getPickTypes());
+        boolean showGallery = EPickTypes.GALLERY.inside(setup.getPickTypes());
 
-        if (setup.getOptionsColor() > 0) {
-            tvCamera.setTextColor(setup.getOptionsColor());
-            tvGallery.setTextColor(setup.getOptionsColor());
+        if (setup.getBackgroundColor() != android.R.color.white) {
+            card.setCardBackgroundColor(setup.getBackgroundColor());
+
+            if (showCamera)
+                Util.background(tvCamera, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
+
+            if (showGallery)
+                Util.background(tvGallery, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
         }
 
-        if (setup.getProgressTextColor() > 0)
+        tvTitle.setTextColor(setup.getTitleColor());
+
+        if (setup.getButtonTextColor() != 0) {
+            tvCamera.setTextColor(setup.getButtonTextColor());
+            tvGallery.setTextColor(setup.getButtonTextColor());
+        }
+
+        if (setup.getProgressTextColor() != 0)
             tvProgress.setTextColor(setup.getProgressTextColor());
+
+        if (setup.getCancelTextColor() != 0)
+            tvCancel.setTextColor(setup.getCancelTextColor());
+
+        if (setup.getCameraButtonText() != null)
+            tvCamera.setText(setup.getCameraButtonText());
+
+        if (setup.getGalleryButtonText() != null)
+            tvGallery.setText(setup.getGalleryButtonText());
 
         tvCancel.setText(setup.getCancelText());
         tvTitle.setText(setup.getTitle());
         tvProgress.setText(setup.getProgressText());
 
         visibleProgress(false);
-        Util.gone(tvCamera, !EPickTypes.CAMERA.inside(setup.getPickTypes()));
-        Util.gone(tvGallery, !EPickTypes.GALERY.inside(setup.getPickTypes()));
 
-        llButtons.setOrientation(setup.getButtonsOrientation() == LinearLayoutCompat.HORIZONTAL ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+        Util.gone(tvCamera, !showCamera);
+        Util.gone(tvGallery, !showGallery);
+
+        llButtons.setOrientation(setup.getButtonOrientation() == LinearLayoutCompat.HORIZONTAL ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
 
         Util.setIcon(tvCamera, setup.getCameraIcon(), setup.getIconGravity());
         Util.setIcon(tvGallery, setup.getGalleryIcon(), setup.getIconGravity());
-
 
 
         Util.setDimAmount(setup.getDimAmount(), getDialog());
@@ -173,16 +191,17 @@ public class PickImageDialog extends DialogFragment {
     }
 
 
-    private void bindView() {
-        llButtons = (LinearLayout) cvRoot.findViewById(R.id.buttons_holder);
-        tvTitle = (TextView) cvRoot.findViewById(R.id.title);
-        tvCamera = (TextView) cvRoot.findViewById(R.id.camera);
-        tvGallery = (TextView) cvRoot.findViewById(R.id.gallery);
-        tvCancel = (TextView) cvRoot.findViewById(R.id.cancel);
-        tvProgress = (TextView) cvRoot.findViewById(R.id.loading_text);
+    private void bindView(View v) {
+        card = (CardView) v.findViewById(R.id.card);
+        llButtons = (LinearLayout) v.findViewById(R.id.buttons_holder);
+        tvTitle = (TextView) v.findViewById(R.id.title);
+        tvCamera = (TextView) v.findViewById(R.id.camera);
+        tvGallery = (TextView) v.findViewById(R.id.gallery);
+        tvCancel = (TextView) v.findViewById(R.id.cancel);
+        tvProgress = (TextView) v.findViewById(R.id.loading_text);
 
-        vFirstLayer = cvRoot.findViewById(R.id.first_layer);
-        vSecondLayer = cvRoot.findViewById(R.id.second_layer);
+        vFirstLayer = v.findViewById(R.id.first_layer);
+        vSecondLayer = v.findViewById(R.id.second_layer);
     }
 
     private void bindListeners() {

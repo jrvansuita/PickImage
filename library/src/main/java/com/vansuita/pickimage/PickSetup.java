@@ -16,12 +16,18 @@ public class PickSetup implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String title;
-    private int backgroundColor;
     private int titleColor;
-    private int progressTextColor;
+
+    private int backgroundColor;
+
     private String progressText;
+    private int progressTextColor;
+
     private String cancelText;
-    private int optionsColor;
+    private int cancelTextColor;
+
+    private int buttonTextColor;
+
     private float dimAmount;
     private boolean flip;
     private int imageSize;
@@ -30,17 +36,22 @@ public class PickSetup implements Serializable {
     private int cameraIcon;
     private int galleryIcon;
 
+    private String cameraButtonText;
+    private String galleryButtonText;
+
     private String authority;
 
     @LinearLayoutCompat.OrientationMode
-    private int buttonsOrientation;
+    private int buttonOrientation;
 
 
     @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
-    public @interface IconGravity {}
+    public @interface IconGravity {
+    }
 
     @IconGravity
     private int iconGravity;
+
 
     public String getCancelText() {
         return cancelText;
@@ -78,12 +89,30 @@ public class PickSetup implements Serializable {
         return this;
     }
 
-    public int getOptionsColor() {
-        return optionsColor;
+    public String getCameraButtonText() {
+        return cameraButtonText;
     }
 
-    public PickSetup setOptionsColor(int optionsColor) {
-        this.optionsColor = optionsColor;
+    public PickSetup setCameraButtonText(String cameraButtonText) {
+        this.cameraButtonText = cameraButtonText;
+        return this;
+    }
+
+    public String getGalleryButtonText() {
+        return galleryButtonText;
+    }
+
+    public PickSetup setGalleryButtonText(String galleryButtonText) {
+        this.galleryButtonText = galleryButtonText;
+        return this;
+    }
+
+    public int getButtonTextColor() {
+        return buttonTextColor;
+    }
+
+    public PickSetup setButtonTextColor(int buttonTextColor) {
+        this.buttonTextColor = buttonTextColor;
         return this;
     }
 
@@ -103,6 +132,15 @@ public class PickSetup implements Serializable {
 
     public PickSetup setPickTypes(EPickTypes... pickTypes) {
         this.pickTypes = pickTypes;
+        return this;
+    }
+
+    public int getCancelTextColor() {
+        return cancelTextColor;
+    }
+
+    public PickSetup setCancelTextColor(int cancelTextColor) {
+        this.cancelTextColor = cancelTextColor;
         return this;
     }
 
@@ -157,14 +195,20 @@ public class PickSetup implements Serializable {
     }
 
     @LinearLayoutCompat.OrientationMode
-    public int getButtonsOrientation() {
-        return buttonsOrientation;
+    public int getButtonOrientation() {
+        return buttonOrientation;
     }
 
-    public PickSetup setButtonsOrientation(@LinearLayoutCompat.OrientationMode int buttonsOrientation) {
-        this.buttonsOrientation = buttonsOrientation;
+    public PickSetup setButtonOrientation(@LinearLayoutCompat.OrientationMode int buttonOrientation) {
+        this.buttonOrientation = buttonOrientation;
         return this;
     }
+
+    public PickSetup setButtonOrientationInt(int buttonOrientation) {
+        this.buttonOrientation = buttonOrientation;
+        return this;
+    }
+
 
     public int getCameraIcon() {
         return cameraIcon;
@@ -193,6 +237,10 @@ public class PickSetup implements Serializable {
         this.iconGravity = iconGravity;
     }
 
+    public void setIconGravityInt(int iconGravity) {
+        this.iconGravity = iconGravity;
+    }
+
     public PickSetup(String applicationId) {
         setTitle("Choose")
                 .setBackgroundColor(Color.WHITE)
@@ -201,13 +249,12 @@ public class PickSetup implements Serializable {
                 .setFlip(false)
                 .setCancelText("Cancel")
                 .setImageSize(300)
-                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALERY)
+                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALLERY)
                 .setProgressText("Loading...")
-                .setButtonsOrientation(LinearLayoutCompat.VERTICAL)
+                .setButtonOrientation(LinearLayoutCompat.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
                 .setGalleryIcon(R.drawable.gallery)
                 .setApplicationId(applicationId);
     }
-
 
 }

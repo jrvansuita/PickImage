@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId 'com.vansuita.pickimage.sample'
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -18,5 +18,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile project(':library')
 
-    //compile 'com.github.jrvansuita:PickImage:v1.0.1'
+    compile 'com.jrummyapps:colorpicker:2.0.4'
 }

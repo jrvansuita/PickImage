@@ -4,7 +4,7 @@
 <!-- Buy me a cup of coffe --> <p align="right"><a href='https://ko-fi.com/A406JCM' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a></p>
 # PickImage
 
-This is an [**Android**](https://developer.android.com) project. It shows a [DialogFragment](https://developer.android.com/reference/android/app/DialogFragment.html) with Camera or Gallery options. The user can choose from which provider wants to pick an image.
+This is an [**Android**](https://developer.android.com) project. It shows a [DialogFragment](https://developer.android.com/reference/android/app/DialogFragment.html) with camera or/and gallery options. The user can choose from which provider wants to pick an image.
 
 </br>
 
@@ -20,7 +20,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Screenshot
 ![test](screenshot/img.png? "Dialog")
 
-# Usage
+# Setup
 
 #### Step 1. Add the JitPack repository to your build file:
 
@@ -36,10 +36,6 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
     dependencies {
            compile 'com.github.jrvansuita:PickImage:v2.0.2'
 	}
-
-# Samples
- You can take a look at the sample app [located on this project](/app/).
-
 
 # Implementation
 
@@ -124,6 +120,11 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
     setup.setPickTypes(EPickTypes.GALERY, EPickTypes.CAMERA);
     setup.setProgressText("Loading...");
     setup.setProgressTextColor(Color.BLUE);
+
+
+
+# Samples
+ You can take a look at the sample app [located on this project](/app/).
 
 
 # Additionals

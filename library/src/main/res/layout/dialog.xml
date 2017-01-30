@@ -1,101 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:layout_gravity="center"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="3dp">
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
-    <FrameLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="3dp">
 
-        <LinearLayout
-            android:id="@+id/second_layer"
-            android:visibility="gone"
-            android:layout_margin="15dp"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/loading_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:text="@string/loading"
-                android:textColor="@color/cancel_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/first_layer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="15dp">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/choose"
-                android:textColor="@android:color/secondary_text_light"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
             <LinearLayout
-                android:id="@+id/buttons_holder"
-                android:minWidth="250dp"
+                android:id="@+id/second_layer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left|center"
-                android:orientation="horizontal">
+                android:layout_margin="15dp"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/camera"
-                    style="@style/option"
-                    android:layout_width="match_parent"
-                    android:gravity="left|center_vertical"
-                    android:layout_weight="0.5"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/camera"
-                    android:text="@string/camera" />
-
-                <TextView
-                    android:id="@+id/gallery"
-                    style="@style/option"
-                    android:layout_width="match_parent"
-                    android:gravity="left|center_vertical"
-                    android:drawablePadding="10dp"
-                    android:layout_weight="0.5"
-                    android:drawableLeft="@drawable/gallery"
-                    android:text="@string/gallery" />
-
+                    android:id="@+id/loading_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="15dp"
+                    android:text="@string/loading"
+                    android:textColor="@color/cancel_selector"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/cancel"
+            <LinearLayout
+                android:id="@+id/first_layer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:padding="10dp"
-                android:text="@string/cancel"
-                android:textAllCaps="true"
-                android:textColor="@color/cancel_selector"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="15dp">
 
-    </FrameLayout>
-</android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/choose"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/buttons_holder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|center"
+                    android:minWidth="250dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/camera"
+                        style="@style/option"
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.5"
+                        android:drawableLeft="@drawable/camera"
+                        android:drawablePadding="10dp"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/camera" />
+
+                    <TextView
+                        android:id="@+id/gallery"
+                        style="@style/option"
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.5"
+                        android:drawableLeft="@drawable/gallery"
+                        android:drawablePadding="10dp"
+                        android:gravity="left|center_vertical"
+                        android:text="@string/gallery" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:padding="10dp"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@color/cancel_selector"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>
