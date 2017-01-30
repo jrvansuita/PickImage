@@ -3,12 +3,14 @@
 
 <!-- Buy me a cup of coffe --> 
 <a href='https://ko-fi.com/A406JCM' target='_blank' align="right"><img  align="right" height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://play.google.com/store/apps/details?id=com.vansuita.pickimage.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank' align="right"><img border='0' height='55' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
 # PickImage
 
 This is an [**Android**](https://developer.android.com) project. It shows a [DialogFragment](https://developer.android.com/reference/android/app/DialogFragment.html) with Camera or Gallery options. The user can choose from which provider wants to pick an image.
 
 </br> 
 </br>
+</br> 
 
 <!-- JitPack integration -->
 [![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<!-- Android Arsenal -->
@@ -175,7 +177,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <a href="play.google.com/store/apps/dev?id=8002078663318221363" target="_blank">
   <img src="https://s20.postimg.org/5iuz4plo9/android.png" alt="Google Play Store" witdh="44" height="44" hspace="10">
 </a>
-<a href="mailto:vansuita.jr@gmail.com" target="_blank">
+<a href="mailto:vansuita.jr@gmail.com" target="_blank" >
   <img src="https://s20.postimg.org/slli3vn5l/email.png" alt="E-mail" witdh="44" height="44" hspace="10">
 </a>
 
