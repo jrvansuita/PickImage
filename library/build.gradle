@@ -7,11 +7,16 @@ group = 'com.github.jrvansuita'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
+
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+    }
+
+    sourceSets {
+        main.res.srcDirs 'res'
     }
 }
 
