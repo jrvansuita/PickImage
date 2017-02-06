@@ -54,7 +54,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Implementation
 
 #### Step #1. Overriding the library file provider authority to avoid installation conflicts. 
-######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this provider declaration._
+The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this provider declaration.
 
     <manifest ...>
         ... 
@@ -69,7 +69,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
     </manifest> 
     
 #### Step #2 - Showing the dialog.
-######_It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
+It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id.
 
     PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
     
@@ -140,7 +140,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Additionals
 
 #### Own click implementations.
-###### _If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app._
+If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
  
      @Override
      public void onGalleryClick() {
