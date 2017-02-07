@@ -11,7 +11,7 @@ public class PickResult {
     private Bitmap bitmap;
     private Uri uri;
     private String path;
-    private Exception error;
+    private Throwable error;
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -25,20 +25,28 @@ public class PickResult {
         return uri;
     }
 
-    public void setUri(Uri uri) {
+    public PickResult setUri(Uri uri) {
         this.uri = uri;
+        return this;
     }
 
-    public Exception getError() {
+    public Throwable getError() {
         return error;
     }
 
-    public void setError(Exception error) {
+    public PickResult setError(Exception error) {
         this.error = error;
+        return this;
     }
 
-    public void setPath(String path) {
+    public PickResult setError(Throwable error) {
+        this.error = error;
+        return this;
+    }
+
+    public PickResult setPath(String path) {
         this.path = path;
+        return this;
     }
 
     public String getPath() {

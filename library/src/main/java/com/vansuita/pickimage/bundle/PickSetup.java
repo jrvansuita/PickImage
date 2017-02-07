@@ -1,9 +1,12 @@
-package com.vansuita.pickimage;
+package com.vansuita.pickimage.bundle;
 
 import android.graphics.Color;
 import android.support.annotation.IntDef;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Gravity;
+
+import com.vansuita.pickimage.R;
+import com.vansuita.pickimage.enums.EPickType;
 
 import java.io.Serializable;
 
@@ -31,7 +34,7 @@ public class PickSetup implements Serializable {
     private float dimAmount;
     private boolean flip;
     private int imageSize;
-    private EPickTypes[] pickTypes;
+    private EPickType[] pickTypes;
 
     private int cameraIcon;
     private int galleryIcon;
@@ -39,11 +42,10 @@ public class PickSetup implements Serializable {
     private String cameraButtonText;
     private String galleryButtonText;
 
-    private String authority;
+    private boolean systemDialog;
 
     @LinearLayoutCompat.OrientationMode
     private int buttonOrientation;
-
 
     @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
     public @interface IconGravity {
@@ -126,11 +128,11 @@ public class PickSetup implements Serializable {
     }
 
 
-    public EPickTypes[] getPickTypes() {
+    public EPickType[] getPickTypes() {
         return pickTypes;
     }
 
-    public PickSetup setPickTypes(EPickTypes... pickTypes) {
+    public PickSetup setPickTypes(EPickType... pickTypes) {
         this.pickTypes = pickTypes;
         return this;
     }
@@ -181,19 +183,6 @@ public class PickSetup implements Serializable {
         return this;
     }
 
-    public String getAuthority() {
-        return authority;
-    }
-
-    public PickSetup setApplicationId(String authority) {
-        if (authority == null && authority.isEmpty())
-            throw new Error("Application id can't be null or empty.");
-
-        this.authority = authority + ".com.vansuita.pickimage.provider";
-
-        return this;
-    }
-
     @LinearLayoutCompat.OrientationMode
     public int getButtonOrientation() {
         return buttonOrientation;
@@ -228,6 +217,15 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+    public boolean isSystemDialog() {
+        return systemDialog;
+    }
+
+    public PickSetup setSystemDialog(boolean systemDialog) {
+        this.systemDialog = systemDialog;
+        return this;
+    }
+
     @IconGravity
     public int getIconGravity() {
         return iconGravity;
@@ -241,7 +239,7 @@ public class PickSetup implements Serializable {
         this.iconGravity = iconGravity;
     }
 
-    public PickSetup(String applicationId) {
+    public PickSetup() {
         setTitle("Choose")
                 .setBackgroundColor(Color.WHITE)
                 .setTitleColor(Color.DKGRAY)
@@ -249,12 +247,12 @@ public class PickSetup implements Serializable {
                 .setFlip(false)
                 .setCancelText("Cancel")
                 .setImageSize(300)
-                .setPickTypes(EPickTypes.CAMERA, EPickTypes.GALLERY)
+                .setPickTypes(EPickType.CAMERA, EPickType.GALLERY)
                 .setProgressText("Loading...")
                 .setButtonOrientation(LinearLayoutCompat.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
-                .setGalleryIcon(R.drawable.gallery)
-                .setApplicationId(applicationId);
+                .setSystemDialog(false)
+                .setGalleryIcon(R.drawable.gallery);
     }
 
 }

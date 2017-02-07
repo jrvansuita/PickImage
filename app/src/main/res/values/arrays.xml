@@ -3,7 +3,7 @@
     <string-array name="pick_types_labels">
         <item>Only Camera</item>
         <item>Only Gallery</item>
-        <item>All Providers</item>
+        <item>Camera and Gallery</item>
     </string-array>
 
     <string-array name="pick_types_values">

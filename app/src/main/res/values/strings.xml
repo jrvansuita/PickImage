@@ -19,7 +19,8 @@
     <string name="colored_icons">Colored icons</string>
     <string name="image_size">Image size</string>
     <string name="dim_amount">Dim amount behind the dialog</string>
-    <string name="buttons_available">Buttons available</string>
+    <string name="use_system_dialog">Use sistem dialog</string>
+    <string name="providers">Providers</string>
     <string name="buttons_orientation">Buttons orientation</string>
     <string name="icon_gravity">Icon gravity</string>
     <string name="tip">Press on the box below to pick an image!</string>
@@ -39,8 +40,9 @@
     <string name="key_flip_image">key_flip_image</string>
     <string name="key_colored_icons">key_colored_icons</string>
     <string name="key_dim_amount">key_dim_amount</string>
+    <string name="key_system_dialog">key_system_dialog</string>
     <string name="key_image_size">key_image_size</string>
-    <string name="key_buttons_available">key_buttons_available</string>
+    <string name="key_providers">key_providers</string>
     <string name="key_buttons_orientation">key_buttons_orientation</string>
     <string name="key_icon_gravity">key_icon_gravity</string>
 </resources>

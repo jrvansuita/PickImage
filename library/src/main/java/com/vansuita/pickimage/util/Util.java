@@ -1,11 +1,8 @@
-package com.vansuita.pickimage;
+package com.vansuita.pickimage.util;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -21,22 +18,15 @@ import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.FileProvider;
 import android.util.StateSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.vansuita.pickimage.bean.PickResult;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by jrvansuita on 01/11/16.
@@ -59,50 +49,7 @@ public class Util {
         background(v, new BitmapDrawable(v.getResources(), b));
     }
 
-    public static void launchGalery(DialogFragment frag, int code) {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        frag.startActivityForResult(intent, code);
-    }
 
-
-    public static void launchCamera(DialogFragment frag, String authority, int code) {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        if (intent.resolveActivity(frag.getActivity().getPackageManager()) != null) {
-
-            Uri uri = FileProvider.getUriForFile(frag.getContext(),
-                    authority,
-                    tempFile());
-
-
-            //Testing this...
-            List<ResolveInfo> resInfoList = frag.getActivity().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            for (ResolveInfo resolveInfo : resInfoList) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                frag.getActivity().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            }
-            // ----- //
-
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-            frag.startActivityForResult(intent, code);
-        }
-    }
-
-
-    public static File tempFile() {
-        File dir = new File(Environment.getExternalStorageDirectory(), PickResult.class.getSimpleName());
-        dir.mkdirs();
-
-
-        //Here I have to create a better name for the file.
-        //Also, always have to clear the directory to keep only one image.
-        return new File(dir, "temp.jpg");
-    }
-
-    public static Uri tempUri() {
-        return Uri.fromFile(tempFile());
-    }
 
     public static Bitmap flip(Bitmap bitmap) {
         Matrix m = new Matrix();
@@ -111,6 +58,9 @@ public class Util {
     }
 
     public static Bitmap decodeUri(Uri selectedImage, Context context, int requiredSize) throws FileNotFoundException {
+        //Notify image changed
+        context.getContentResolver().notifyChange(selectedImage, null);
+
         // Decode image size
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inJustDecodeBounds = true;
@@ -234,12 +184,12 @@ public class Util {
         return states;
     }
 
-    public static int darker(int color){
+    public static int darker(int color) {
         int r = Color.red(color);
         int b = Color.blue(color);
         int g = Color.green(color);
 
-        return Color.rgb((int)(r*.9), (int)(g*.9), (int)(b*.9));
+        return Color.rgb((int) (r * .9), (int) (g * .9), (int) (b * .9));
     }
 
 }

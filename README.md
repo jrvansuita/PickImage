@@ -19,7 +19,9 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:License-MIT-yellow.svg" alt="MIT License" /></a><!-- Minimun Android Api -->
 <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a><!-- Methods Count -->
 <a target="_blank" href="http://www.methodscount.com/?lib=com.github.jrvansuita%3APickImage%3Av2.0.2"><img src="https://img.shields.io/badge/Methods-428-e91e63.svg" /></a> <!-- Apptize.io -->[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/ry2tu9rjakgbbk2x0ctuz2hh4g?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) <!-- Hits Count -->[![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)<!--Open Source --> [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/jrvansuita)
-
+<a href="https://github.com/jrvansuita/PickImage/releases/latest">
+  <img alt="Latest release" src="https://img.shields.io/github/release/jrvansuita/PickImage.svg" />
+</a>
 
 
 
@@ -54,7 +56,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Implementation
 
 #### Step #1. Overriding the library file provider authority to avoid installation conflicts. 
-######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this provider declaration._
+######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this exact provider declaration._
 
     <manifest ...>
         ... 
@@ -69,13 +71,12 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
     </manifest> 
     
 #### Step #2 - Showing the dialog.
-######_It's absolutely necessary to give to [PickSetup](/library/src/main/java/com/vansuita/pickimage/PickSetup.java) constructor your application id._
 
-    PickImageDialog.on(MainActivity.this, new PickSetup(BuildConfig.APPLICATION_ID));
+    PickImageDialog.on(MainActivity.this, new PickSetup());
     
     //or 
     
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID));
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup());
     
 #### Step #3 - Applying the listeners.
 
@@ -106,7 +107,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
            
 ##### Method #3.2 - Set the listener using the public method.
 
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup(BuildConfig.APPLICATION_ID))
+    PickImageDialog.on(getSupportFragmentManager(), new PickSetup())
                    .setOnPickResult(new IPickResult() {
                       @Override
                       public void onPickResult(PickResult r) {
@@ -116,7 +117,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 
 #### Step #4 - Customize you Dialog using PickSetup.
-    PickSetup setup = new PickSetup(BuildConfig.APPLICATION_ID)
+    PickSetup setup = new PickSetup()
                 .setTitle(yourText)
                 .setTitleColor(yourColor)
                 .setBackgroundColor(yourColor)

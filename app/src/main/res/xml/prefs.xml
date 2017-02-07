@@ -7,34 +7,34 @@
         android:title="@string/titles_labels">
 
         <EditTextPreference
-            android:key="@string/key_dialog_title"
             android:defaultValue="@string/choose"
+            android:key="@string/key_dialog_title"
             android:summary="@string/provide_text"
-            android:title="@string/dialog_title"/>
+            android:title="@string/dialog_title" />
 
         <EditTextPreference
-            android:key="@string/key_progress_text"
             android:defaultValue="@string/loading"
+            android:key="@string/key_progress_text"
             android:summary="@string/provide_text"
-            android:title="@string/progress_text"/>
+            android:title="@string/progress_text" />
 
         <EditTextPreference
-            android:key="@string/key_cancel_text"
             android:defaultValue="@string/cancel"
+            android:key="@string/key_cancel_text"
             android:summary="@string/provide_text"
-            android:title="@string/cancel_text"/>
+            android:title="@string/cancel_text" />
 
         <EditTextPreference
-            android:key="@string/key_camera_button_text"
             android:defaultValue="@string/camera"
+            android:key="@string/key_camera_button_text"
             android:summary="@string/provide_text"
-            android:title="@string/camera_button_text"/>
+            android:title="@string/camera_button_text" />
 
         <EditTextPreference
-            android:key="@string/key_gallery_button_text"
             android:defaultValue="@string/gallery"
+            android:key="@string/key_gallery_button_text"
             android:summary="@string/provide_text"
-            android:title="@string/gallery_button_text"/>
+            android:title="@string/gallery_button_text" />
 
     </PreferenceCategory>
 
@@ -84,6 +84,13 @@
             android:key="@string/key_colored_icons"
             android:title="@string/colored_icons" />
 
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/key_system_dialog"
+            android:title="@string/use_system_dialog" />
+
+
         <EditTextPreference
             android:defaultValue="300"
             android:key="@string/key_image_size"
@@ -98,25 +105,25 @@
 
 
         <ListPreference
-            android:title="@string/buttons_available"
-            android:key="@string/key_buttons_available"
             android:defaultValue="2"
             android:entries="@array/pick_types_labels"
-            android:entryValues="@array/pick_types_values" />
+            android:entryValues="@array/pick_types_values"
+            android:key="@string/key_providers"
+            android:title="@string/providers" />
 
         <ListPreference
-            android:title="@string/icon_gravity"
-            android:key="@string/key_icon_gravity"
             android:defaultValue="3"
             android:entries="@array/gravity_labels"
-            android:entryValues="@array/gravity_values" />
+            android:entryValues="@array/gravity_values"
+            android:key="@string/key_icon_gravity"
+            android:title="@string/icon_gravity" />
 
         <ListPreference
-            android:title="@string/buttons_orientation"
-            android:key="@string/key_buttons_orientation"
             android:defaultValue="0"
             android:entries="@array/orientation_labels"
-            android:entryValues="@array/orientation_values" />
+            android:entryValues="@array/orientation_values"
+            android:key="@string/key_buttons_orientation"
+            android:title="@string/buttons_orientation" />
 
     </PreferenceCategory>
 </PreferenceScreen>

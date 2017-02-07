@@ -2,6 +2,7 @@ package com.vansuita.pickimage.sample.act;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
@@ -12,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
-import com.vansuita.pickimage.EPickTypes;
-import com.vansuita.pickimage.PickSetup;
+import com.vansuita.pickimage.bundle.PickSetup;
+import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.sample.R;
 
 /**
@@ -80,11 +81,17 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
     }
 
     public void scrollToTop() {
-        scrollView.post(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             public void run() {
                 scrollView.fullScroll(scrollView.FOCUS_UP);
             }
-        });
+        }, 50);
+
+        /*scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.fullScroll(scrollView.FOCUS_UP);
+            }
+        });*/
     }
 
 
@@ -149,13 +156,14 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
         setup.setFlip(getBool(R.string.key_flip_image));
         setup.setImageSize(getNum(R.string.key_image_size));
 
-        setup.setPickTypes(EPickTypes.fromInt(getNum(R.string.key_buttons_available)));
+        setup.setPickTypes(EPickType.fromInt(getNum(R.string.key_providers)));
 
         setup.setCameraButtonText(getStr(R.string.key_camera_button_text));
         setup.setGalleryButtonText(getStr(R.string.key_gallery_button_text));
         setup.setIconGravityInt(getNum(R.string.key_icon_gravity));
 
         setup.setButtonOrientationInt(getNum(R.string.key_buttons_orientation));
+        setup.setSystemDialog(getBool(R.string.key_system_dialog));
 
         if (getBool(R.string.key_colored_icons)) {
             setup.setGalleryIcon(R.mipmap.gallery_colored);

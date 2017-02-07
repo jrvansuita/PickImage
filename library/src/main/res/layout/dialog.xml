@@ -68,14 +68,15 @@
                     android:id="@+id/buttons_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="left|center"
+                    android:gravity="center"
                     android:minWidth="250dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/camera"
                         style="@style/option"
-                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
                         android:layout_weight="0.5"
                         android:drawableLeft="@drawable/camera"
                         android:drawablePadding="10dp"
@@ -85,7 +86,7 @@
                     <TextView
                         android:id="@+id/gallery"
                         style="@style/option"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_weight="0.5"
                         android:drawableLeft="@drawable/gallery"
                         android:drawablePadding="10dp"
