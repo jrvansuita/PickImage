@@ -35,6 +35,9 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/>
 <img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/>
 <img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
+<img src="images/dialogs/all_system_dialog.png" height='auto' width='280'/>
+<img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/>
+<img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
 
 # Setup
 
