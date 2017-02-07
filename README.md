@@ -55,8 +55,8 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 # Implementation
 
-#### Step #1. Overriding the library file provider authority to avoid installation conflicts. 
-######_The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this exact provider declaration._
+#### Step #1. Overriding the library file provider authority to avoid installation conflicts.
+The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your manifest.xml with this provider declaration.
 
     <manifest ...>
         ... 
