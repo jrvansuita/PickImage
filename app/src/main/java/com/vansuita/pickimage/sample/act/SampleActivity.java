@@ -11,8 +11,6 @@ import com.vansuita.pickimage.listeners.IPickResult;
 
 public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick*/ {
 
-    private PickImageDialog dialog;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +24,7 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         super.customize(setup);
 
-        dialog = PickImageDialog.build(setup).show(this);
+        PickImageDialog.build(setup).show(this);
 
         //If you don't have an Activity, you can set the FragmentManager
         /*PickImageDialog.build(setup, new IPickResult() {
