@@ -22,8 +22,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <!--<a href="https://github.com/jrvansuita/PickImage/releases/latest">
   <img alt="Latest release" src="https://img.shields.io/github/release/jrvansuita/PickImage.svg" />
 </a>-->
-
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade)
 
 # Screenshots
 
