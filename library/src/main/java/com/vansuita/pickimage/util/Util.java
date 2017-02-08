@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -25,11 +23,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 /**
- * Created by jrvansuita on 01/11/16.
+ * Created by jrvansuita build 01/11/16.
  */
 
 public class Util {
@@ -50,41 +47,6 @@ public class Util {
     }
 
 
-
-    public static Bitmap flip(Bitmap bitmap) {
-        Matrix m = new Matrix();
-        m.preScale(-1, 1);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), m, false);
-    }
-
-    public static Bitmap decodeUri(Uri selectedImage, Context context, int requiredSize) throws FileNotFoundException {
-        //Notify image changed
-        context.getContentResolver().notifyChange(selectedImage, null);
-
-        // Decode image size
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o);
-
-        // Find the correct scale value. It should be the power of 2.
-        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-        int scale = 1;
-        while (true) {
-            if (width_tmp / 2 < requiredSize || height_tmp / 2 < requiredSize)
-                break;
-
-            width_tmp /= 2;
-            height_tmp /= 2;
-            scale *= 2;
-        }
-
-        // Decode with inSampleSize
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        return BitmapFactory.decodeStream(context.getContentResolver().openInputStream(selectedImage), null, o2);
-    }
-
-
     public static void setDimAmount(float dim, Dialog dialog) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             dialog.getWindow().setDimAmount(dim);
@@ -100,23 +62,6 @@ public class Util {
             v.setVisibility(View.GONE);
         } else {
             v.setVisibility(View.VISIBLE);
-        }
-    }
-
-    public static String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } catch (Exception e) {
-            return contentUri.getPath();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -191,5 +136,6 @@ public class Util {
 
         return Color.rgb((int) (r * .9), (int) (g * .9), (int) (b * .9));
     }
+
 
 }

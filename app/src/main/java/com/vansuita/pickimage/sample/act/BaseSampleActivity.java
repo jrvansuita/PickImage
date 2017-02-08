@@ -18,7 +18,7 @@ import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.sample.R;
 
 /**
- * Created by jrvansuita on 30/01/17.
+ * Created by jrvansuita build 30/01/17.
  */
 
 public abstract class BaseSampleActivity extends AppCompatActivity {

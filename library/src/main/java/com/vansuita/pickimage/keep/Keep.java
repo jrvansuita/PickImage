@@ -3,29 +3,31 @@ package com.vansuita.pickimage.keep;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.vansuita.pickimage.BuildConfig;
+
 /**
- * Created by jrvansuita on 07/02/17.
+ * Created by jrvansuita build 07/02/17.
  */
 
 public class Keep {
     SharedPreferences pref;
-    private static final String KEEP = "KEEP";
-    private static final String ASKED = "ASKED";
+
+    private static final String ASKED_FOR_PERMISSION = "ASKED_FOR_PERMISSION";
 
     Keep(Context context) {
-        this.pref = context.getSharedPreferences(KEEP, Context.MODE_PRIVATE);
+        this.pref = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
     }
 
     public static Keep with(Context context) {
         return new Keep(context);
     }
 
-    public void asked() {
-        pref.edit().putBoolean(ASKED, true).commit();
+    public void askedForPermission() {
+        pref.edit().putBoolean(ASKED_FOR_PERMISSION, true).commit();
     }
 
-    public boolean neverAskedYet() {
-        return !pref.getBoolean(ASKED, false);
+    public boolean neverAskedForPermissionYet() {
+        return !pref.getBoolean(ASKED_FOR_PERMISSION, false);
     }
 
 }

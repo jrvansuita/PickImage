@@ -11,7 +11,7 @@ import com.vansuita.pickimage.listeners.IPickResult;
 
 public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick*/ {
 
-
+    private PickImageDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,27 +26,20 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         super.customize(setup);
 
-     PickImageDialog.on(SampleActivity.this, setup);
-
-
-
-        //Intent chooseImageIntent = ImagePicker.getPickImageIntent(this);
-        //startActivityForResult(chooseImageIntent, PICK_IMAGE_ID);
-
-
+        dialog = PickImageDialog.build(setup).show(this);
 
         //If you don't have an Activity, you can set the FragmentManager
-        /*PickImageDialog.on(getSupportFragmentManager(), setup, new IPickResult() {
+        /*PickImageDialog.build(setup, new IPickResult() {
             @Override
             public void onPickResult(PickResult r) {
                 r.getBitmap();
                 r.getError();
                 r.getUri();
             }
-        });*/
+        }).show(getSupportFragmentManager());*/
 
         //For overriding the click events you can do this
-        /*PickImageDialog.on(getSupportFragmentManager(), setup).setOnClick(new IPickClick() {
+        /*PickImageDialog.build(setup).setOnClick(new IPickClick() {
             @Override
             public void onGalleryClick() {
 
@@ -56,11 +49,11 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
             public void onCameraClick() {
 
             }
-        });*/
+        }).show(this);*/
     }
 
     @Override
-    public void onPickResult(PickResult r) {
+    public void onPickResult(final PickResult r) {
         if (r.getError() == null) {
             //If you want the Uri.
             //Mandatory to refresh image from Uri.
@@ -72,7 +65,6 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
             //If you want the Bitmap.
             getImageView().setImageBitmap(r.getBitmap());
 
-            //Image path
             //r.getPath();
         } else {
             //Handle possible errors
@@ -82,6 +74,7 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         scrollToTop();
     }
+
 
     /*
     If you use setOnClick(this), you have to implements this bellow methods

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 /**
- * Created by jrvansuita on 02/12/16.
+ * Created by jrvansuita build 02/12/16.
  */
 
 public class PickResult {

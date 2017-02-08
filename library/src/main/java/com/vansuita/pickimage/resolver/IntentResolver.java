@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by jrvansuita on 07/02/17.
+ * Created by jrvansuita build 07/02/17.
  */
 
 public class IntentResolver {
@@ -35,6 +35,17 @@ public class IntentResolver {
 
     public IntentResolver(Activity activity) {
         this.activity = activity;
+    }
+
+    private Intent loadSystemPackages(Intent intent){
+        List<ResolveInfo> resInfo = activity.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_SYSTEM_ONLY);
+
+        if (!resInfo.isEmpty()){
+            String packageName = resInfo.get(0).activityInfo.packageName;
+            intent.setPackage(packageName);
+        }
+
+        return intent;
     }
 
     public boolean isCamerasAvailable() {
@@ -60,10 +71,9 @@ public class IntentResolver {
         return cameraIntent;
     }
 
-
     public void launchCamera(Fragment listener) {
         if (getCameraIntent().resolveActivity(activity.getPackageManager()) != null) {
-            listener.startActivityForResult(getCameraIntent(), REQUESTER);
+            listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
         }
     }
 
@@ -82,7 +92,7 @@ public class IntentResolver {
         File dir = new File(Environment.getExternalStorageDirectory(), PickImageDialog.class.getSimpleName());
         dir.mkdirs();
 
-        return new File(dir, "current");
+        return new File(dir, "current.jpg");
     }
 
     public Uri cameraUri() {
@@ -113,15 +123,9 @@ public class IntentResolver {
     }
 
     public void launchGallery(Fragment listener) {
-        listener.startActivityForResult(getGalleryIntent(), REQUESTER);
+        listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
     }
 
-
-    /**
-     * When user choose  {@link com.vansuita.pickimage.enums.EPickType EPickType.SYSTEM} the library will run this method.
-     *
-     * @param title Title for the chooser
-     */
     public void launchSystemChooser(PickSetup setup, Fragment listener) {
         Intent chooserIntent;
         List<Intent> intentList = new ArrayList<>();
@@ -149,7 +153,7 @@ public class IntentResolver {
     }
 
     public boolean wasCameraPermissionDeniedForever() {
-        if (Keep.with(activity).neverAskedYet())
+        if (Keep.with(activity).neverAskedForPermissionYet())
             return false;
 
         for (String permission : getMandatoryCameraPermissions()) {
@@ -186,4 +190,7 @@ public class IntentResolver {
         return (data == null || data.getData() == null || data.getData().toString().contains(cameraFile().toString()));
     }
 
+    public Activity getActivity() {
+        return activity;
+    }
 }

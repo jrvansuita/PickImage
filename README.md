@@ -61,7 +61,11 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 #### Step #2. Add the dependency.
 
     dependencies {
-           compile 'com.github.jrvansuita:PickImage:v2.0.4'
+           compile 'com.github.jrvansuita:PickImage:+'
+
+           //or
+
+           compile 'com.github.jrvansuita:PickImage:[lastesReleaseCode](https://jitpack.io/#jrvansuita/PickImage)'
 	}
 
 # Implementation

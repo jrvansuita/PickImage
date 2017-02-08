@@ -3,7 +3,7 @@ package com.vansuita.pickimage.enums;
 import java.util.Arrays;
 
 /**
- * Created by jrvansuita on 25/11/16.
+ * Created by jrvansuita build 25/11/16.
  */
 
 public enum EPickType {

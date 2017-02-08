@@ -11,7 +11,7 @@ import com.vansuita.pickimage.enums.EPickType;
 import java.io.Serializable;
 
 /**
- * Created by jrvansuita on 01/11/16.
+ * Created by jrvansuita build 01/11/16.
  */
 
 public class PickSetup implements Serializable {

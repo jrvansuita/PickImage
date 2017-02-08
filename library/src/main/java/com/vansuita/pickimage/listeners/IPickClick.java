@@ -1,7 +1,7 @@
 package com.vansuita.pickimage.listeners;
 
 /**
- * Created by jrvansuita on 02/12/16.
+ * Created by jrvansuita build 02/12/16.
  */
 
 public interface IPickClick {
