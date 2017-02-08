@@ -33,6 +33,10 @@ public class IntentResolver {
     public static final int REQUESTER = 99;
     private Activity activity;
 
+    private Intent galleryIntent;
+    private Intent cameraIntent;
+
+
     public IntentResolver(Activity activity) {
         this.activity = activity;
     }
@@ -57,8 +61,6 @@ public class IntentResolver {
 
         return activity.getPackageManager().hasSystemFeature(feature);
     }
-
-    private Intent cameraIntent;
 
     private Intent getCameraIntent() {
         if (cameraIntent == null) {
@@ -111,7 +113,6 @@ public class IntentResolver {
         }
     }
 
-    private Intent galleryIntent;
 
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {

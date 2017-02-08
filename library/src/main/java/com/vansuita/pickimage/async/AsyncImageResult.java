@@ -20,13 +20,17 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
 
     private WeakReference<IntentResolver> weakIntentResolver;
     private WeakReference<PickSetup> weakSetup;
-
+    private WeakReference<OnFinish> weakOnFinish;
 
     public AsyncImageResult(Activity activity, PickSetup setup) {
         this.weakIntentResolver = new WeakReference<IntentResolver>(new IntentResolver(activity));
         this.weakSetup = new WeakReference<PickSetup>(setup);
     }
 
+    public AsyncImageResult setOnFinish(OnFinish onFinish) {
+        this.weakOnFinish = new WeakReference<OnFinish>(onFinish);
+        return this;
+    }
 
     @Override
     protected PickResult doInBackground(Intent... intents) {
@@ -82,10 +86,4 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
         void onFinish(PickResult pickResult);
     }
 
-    private WeakReference<OnFinish> weakOnFinish;
-
-    public AsyncImageResult setOnFinish(OnFinish onFinish) {
-        this.weakOnFinish = new WeakReference<OnFinish>(onFinish);
-        return this;
-    }
 }

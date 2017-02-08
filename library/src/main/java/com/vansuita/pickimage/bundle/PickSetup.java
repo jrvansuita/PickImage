@@ -47,13 +47,13 @@ public class PickSetup implements Serializable {
     @LinearLayoutCompat.OrientationMode
     private int buttonOrientation;
 
-    @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
-    public @interface IconGravity {
-    }
 
     @IconGravity
     private int iconGravity;
 
+    @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
+    public @interface IconGravity {
+    }
 
     public String getCancelText() {
         return cancelText;

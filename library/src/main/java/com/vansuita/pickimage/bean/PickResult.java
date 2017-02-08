@@ -52,7 +52,4 @@ public class PickResult {
     public String getPath() {
         return path;
     }
-
-    public PickResult() {
-    }
 }

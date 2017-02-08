@@ -22,10 +22,10 @@ import static android.graphics.BitmapFactory.decodeStream;
 
 public class ImageHandler {
 
-    Context context;
-    Uri uri;
-    EPickType provider;
-    PickSetup setup;
+    private Context context;
+    private Uri uri;
+    private EPickType provider;
+    private PickSetup setup;
 
     public ImageHandler(Context context) {
         this.context = context;
@@ -139,7 +139,8 @@ public class ImageHandler {
         decodeStream(context.getContentResolver().openInputStream(uri), null, options);
 
         // Find the correct scale value. It should be the power of 2.
-        int width_tmp = options.outWidth, height_tmp = options.outHeight;
+        int width_tmp = options.outWidth;
+        int height_tmp = options.outHeight;
         int scale = 1;
         while (true) {
             if (width_tmp / 2 < setup.getImageSize() || height_tmp / 2 < setup.getImageSize())
@@ -153,7 +154,7 @@ public class ImageHandler {
         // Decode with inSampleSize
         BitmapFactory.Options o2 = new BitmapFactory.Options();
         o2.inSampleSize = scale;
-        Bitmap bitmap =  BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri), null, o2);
+        Bitmap bitmap = decodeStream(context.getContentResolver().openInputStream(uri), null, o2);
 
         //If developer want to flip by default
         if (provider.equals(EPickType.CAMERA) && setup.isFlipped())
@@ -167,10 +168,10 @@ public class ImageHandler {
         return uri;
     }
 
-    public String getUriPath(){
-        if (provider.equals(EPickType.CAMERA)){
+    public String getUriPath() {
+        if (provider.equals(EPickType.CAMERA)) {
             return uri.getPath();
-        }else{
+        } else {
             return getGalleryPath();
         }
     }

@@ -37,16 +37,6 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
     protected static final String SETUP_TAG = "SETUP_TAG";
     public static final String DIALOG_FRAGMENT_TAG = PickImageBaseDialog.class.getSimpleName();
 
-    protected static Bundle saveArguments(Bundle bundle, PickSetup setup) {
-        if (bundle == null)
-            bundle = new Bundle();
-
-        bundle.putSerializable(SETUP_TAG, setup);
-
-        return bundle;
-    }
-
-
     private PickSetup setup;
     private IntentResolver resolver;
 
@@ -63,6 +53,11 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private View vFirstLayer;
     private View vSecondLayer;
+
+    private Boolean validProviders = null;
+
+    private IPickResult onPickResult;
+    private IPickClick onClick;
 
 
     @Nullable
@@ -111,8 +106,6 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         this.setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
     }
 
-
-    private Boolean validProviders = null;
 
     private boolean isValidProviders() {
         if (validProviders == null) {
@@ -257,14 +250,13 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         }
     }
 
-    private IPickResult onPickResult;
+
 
     protected PickImageBaseDialog setOnPickResult(IPickResult onPickResult) {
         this.onPickResult = onPickResult;
         return this;
     }
 
-    private IPickClick onClick;
 
     protected PickImageBaseDialog setOnClick(IPickClick onClick) {
         this.onClick = onClick;

@@ -2,6 +2,7 @@ package com.vansuita.pickimage.dialog;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -22,11 +23,10 @@ import static android.app.Activity.RESULT_OK;
 public class PickImageDialog extends PickImageBaseDialog {
 
     public static PickImageDialog newInstance(PickSetup setup) {
-        if (setup == null)
-            setup = new PickSetup();
-
         PickImageDialog frag = new PickImageDialog();
-        frag.setArguments(saveArguments(null, setup));
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(SETUP_TAG, setup);
+        frag.setArguments(bundle);
         return frag;
     }
 
@@ -37,7 +37,7 @@ public class PickImageDialog extends PickImageBaseDialog {
     }
 
     public static PickImageDialog build(IPickResult pickResult) {
-        return build(null, pickResult);
+        return build(new PickSetup(), pickResult);
     }
 
     public static PickImageDialog build(PickSetup setup) {
@@ -47,7 +47,6 @@ public class PickImageDialog extends PickImageBaseDialog {
     public static PickImageDialog build() {
         return build();
     }
-
 
     public PickImageDialog show(FragmentActivity fragmentActivity) {
         return show(fragmentActivity.getSupportFragmentManager());

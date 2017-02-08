@@ -10,7 +10,7 @@ import com.vansuita.pickimage.BuildConfig;
  */
 
 public class Keep {
-    SharedPreferences pref;
+    private SharedPreferences pref;
 
     private static final String ASKED_FOR_PERMISSION = "ASKED_FOR_PERMISSION";
 
