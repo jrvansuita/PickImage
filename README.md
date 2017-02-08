@@ -58,14 +58,10 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 		}
 	}
 
-#### Step #2. Add the dependency.
+#### Step #2. Add the dependency ([See latest release](https://jitpack.io/#jrvansuita/PickImage)).
 
     dependencies {
            compile 'com.github.jrvansuita:PickImage:+'
-
-           //or
-
-           compile 'com.github.jrvansuita:PickImage:[lastesReleaseCode](https://jitpack.io/#jrvansuita/PickImage)'
 	}
 
 # Implementation
@@ -87,11 +83,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
     
 #### Step #2 - Showing the dialog.
 
-    PickImageDialog.on(MainActivity.this, new PickSetup());
-    
-    //or 
-    
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup());
+    PickImageDialog.build(new PickSetup()).show(this);
     
 #### Step #3 - Applying the listeners.
 
@@ -119,15 +111,15 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
         }
     }
            
-##### Method #3.2 - Set the listener using the public method.
+##### Method #3.2 - Set the listener using the public method (Good for Fragments).
 
-    PickImageDialog.on(getSupportFragmentManager(), new PickSetup())
+    PickImageDialog.build(new PickSetup())
                    .setOnPickResult(new IPickResult() {
                       @Override
                       public void onPickResult(PickResult r) {
                          //TODO: do what you have to...
                       }
-                });
+                }).show(getSupportFragmentManager());
 
 
 #### Step #4 - Customize you Dialog using PickSetup.
@@ -175,7 +167,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
  
-</br>
+# 
 
 <a href="https://plus.google.com/+JuniorVansuita" target="_blank">
   <img src="https://s20.postimg.org/59xees8vt/google_plus.png" alt="Google+" witdh="44" height="44" hspace="10">
