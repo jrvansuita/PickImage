@@ -94,27 +94,26 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 ##### Method #3.1 - Make your AppCompatActivity implements IPickResult.
 
     @Override
-        public void onPickResult(PickResult r) {
-            if (r.getError() == null) {
-                ImageView imageView = ((ImageView) findViewById(R.id.result_image));
-    
-                //If you want the Bitmap.
-                imageView.setImageBitmap(r.getBitmap());
-    
-                //If you want the Uri.
-                //Mandatory to refresh image from Uri.
-                imageView.setImageURI(null);
-    
-                //Setting the real returned image.
-                imageView.setImageURI(r.getUri());
-                
-                //Image path.
-                r.getPath();
-            } else {
-                //Handle possible errors
-                //TODO: do what you have to do with r.getError();
-            }
+    public void onPickResult(PickResult r) {
+        if (r.getError() == null) {
+            //If you want the Uri.
+            //Mandatory to refresh image from Uri.
+            //getImageView().setImageURI(null);
+
+            //Setting the real returned image.
+            //getImageView().setImageURI(r.getUri());
+
+            //If you want the Bitmap.
+            getImageView().setImageBitmap(r.getBitmap());
+
+            //Image path
+            //r.getPath();
+        } else {
+            //Handle possible errors
+            //TODO: do what you have to do with r.getError();
+            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
            
 ##### Method #3.2 - Set the listener using the public method.
 
@@ -145,6 +144,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
                 .setGalleryButtonText(yourText)
                 .setIconGravity(Gravity.LEFT)
                 .setButtonOrientation(LinearLayoutCompat.VERTICAL)
+                .setSystemDialog(false)
                 .setGalleryIcon(yourIcon)
                 .setCameraIcon(yourIcon);
     /*... and more to come. */
