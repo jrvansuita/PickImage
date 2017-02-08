@@ -36,13 +36,18 @@ public class PickImageDialog extends PickImageBaseDialog {
         return d;
     }
 
+    public static PickImageDialog build(IPickResult pickResult) {
+        return build(null, pickResult);
+    }
+
     public static PickImageDialog build(PickSetup setup) {
         return build(setup, null);
     }
 
-    public static PickImageDialog build(IPickResult pickResult) {
-        return build(null, pickResult);
+    public static PickImageDialog build() {
+        return build();
     }
+
 
     public PickImageDialog show(FragmentActivity fragmentActivity) {
         return show(fragmentActivity.getSupportFragmentManager());
