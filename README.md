@@ -167,7 +167,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
  
-</br>
+# 
 
 <a href="https://plus.google.com/+JuniorVansuita" target="_blank">
   <img src="https://s20.postimg.org/59xees8vt/google_plus.png" alt="Google+" witdh="44" height="44" hspace="10">
