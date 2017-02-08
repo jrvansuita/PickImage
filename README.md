@@ -14,15 +14,13 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 </br> 
 
 <!-- JitPack integration -->
-[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<!-- Android Arsenal -->
+[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<a href="https://github.com/jrvansuita/PickImage/releases/latest">
+  <img alt="Latest release" src="https://img.shields.io/github/release/jrvansuita/PickImage.svg" />
+</a><!-- Android Arsenal -->
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614)<!-- License -->
 <a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:License-MIT-yellow.svg" alt="MIT License" /></a><!-- Minimun Android Api -->
 <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a><!-- Methods Count -->
-<a target="_blank" href="http://www.methodscount.com/?lib=com.github.jrvansuita%3APickImage%3Av2.0.2"><img src="https://img.shields.io/badge/Methods-428-e91e63.svg" /></a> <!-- Apptize.io -->[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/57ztxax2v7egygwz0nhybmxnf0?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) <!-- Hits Count -->[![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)<!--Open Source --> [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/jrvansuita)
-<!--<a href="https://github.com/jrvansuita/PickImage/releases/latest">
-  <img alt="Latest release" src="https://img.shields.io/github/release/jrvansuita/PickImage.svg" />
-</a>-->
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade)
+<a target="_blank" href="http://www.methodscount.com/?lib=com.github.jrvansuita%3APickImage%3Av2.0.2"><img src="https://img.shields.io/badge/Methods-428-e91e63.svg" /></a> [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade)<!-- Apptize.io -->[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/57ztxax2v7egygwz0nhybmxnf0?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) <!-- Hits Count -->[![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)<!--Open Source --> [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/jrvansuita)[![Beerpay](https://beerpay.io/jrvansuita/PickImage/badge.svg?style=flat)](https://beerpay.io/jrvansuita/PickImage)
 
 # Screenshots
 
@@ -186,10 +184,3 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 <a href="mailto:vansuita.jr@gmail.com" target="_blank" >
   <img src="https://s20.postimg.org/slli3vn5l/email.png" alt="E-mail" witdh="44" height="44" hspace="10">
 </a>
-
-
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/jrvansuita/PickImage/badge.svg?style=beer-square)](https://beerpay.io/jrvansuita/PickImage)  [![Beerpay](https://beerpay.io/jrvansuita/PickImage/make-wish.svg?style=flat-square)](https://beerpay.io/jrvansuita/PickImage?focus=wish)
