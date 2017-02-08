@@ -188,3 +188,8 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 </a>
 
 
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/jrvansuita/PickImage/badge.svg?style=beer-square)](https://beerpay.io/jrvansuita/PickImage)  [![Beerpay](https://beerpay.io/jrvansuita/PickImage/make-wish.svg?style=flat-square)](https://beerpay.io/jrvansuita/PickImage?focus=wish)
