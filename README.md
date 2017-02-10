@@ -145,7 +145,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 # Additionals
 
 #### Own click implementations.
-###### _If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app._
+If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
  
      @Override
      public void onGalleryClick() {
