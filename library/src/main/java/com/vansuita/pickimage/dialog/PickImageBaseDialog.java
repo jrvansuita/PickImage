@@ -111,10 +111,8 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         if (validProviders == null) {
             validProviders = true;
 
-            if (onClick == null) {
-                showCamera = EPickType.CAMERA.inside(setup.getPickTypes()) && resolver.isCamerasAvailable() && !resolver.wasCameraPermissionDeniedForever();
-                showGallery = EPickType.GALLERY.inside(setup.getPickTypes());
-            }
+            showCamera = EPickType.CAMERA.inside(setup.getPickTypes()) && ((onClick == null) || (resolver.isCamerasAvailable() && !resolver.wasCameraPermissionDeniedForever()));
+            showGallery = EPickType.GALLERY.inside(setup.getPickTypes());
 
             if (!(showCamera || showGallery)) {
                 Error e = new Error(getString(R.string.no_providers));
@@ -249,7 +247,6 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
             return false;
         }
     }
-
 
 
     protected PickImageBaseDialog setOnPickResult(IPickResult onPickResult) {
