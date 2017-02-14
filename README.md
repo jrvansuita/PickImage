@@ -65,19 +65,20 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 
 #### Step #1. Overriding the library file provider authority to avoid installation conflicts.
 The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your AndroidManifest.xml with this exact provider declaration below.
+```xml
+<manifest ...>
+    ... 
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+        tools:replace="android:authorities">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths" />
+    </provider>
+</manifest> 
+```
 
-    <manifest ...>
-        ... 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
-            tools:replace="android:authorities">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
-    </manifest> 
-    
 #### Step #2 - Showing the dialog.
 ```java
 PickImageDialog.build(new PickSetup()).show(this);
@@ -124,27 +125,27 @@ PickImageDialog.build(new PickSetup())
 #### Step #4 - Customize you Dialog using PickSetup.
 
 ```java
-    PickSetup setup = new PickSetup()
-                .setTitle(yourText)
-                .setTitleColor(yourColor)
-                .setBackgroundColor(yourColor)
-                .setProgressText(yourText)
-                .setProgressTextColor(yourColor)
-                .setCancelText(yourText)
-                .setCancelTextColor(yourColor)
-                .setButtonTextColor(yourColor)
-                .setDimAmount(yourFloat)
-                .setFlip(true)
-                .setImageSize(500)
-                .setPickTypes(EPickTypes.GALLERY, EPickTypes.CAMERA)
-                .setCameraButtonText(yourText)
-                .setGalleryButtonText(yourText)
-                .setIconGravity(Gravity.LEFT)
-                .setButtonOrientation(LinearLayoutCompat.VERTICAL)
-                .setSystemDialog(false)
-                .setGalleryIcon(yourIcon)
-                .setCameraIcon(yourIcon);
-    /*... and more to come. */
+PickSetup setup = new PickSetup()
+            .setTitle(yourText)
+            .setTitleColor(yourColor)
+            .setBackgroundColor(yourColor)
+            .setProgressText(yourText)
+            .setProgressTextColor(yourColor)
+            .setCancelText(yourText)
+            .setCancelTextColor(yourColor)
+            .setButtonTextColor(yourColor)
+            .setDimAmount(yourFloat)
+            .setFlip(true)
+            .setImageSize(500)
+            .setPickTypes(EPickTypes.GALLERY, EPickTypes.CAMERA)
+            .setCameraButtonText(yourText)
+            .setGalleryButtonText(yourText)
+            .setIconGravity(Gravity.LEFT)
+            .setButtonOrientation(LinearLayoutCompat.VERTICAL)
+            .setSystemDialog(false)
+            .setGalleryIcon(yourIcon)
+            .setCameraIcon(yourIcon);
+/*... and more to come. */
 ```
 
 # Additionals
@@ -153,14 +154,14 @@ PickImageDialog.build(new PickSetup())
 If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
  
  ```java
- @Override
- public void onGalleryClick() {
-     //TODO: Your onw implementation
- }
+@Override
+public void onGalleryClick() {
+    //TODO: Your onw implementation
+}
  
- @Override
- public void onCameraClick() {
-     //TODO: Your onw implementation
+@Override
+public void onCameraClick() {
+    //TODO: Your onw implementation
 }
 ``` 
 
