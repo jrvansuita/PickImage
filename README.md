@@ -80,45 +80,49 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
     
 #### Step #2 - Showing the dialog.
 ```java
-    PickImageDialog.build(new PickSetup()).show(this);
+PickImageDialog.build(new PickSetup()).show(this);
 ``` 
 #### Step #3 - Applying the listeners.
 
 ##### Method #3.1 - Make your AppCompatActivity implements IPickResult.
 ```java
-    @Override
-    public void onPickResult(PickResult r) {
-        if (r.getError() == null) {
-            //If you want the Uri.
-            //Mandatory to refresh image from Uri.
-            //getImageView().setImageURI(null);
+@Override
+public void onPickResult(PickResult r) {
+    if (r.getError() == null) {
+        //If you want the Uri.
+        //Mandatory to refresh image from Uri.
+        //getImageView().setImageURI(null);
 
-            //Setting the real returned image.
-            //getImageView().setImageURI(r.getUri());
+        //Setting the real returned image.
+        //getImageView().setImageURI(r.getUri());
 
-            //If you want the Bitmap.
-            getImageView().setImageBitmap(r.getBitmap());
+        //If you want the Bitmap.
+        getImageView().setImageBitmap(r.getBitmap());
 
-            //Image path
-            //r.getPath();
-        } else {
-            //Handle possible errors
-            //TODO: do what you have to do with r.getError();
-            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-```         
-##### Method #3.2 - Set the listener using the public method (Good for Fragments).
-```java
-    PickImageDialog.build(new PickSetup())
-                   .setOnPickResult(new IPickResult() {
-                      @Override
-                      public void onPickResult(PickResult r) {
-                         //TODO: do what you have to...
-                      }
-                }).show(getSupportFragmentManager());
+        //Image path
+        //r.getPath();
+    } else {
+        //Handle possible errors
+        //TODO: do what you have to do with r.getError();
+        Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
+    }
+}
 ```
+
+##### Method #3.2 - Set the listener using the public method (Good for Fragments).
+
+```java
+PickImageDialog.build(new PickSetup())
+               .setOnPickResult(new IPickResult() {
+                  @Override
+                  public void onPickResult(PickResult r) {
+                     //TODO: do what you have to...
+                  }
+            }).show(getSupportFragmentManager());
+```
+
 #### Step #4 - Customize you Dialog using PickSetup.
+
 ```java
     PickSetup setup = new PickSetup()
                 .setTitle(yourText)
@@ -141,26 +145,30 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
                 .setGalleryIcon(yourIcon)
                 .setCameraIcon(yourIcon);
     /*... and more to come. */
-```   
+```
+
 # Additionals
 
 #### Own click implementations.
 If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
- ```java
-     @Override
-     public void onGalleryClick() {
-         //TODO: Your onw implementation
-     }
  
-     @Override
-     public void onCameraClick() {
-         //TODO: Your onw implementation
-     }
+ ```java
+ @Override
+ public void onGalleryClick() {
+     //TODO: Your onw implementation
+ }
+ 
+ @Override
+ public void onCameraClick() {
+     //TODO: Your onw implementation
+}
 ``` 
+
 #### For dismissing the dialog.
+
 ```java
-     PickImageDialog dialog = PickImageDialog.on(...);
-     dialog.dismiss();
+PickImageDialog dialog = PickImageDialog.on(...);
+dialog.dismiss();
 ```
      
 # Sample app code.
