@@ -102,8 +102,8 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
-        this.resolver = new IntentResolver(getActivity());
         this.setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
+        this.resolver = new IntentResolver(getActivity(), setup);
     }
 
 
@@ -237,9 +237,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
             if (showCamera) {
                 if (resolver.requestCameraPermissions(this))
-                    resolver.launchSystemChooser(setup, this);
+                    resolver.launchSystemChooser(this);
             } else {
-                resolver.launchSystemChooser(setup, this);
+                resolver.launchSystemChooser(this);
             }
 
             return true;

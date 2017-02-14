@@ -33,18 +33,20 @@ public class IntentResolver {
     public static final int REQUESTER = 99;
     private Activity activity;
 
+    private PickSetup setup;
     private Intent galleryIntent;
     private Intent cameraIntent;
+    private File saveFile;
 
-
-    public IntentResolver(Activity activity) {
+    public IntentResolver(Activity activity, PickSetup setup) {
         this.activity = activity;
+        this.setup = setup;
     }
 
-    private Intent loadSystemPackages(Intent intent){
+    private Intent loadSystemPackages(Intent intent) {
         List<ResolveInfo> resInfo = activity.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_SYSTEM_ONLY);
 
-        if (!resInfo.isEmpty()){
+        if (!resInfo.isEmpty()) {
             String packageName = resInfo.get(0).activityInfo.packageName;
             intent.setPackage(packageName);
         }
@@ -90,11 +92,17 @@ public class IntentResolver {
         }
     }
 
-    private File cameraFile() {
-        File dir = new File(Environment.getExternalStorageDirectory(), PickImageDialog.class.getSimpleName());
-        dir.mkdirs();
 
-        return new File(dir, "current.jpg");
+    private File cameraFile() {
+        if (saveFile == null) {
+            File directory = setup.isPrivateContent() ? activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES) : Environment.getExternalStorageDirectory();
+            directory = new File(directory, PickImageDialog.class.getSimpleName());
+            directory.mkdirs();
+
+            saveFile = new File(directory, "current.jpg");
+        }
+
+        return saveFile;
     }
 
     public Uri cameraUri() {
@@ -127,7 +135,7 @@ public class IntentResolver {
         listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
     }
 
-    public void launchSystemChooser(PickSetup setup, Fragment listener) {
+    public void launchSystemChooser(Fragment listener) {
         Intent chooserIntent;
         List<Intent> intentList = new ArrayList<>();
 

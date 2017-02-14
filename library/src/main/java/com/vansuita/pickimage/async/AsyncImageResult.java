@@ -23,7 +23,7 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
     private WeakReference<OnFinish> weakOnFinish;
 
     public AsyncImageResult(Activity activity, PickSetup setup) {
-        this.weakIntentResolver = new WeakReference<IntentResolver>(new IntentResolver(activity));
+        this.weakIntentResolver = new WeakReference<IntentResolver>(new IntentResolver(activity, setup));
         this.weakSetup = new WeakReference<PickSetup>(setup);
     }
 
