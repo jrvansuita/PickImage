@@ -47,20 +47,21 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Setup
 
 #### Step #1. Add the JitPack repository to your build file:
-
+```gradle
     allprojects {
 		repositories {
 			...
 			maven { url "https://jitpack.io" }
 		}
 	}
-
+```
+     
 #### Step #2. Add the dependency ([See latest release](https://jitpack.io/#jrvansuita/PickImage)).
-
+```groovy
     dependencies {
            compile 'com.github.jrvansuita:PickImage:+'
 	}
-
+```
 # Implementation
 
 #### Step #1. Overriding the library file provider authority to avoid installation conflicts.
@@ -79,13 +80,14 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
     </manifest> 
     
 #### Step #2 - Showing the dialog.
-
-    PickImageDialog.build(new PickSetup()).show(this);
+```java
+    PickImageDialog.build(new PickSetup()).show(this);
+``` 
     
 #### Step #3 - Applying the listeners.
 
 ##### Method #3.1 - Make your AppCompatActivity implements IPickResult.
-
+```java
     @Override
     public void onPickResult(PickResult r) {
         if (r.getError() == null) {
@@ -106,10 +108,10 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
             //TODO: do what you have to do with r.getError();
             Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
         }
-    }
-           
+    }
+```           
 ##### Method #3.2 - Set the listener using the public method (Good for Fragments).
-
+```java
     PickImageDialog.build(new PickSetup())
                    .setOnPickResult(new IPickResult() {
                       @Override
@@ -117,10 +119,10 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
                          //TODO: do what you have to...
                       }
                 }).show(getSupportFragmentManager());
-
-
+```
 #### Step #4 - Customize you Dialog using PickSetup.
-    PickSetup setup = new PickSetup()
+```java
+    PickSetup setup = new PickSetup()
                 .setTitle(yourText)
                 .setTitleColor(yourColor)
                 .setBackgroundColor(yourColor)
@@ -141,12 +143,12 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
                 .setGalleryIcon(yourIcon)
                 .setCameraIcon(yourIcon);
     /*... and more to come. */
-       
+```       
 # Additionals
 
 #### Own click implementations.
 If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
- 
+ ```java
      @Override
      public void onGalleryClick() {
          //TODO: Your onw implementation
@@ -156,7 +158,7 @@ If you want to write your own button click event, your class have to implements 
      public void onCameraClick() {
          //TODO: Your onw implementation
      }
-     
+```     
 #### For dismissing the dialog.
      PickImageDialog dialog = PickImageDialog.on(...);
      dialog.dismiss();
