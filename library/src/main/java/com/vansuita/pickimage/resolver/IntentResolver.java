@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 
+import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.enums.EPickType;
@@ -76,6 +77,8 @@ public class IntentResolver {
     }
 
     public void launchCamera(Fragment listener) {
+        removeFolder();
+
         if (getCameraIntent().resolveActivity(activity.getPackageManager()) != null) {
             listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
         }
@@ -93,13 +96,19 @@ public class IntentResolver {
     }
 
 
+    private File getFolderFile() {
+        return new File(Environment.getExternalStorageDirectory(), PickImageDialog.class.getSimpleName());
+    }
+
+    private void removeFolder() {
+        getFolderFile().delete();
+    }
+
     private File cameraFile() {
         if (saveFile == null) {
-            File directory = setup.isPrivateContent() ? activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES) : Environment.getExternalStorageDirectory();
-            directory = new File(directory, PickImageDialog.class.getSimpleName());
+            File directory = getFolderFile();
             directory.mkdirs();
-
-            saveFile = new File(directory, "current.jpg");
+            saveFile = new File(directory, activity.getString(R.string.image_file_name));
         }
 
         return saveFile;
@@ -110,14 +119,14 @@ public class IntentResolver {
     }
 
     private String getAuthority() {
-        return activity.getApplication().getPackageName() + ".com.vansuita.pickimage.provider";
+        return activity.getApplication().getPackageName() + activity.getString(R.string.provider_package);
     }
 
     private Uri cameraUriForProvider() {
         try {
             return FileProvider.getUriForFile(activity, getAuthority(), cameraFile());
         } catch (Exception e) {
-            throw new Error("FileProvider not declared or has wrong authority. (Must be ${applicationId}.com.vansuita.pickimage.provider, check AndroidManifest.xml)");
+            throw new Error(activity.getString(R.string.wrong_authority));
         }
     }
 
@@ -125,7 +134,7 @@ public class IntentResolver {
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {
             galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            galleryIntent.setType("image/*");
+            galleryIntent.setType(activity.getString(R.string.image_content_type));
         }
 
         return galleryIntent;

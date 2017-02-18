@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 
+import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
@@ -20,7 +21,7 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
 
     private WeakReference<IntentResolver> weakIntentResolver;
     private WeakReference<PickSetup> weakSetup;
-    private WeakReference<OnFinish> weakOnFinish;
+    private OnFinish onFinish;
 
     public AsyncImageResult(Activity activity, PickSetup setup) {
         this.weakIntentResolver = new WeakReference<IntentResolver>(new IntentResolver(activity, setup));
@@ -28,7 +29,7 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
     }
 
     public AsyncImageResult setOnFinish(OnFinish onFinish) {
-        this.weakOnFinish = new WeakReference<OnFinish>(onFinish);
+        this.onFinish = onFinish;
         return this;
     }
 
@@ -41,7 +42,7 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
         IntentResolver resolver = weakIntentResolver.get();
 
         if (resolver == null) {
-            result.setError(new Error("Activity was destroyed, can't handle pick image result."));
+            result.setError(new Error(resolver.getActivity().getString(R.string.activity_destroyed)));
             return result;
         }
 
@@ -66,6 +67,7 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
 
             return result;
         } catch (Exception e) {
+            e.printStackTrace();
             result.setError(e);
             return result;
         }
@@ -74,12 +76,8 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
 
     @Override
     protected void onPostExecute(PickResult r) {
-        if (weakOnFinish != null) {
-            OnFinish onFinish = weakOnFinish.get();
-
-            if (onFinish != null)
-                onFinish.onFinish(r);
-        }
+        if (onFinish != null)
+            onFinish.onFinish(r);
     }
 
     public interface OnFinish {

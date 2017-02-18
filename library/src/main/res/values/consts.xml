@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="provider_package">.com.vansuita.pickimage.provider</string>
+    <string name="image_file_name">current.jpg</string>
+    <string name="image_content_type">image/*</string>
+</resources>

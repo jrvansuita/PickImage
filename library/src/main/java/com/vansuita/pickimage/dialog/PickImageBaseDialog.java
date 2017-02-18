@@ -120,7 +120,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
                 validProviders = false;
 
                 if (onPickResult != null) {
-                    onPickResult.onPickResult(new PickResult().setError(e));
+                    onError(e);
                 } else {
                     throw e;
                 }
@@ -217,6 +217,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
 
     protected void showProgress(boolean show) {
+        Util.gone(card, false);
         Util.gone(vFirstLayer, show);
         Util.gone(vSecondLayer, !show);
     }
@@ -293,4 +294,13 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
         return new View(getContext());
     }
+
+    protected void onError(Error e) {
+        if (onPickResult != null) {
+            onPickResult.onPickResult(new PickResult().setError(e));
+
+            dismissAllowingStateLoss();
+        }
+    }
+
 }

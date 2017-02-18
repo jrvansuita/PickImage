@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 
+import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.keep.Keep;
 import com.vansuita.pickimage.listeners.IPickClick;
@@ -84,12 +85,15 @@ public class PickImageDialog extends PickImageBaseDialog {
         if (requestCode == IntentResolver.REQUESTER) {
             if (resultCode == RESULT_OK) {
 
-                //Show progress
-                showProgress(true);
+                if (data == null) {
+                    onError(new Error(getString(R.string.null_image)));
+                }else{
+                    //Show progress
+                    showProgress(true);
 
-                //Handle the image result async
-                getAsyncResult().execute(data);
-
+                    //Handle the image result async
+                    getAsyncResult().execute(data);
+                }
             } else {
                 dismiss();
             }
