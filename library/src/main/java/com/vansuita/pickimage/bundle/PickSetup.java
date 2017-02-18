@@ -43,7 +43,6 @@ public class PickSetup implements Serializable {
     private String galleryButtonText;
 
     private boolean systemDialog;
-    private boolean privateContent;
 
     @LinearLayoutCompat.OrientationMode
     private int buttonOrientation;
@@ -240,14 +239,6 @@ public class PickSetup implements Serializable {
         this.iconGravity = iconGravity;
     }
 
-    public boolean isPrivateContent() {
-        return privateContent;
-    }
-
-    public PickSetup setPrivateContent(boolean privateContent) {
-        this.privateContent = privateContent;
-        return this;
-    }
 
     public PickSetup() {
         setTitle("Choose")
@@ -262,7 +253,6 @@ public class PickSetup implements Serializable {
                 .setButtonOrientation(LinearLayoutCompat.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
                 .setSystemDialog(false)
-                .setPrivateContent(false)
                 .setGalleryIcon(R.drawable.gallery);
     }
 

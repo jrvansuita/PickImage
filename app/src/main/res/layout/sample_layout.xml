@@ -9,32 +9,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="20dp">
 
-        <TextView
+        <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:text="@string/tip" />
+            android:layout_margin="10dp">
 
-        <ImageView
-            android:id="@+id/result_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:minHeight="150dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/image_selector"
-            android:padding="5dp"
-            android:scaleType="centerInside"
-            android:src="@mipmap/default_image" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="@string/tip" />
+
+                <ImageView
+                    android:id="@+id/result_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/image_selector"
+                    android:minHeight="150dp"
+                    android:minWidth="200dp"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/default_image" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <FrameLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:id="@+id/prefs_holder"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 

@@ -16,8 +16,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 
 import com.vansuita.pickimage.R;
+import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
-import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.keep.Keep;
 
@@ -77,8 +77,6 @@ public class IntentResolver {
     }
 
     public void launchCamera(Fragment listener) {
-        removeFolder();
-
         if (getCameraIntent().resolveActivity(activity.getPackageManager()) != null) {
             listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
         }
@@ -95,18 +93,9 @@ public class IntentResolver {
         }
     }
 
-
-    private File getFolderFile() {
-        return new File(Environment.getExternalStorageDirectory(), PickImageDialog.class.getSimpleName());
-    }
-
-    private void removeFolder() {
-        getFolderFile().delete();
-    }
-
     private File cameraFile() {
         if (saveFile == null) {
-            File directory = getFolderFile();
+            File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PickResult.class.getSimpleName());
             directory.mkdirs();
             saveFile = new File(directory, activity.getString(R.string.image_file_name));
         }

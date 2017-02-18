@@ -4,9 +4,5 @@
 
     <solid android:color="@android:color/white" />
 
-    <stroke
-        android:width="3dp"
-        android:color="@color/secondaryText"
-        android:dashGap="5dp"
-        android:dashWidth="7dp"/>
+
 </shape>

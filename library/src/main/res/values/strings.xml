@@ -6,7 +6,6 @@
     <string name="cancel">Cancel</string>
     <string name="loading">Loading...</string>
     <string name="no_providers">No providers available to show.</string>
-    <string name="null_image">Image returned null</string>
     <string name="wrong_authority">FileProvider not declared or has wrong authority. (Must be ${applicationId}.com.vansuita.pickimage.provider, check AndroidManifest.xml)</string>
     <string name="activity_destroyed">Activity was destroyed, can\'t handle pick image result.</string>
 </resources>
