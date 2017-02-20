@@ -14,14 +14,10 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 </br> 
 
 <!-- JitPack integration -->
-[![](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)<a href="https://github.com/jrvansuita/PickImage/releases/latest">
-  <img alt="Latest release" src="https://img.shields.io/github/release/jrvansuita/PickImage.svg" />
-</a><!-- Android Arsenal -->
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614) [![MaterialUp](https://img.shields.io/badge/MaterialUp-PickImage-6ad0d9.svg?)](https://www.uplabs.com/posts/pickimage)<!-- License -->
-<a target="_blank" href="/LICENSE.txt"><img src="http://img.shields.io/:License-MIT-yellow.svg" alt="MIT License" /></a><!-- Minimun Android Api -->
-<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a> [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade) <!-- Apptize.io -->[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](https://github.com/jrvansuita/PickImage/raw/master/app/app-release.apk?raw=true) <!-- Hits Count -->[![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)<!--Open Source --> [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/jrvansuita) [![Beerpay](https://beerpay.io/jrvansuita/PickImage/badge.svg?style=flat)](https://beerpay.io/jrvansuita/PickImage)
+[![JitPack](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614) [![MaterialUp](https://img.shields.io/badge/MaterialUp-PickImage-6ad0d9.svg?)](https://www.uplabs.com/posts/pickimage) [![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)
 
-# Screenshots
+# Dialog screenshots
 
 #### Default icons.
 <img src="images/dialogs/light_vertical_left_simple.png" height='auto' width='280'/>
@@ -43,23 +39,27 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/>
 <img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
 
+[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](http://apk-dl.com/dl/com.vansuita.pickimage.sample) 
+ [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade) <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
+ 
+ 
 # Setup
 
 #### Step #1. Add the JitPack repository to your build file:
 ```gradle
-    allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
-	}
+allprojects {
+    repositories {
+	...
+	maven { url "https://jitpack.io" }
+    }
+}
 ```
      
 #### Step #2. Add the dependency ([See latest release](https://jitpack.io/#jrvansuita/PickImage)).
 ```groovy
-    dependencies {
-           compile 'com.github.jrvansuita:PickImage:+'
-	}
+dependencies {
+    compile 'com.github.jrvansuita:PickImage:+'
+}
 ```
 # Implementation
 
