@@ -89,7 +89,7 @@ public class PickImageDialog extends PickImageBaseDialog {
                 //Handle the image result async
                 getAsyncResult().execute(data);
             } else {
-                dismiss();
+                dismissAllowingStateLoss();
             }
         }
     }
