@@ -67,15 +67,16 @@ dependencies {
 The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://developer.android.com/guide/topics/manifest/provider-element.html#auth) if you skip this step. Update your AndroidManifest.xml with this exact provider declaration below.
 ```xml
 <manifest ...>
-    ... 
-    <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="${applicationId}.com.vansuita.pickimage.provider"
-        tools:replace="android:authorities">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths" />
-    </provider>
+    <application ...>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.com.vansuita.pickimage.provider"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>	
 </manifest> 
 ```
 
