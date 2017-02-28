@@ -115,10 +115,13 @@ public class IntentResolver {
         try {
             return FileProvider.getUriForFile(activity, getAuthority(), cameraFile());
         } catch (Exception e) {
-            throw new Error(activity.getString(R.string.wrong_authority));
+            if (e.getMessage().contains("ProviderInfo.loadXmlMetaData")) {
+                throw new Error(activity.getString(R.string.wrong_authority));
+            }else{
+                throw e;
+            }
         }
     }
-
 
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {
