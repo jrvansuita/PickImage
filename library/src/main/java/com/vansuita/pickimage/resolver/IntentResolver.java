@@ -7,16 +7,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 
 import com.vansuita.pickimage.R;
-import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.keep.Keep;
@@ -95,9 +94,13 @@ public class IntentResolver {
 
     private File cameraFile() {
         if (saveFile == null) {
-            File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PickResult.class.getSimpleName());
+            //File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PickResult.class.getSimpleName());
+
+            File directory = new File(activity.getFilesDir(), "picked");
             directory.mkdirs();
             saveFile = new File(directory, activity.getString(R.string.image_file_name));
+
+            Log.i("File-PickImage", saveFile.getAbsolutePath());
         }
 
         return saveFile;
