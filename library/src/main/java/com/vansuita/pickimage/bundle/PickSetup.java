@@ -9,6 +9,8 @@ import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.enums.EPickType;
 
 import java.io.Serializable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by jrvansuita build 01/11/16.
@@ -51,6 +53,7 @@ public class PickSetup implements Serializable {
     @IconGravity
     private int iconGravity;
 
+    @Retention(RetentionPolicy.SOURCE)
     @IntDef({Gravity.LEFT, Gravity.BOTTOM, Gravity.RIGHT, Gravity.TOP})
     public @interface IconGravity {
     }
