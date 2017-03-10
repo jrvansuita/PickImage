@@ -165,6 +165,9 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
         setup.setButtonOrientationInt(getNum(R.string.key_buttons_orientation));
         setup.setSystemDialog(getBool(R.string.key_system_dialog));
 
+        //setup.setWidth(800).setHeight(700);
+
+
         if (getBool(R.string.key_colored_icons)) {
             setup.setGalleryIcon(R.mipmap.gallery_colored);
             setup.setCameraIcon(R.mipmap.camera_colored);
