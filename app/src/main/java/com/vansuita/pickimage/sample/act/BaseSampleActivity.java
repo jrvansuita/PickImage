@@ -154,7 +154,7 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
 
         setup.setDimAmount(getFloat(R.string.key_dim_amount));
         setup.setFlip(getBool(R.string.key_flip_image));
-        setup.setImageSize(getNum(R.string.key_image_size));
+        setup.setMaxSize(getNum(R.string.key_max_image_size));
 
         setup.setPickTypes(EPickType.fromInt(getNum(R.string.key_providers)));
 

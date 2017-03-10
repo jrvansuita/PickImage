@@ -13,10 +13,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.2.0'
     compile project(':library')
-
     compile 'com.jrummyapps:colorpicker:2.0.4'
-
-
 }

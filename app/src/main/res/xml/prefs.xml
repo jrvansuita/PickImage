@@ -93,9 +93,9 @@
 
         <EditTextPreference
             android:defaultValue="300"
-            android:key="@string/key_image_size"
+            android:key="@string/key_max_image_size"
             android:numeric="integer"
-            android:title="@string/image_size" />
+            android:title="@string/max_image_size" />
 
         <EditTextPreference
             android:defaultValue="0.3"

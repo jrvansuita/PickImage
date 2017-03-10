@@ -17,9 +17,9 @@
     <string name="additional_customization">Additional Customization</string>
     <string name="flip_image">Flip image after shot</string>
     <string name="colored_icons">Colored icons</string>
-    <string name="image_size">Image size</string>
+    <string name="max_image_size">Max image size</string>
     <string name="dim_amount">Dim amount behind the dialog</string>
-    <string name="use_system_dialog">Use sistem dialog</string>
+    <string name="use_system_dialog">Use system dialog</string>
     <string name="providers">Providers</string>
     <string name="buttons_orientation">Buttons orientation</string>
     <string name="icon_gravity">Icon gravity</string>
@@ -41,7 +41,7 @@
     <string name="key_colored_icons">key_colored_icons</string>
     <string name="key_dim_amount">key_dim_amount</string>
     <string name="key_system_dialog">key_system_dialog</string>
-    <string name="key_image_size">key_image_size</string>
+    <string name="key_max_image_size">key_max_image_size</string>
     <string name="key_providers">key_providers</string>
     <string name="key_buttons_orientation">key_buttons_orientation</string>
     <string name="key_icon_gravity">key_icon_gravity</string>

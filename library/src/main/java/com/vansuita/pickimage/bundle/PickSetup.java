@@ -2,8 +2,8 @@ package com.vansuita.pickimage.bundle;
 
 import android.graphics.Color;
 import android.support.annotation.IntDef;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.Gravity;
+import android.widget.LinearLayout;
 
 import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.enums.EPickType;
@@ -35,7 +35,11 @@ public class PickSetup implements Serializable {
 
     private float dimAmount;
     private boolean flip;
-    private int imageSize;
+
+    private int maxSize = 300;
+    private int width = 0;
+    private int height = 0;
+
     private EPickType[] pickTypes;
 
     private int cameraIcon;
@@ -46,9 +50,14 @@ public class PickSetup implements Serializable {
 
     private boolean systemDialog;
 
-    @LinearLayoutCompat.OrientationMode
+    @OrientationMode
     private int buttonOrientation;
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({LinearLayout.VERTICAL, LinearLayout.HORIZONTAL})
+    public @interface OrientationMode {
+
+    }
 
     @IconGravity
     private int iconGravity;
@@ -149,12 +158,30 @@ public class PickSetup implements Serializable {
         return this;
     }
 
-    public int getImageSize() {
-        return imageSize;
+    public int getWidth() {
+        return width;
     }
 
-    public PickSetup setImageSize(int imageSize) {
-        this.imageSize = imageSize;
+    public PickSetup setWidth(int width) {
+        this.width = width;
+        return this;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    public PickSetup setMaxSize(int maxSize) {
+        this.maxSize = maxSize;
+        return this;
+    }
+
+    public PickSetup setHeight(int height) {
+        this.height = height;
         return this;
     }
 
@@ -186,12 +213,12 @@ public class PickSetup implements Serializable {
         return this;
     }
 
-    @LinearLayoutCompat.OrientationMode
+    @OrientationMode
     public int getButtonOrientation() {
         return buttonOrientation;
     }
 
-    public PickSetup setButtonOrientation(@LinearLayoutCompat.OrientationMode int buttonOrientation) {
+    public PickSetup setButtonOrientation(@OrientationMode int buttonOrientation) {
         this.buttonOrientation = buttonOrientation;
         return this;
     }
@@ -250,10 +277,12 @@ public class PickSetup implements Serializable {
                 .setDimAmount(0.3f)
                 .setFlip(false)
                 .setCancelText("Cancel")
-                .setImageSize(300)
+                .setMaxSize(300)
+                .setWidth(0)
+                .setHeight(0)
                 .setPickTypes(EPickType.CAMERA, EPickType.GALLERY)
                 .setProgressText("Loading...")
-                .setButtonOrientation(LinearLayoutCompat.VERTICAL)
+                .setButtonOrientation(LinearLayout.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
                 .setSystemDialog(false)
                 .setGalleryIcon(R.drawable.gallery);

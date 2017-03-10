@@ -133,36 +133,24 @@ public class ImageHandler {
         //Notify image changed
         context.getContentResolver().notifyChange(uri, null);
 
-        // Decode image size
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        decodeStream(context.getContentResolver().openInputStream(uri), null, options);
-
-        // Find the correct scale value. It should be the power of 2.
-        int width_tmp = options.outWidth;
-        int height_tmp = options.outHeight;
-        int scale = 1;
-        while (true) {
-            if (width_tmp / 2 < setup.getImageSize() || height_tmp / 2 < setup.getImageSize())
-                break;
-
-            width_tmp /= 2;
-            height_tmp /= 2;
-            scale *= 2;
+        if (setup.getWidth() == 0 && setup.getHeight() == 0) {
+            setup.setWidth(setup.getMaxSize());
+            setup.setHeight(setup.getMaxSize());
         }
 
-        // Decode with inSampleSize
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-        o2.inSampleSize = scale;
-        Bitmap bitmap = decodeStream(context.getContentResolver().openInputStream(uri), null, o2);
+        Bitmap bitmap;
 
-        //If developer want to flip by default
+        if ((setup.getWidth() - setup.getHeight()) == 0) {
+            bitmap = scaleDown();
+        } else {
+            bitmap = resize();
+        }
+
         if (provider.equals(EPickType.CAMERA) && setup.isFlipped())
             bitmap = flip(bitmap);
 
         return rotateIfNeeded(bitmap);
     }
-
 
     public Uri getUri() {
         return uri;
@@ -193,5 +181,35 @@ public class ImageHandler {
         }
     }
 
+    private BitmapFactory.Options getOptions() throws FileNotFoundException {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        decodeStream(context.getContentResolver().openInputStream(uri), null, options);
+
+        int w = options.outWidth;
+        int h = options.outHeight;
+        int scale = 1;
+        while (true) {
+            if (w / 2 < setup.getWidth() || h / 2 < setup.getHeight())
+                break;
+
+            w /= 2;
+            h /= 2;
+            scale *= 2;
+        }
+
+        options = new BitmapFactory.Options();
+        options.inSampleSize = scale;
+        return options;
+    }
+
+
+    private Bitmap scaleDown() throws FileNotFoundException {
+        return decodeStream(context.getContentResolver().openInputStream(uri), null, getOptions());
+    }
+
+    public Bitmap resize() throws FileNotFoundException {
+        return Bitmap.createScaledBitmap(scaleDown(), setup.getWidth(), setup.getHeight(), false);
+    }
 
 }

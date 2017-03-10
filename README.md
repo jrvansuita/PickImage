@@ -39,7 +39,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/>
 <img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
 
-[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&scale=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](http://apk-dl.com/dl/com.vansuita.pickimage.sample) 
+[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&maxSize=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](http://apk-dl.com/dl/com.vansuita.pickimage.sample)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade) <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
  
  
@@ -139,7 +139,7 @@ PickSetup setup = new PickSetup()
             .setButtonTextColor(yourColor)
             .setDimAmount(yourFloat)
             .setFlip(true)
-            .setImageSize(500)
+            .setMaxSize(500)
             .setPickTypes(EPickTypes.GALLERY, EPickTypes.CAMERA)
             .setCameraButtonText(yourText)
             .setGalleryButtonText(yourText)
@@ -174,6 +174,12 @@ public void onCameraClick() {
 PickImageDialog dialog = PickImageDialog.on(...);
 dialog.dismiss();
 ```
+
+#### Force a specific width and height.
+```java
+new PickSetup().setWidth(600).setHeight(800);
+```
+
      
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
