@@ -23,7 +23,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/light_vertical_left_simple.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_top_simple.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_left_simple.png" height='auto' width='280'/>
 
 #### Colored icons.
-<img src="images/dialogs/light_vertical_left_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_top_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_left_colored.png" height='auto' width='280'/>
+<img src="images/dialogs/light_vertical_left_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_top_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_left_colored.png" height='auto' width='280'/>
 
 #### Custom dialog.
 <img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
