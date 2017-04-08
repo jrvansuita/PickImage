@@ -9,7 +9,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
-public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick*/ {
+public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick */{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,7 +24,9 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         super.customize(setup);
 
-        PickImageDialog.build(setup).show(this);
+        PickImageDialog.build(setup)
+                //.setOnClick(this)
+                .show(this);
 
         //If you don't have an Activity, you can set the FragmentManager
         /*PickImageDialog.build(setup, new IPickResult() {
@@ -40,14 +42,14 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
         /*PickImageDialog.build(setup).setOnClick(new IPickClick() {
             @Override
             public void onGalleryClick() {
-
+                Toast.makeText(SampleActivity.this, "Gallery Click!", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onCameraClick() {
-
+                Toast.makeText(SampleActivity.this, "Camera Click!", Toast.LENGTH_LONG).show();
             }
-        }).show(this);*/
+        }).show(this)*/;
     }
 
     @Override
@@ -74,16 +76,15 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
     }
 
 
-    /*
-    If you use setOnClick(this), you have to implements this bellow methods
 
-    @Override
+    //If you use setOnClick(this), you have to implements this bellow methods
+    /*@Override
     public void onGalleryClick() {
-        Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
+        Toast.makeText(SampleActivity.this, "Gallery Click!", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onCameraClick() {
-        Toast.makeText(this, "Implement your own functionality", Toast.LENGTH_LONG).show();
+        Toast.makeText(SampleActivity.this, "Camera Click!", Toast.LENGTH_LONG).show();
     }*/
 }

@@ -85,10 +85,12 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
     }
 
     private void onAttaching() {
-        if (onClick == null && getActivity() instanceof IPickClick) {
-            onClick = (IPickClick) getActivity();
-        } else {
-            onClick = this;
+        if (onClick == null) {
+            if (getActivity() instanceof IPickClick) {
+                onClick = (IPickClick) getActivity();
+            } else {
+                onClick = this;
+            }
         }
 
         if (onPickResult == null && getActivity() instanceof IPickResult)

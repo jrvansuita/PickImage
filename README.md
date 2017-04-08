@@ -171,7 +171,7 @@ public void onCameraClick() {
 #### For dismissing the dialog.
 
 ```java
-PickImageDialog dialog = PickImageDialog.on(...);
+PickImageDialog dialog = PickImageDialog.build(...);
 dialog.dismiss();
 ```
 
