@@ -20,24 +20,16 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 # Dialog screenshots
 
 #### Default icons.
-<img src="images/dialogs/light_vertical_left_simple.png" height='auto' width='280'/>
-<img src="images/dialogs/light_horizontal_top_simple.png" height='auto' width='280'/>
-<img src="images/dialogs/light_horizontal_left_simple.png" height='auto' width='280'/>
+<img src="images/dialogs/light_vertical_left_simple.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_top_simple.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_left_simple.png" height='auto' width='280'/>
 
 #### Colored icons.
-<img src="images/dialogs/light_vertical_left_colored.png" height='auto' width='280'/>
-<img src="images/dialogs/light_horizontal_top_colored.png" height='auto' width='280'/>
-<img src="images/dialogs/light_horizontal_left_colored.png" height='auto' width='280'/>
+<img src="images/dialogs/light_vertical_left_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_top_colored.png" height='auto' width='280'/><img src="images/dialogs/light_horizontal_left_colored.png" height='auto' width='280'/>
 
 #### Custom dialog.
-<img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/>
-<img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/>
-<img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
+<img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
 
 #### System dialog.
-<img src="images/dialogs/all_system_dialog.png" height='auto' width='280'/>
-<img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/>
-<img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
+<img src="images/dialogs/all_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
 
 [![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&maxSize=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](http://apk-dl.com/dl/com.vansuita.pickimage.sample)
  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade) <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
