@@ -149,17 +149,18 @@ PickSetup setup = new PickSetup()
 If you want to write your own button click event, just use [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) listener like in the example below. You may want to take a look at the sample app.
  
  ```java
- PickImageDialog.build(setup).setOnClick(new IPickClick() {
+ PickImageDialog.build(setup)
+         .setOnClick(new IPickClick() {
              @Override
              public void onGalleryClick() {
-                 //TODO: Your onw implementation
+                 Toast.makeText(SampleActivity.this, "Gallery Click!", Toast.LENGTH_LONG).show();
              }
 
              @Override
              public void onCameraClick() {
-                    //TODO: Your onw implementation
+                 Toast.makeText(SampleActivity.this, "Camera Click!", Toast.LENGTH_LONG).show();
              }
-         }).show(this)
+          }).show(this);
 ``` 
 
 #### For dismissing the dialog.

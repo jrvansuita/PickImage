@@ -9,7 +9,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
-public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick */{
+public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick */ {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,17 +39,18 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
         }).show(getSupportFragmentManager());*/
 
         //For overriding the click events you can do this
-        /*PickImageDialog.build(setup).setOnClick(new IPickClick() {
-            @Override
-            public void onGalleryClick() {
-                Toast.makeText(SampleActivity.this, "Gallery Click!", Toast.LENGTH_LONG).show();
-            }
+        /*PickImageDialog.build(setup)
+                .setOnClick(new IPickClick() {
+                    @Override
+                    public void onGalleryClick() {
+                        Toast.makeText(SampleActivity.this, "Gallery Click!", Toast.LENGTH_LONG).show();
+                    }
 
-            @Override
-            public void onCameraClick() {
-                Toast.makeText(SampleActivity.this, "Camera Click!", Toast.LENGTH_LONG).show();
-            }
-        }).show(this)*/;
+                    @Override
+                    public void onCameraClick() {
+                        Toast.makeText(SampleActivity.this, "Camera Click!", Toast.LENGTH_LONG).show();
+                    }
+                }).show(this);*/
     }
 
     @Override
@@ -74,7 +75,6 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         scrollToTop();
     }
-
 
 
     //If you use setOnClick(this), you have to implements this bellow methods
