@@ -146,18 +146,20 @@ PickSetup setup = new PickSetup()
 # Additionals
 
 #### Own click implementations.
-If you want to write your own button click event, your class have to implements [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) like in the example below. You may want to take a look at the sample app.
+If you want to write your own button click event, just use [IPickClick](library/src/main/java/com/vansuita/pickimage/listeners/IPickClick.java) listener like in the example below. You may want to take a look at the sample app.
  
  ```java
-@Override
-public void onGalleryClick() {
-    //TODO: Your onw implementation
-}
- 
-@Override
-public void onCameraClick() {
-    //TODO: Your onw implementation
-}
+ PickImageDialog.build(setup).setOnClick(new IPickClick() {
+             @Override
+             public void onGalleryClick() {
+                 //TODO: Your onw implementation
+             }
+
+             @Override
+             public void onCameraClick() {
+                    //TODO: Your onw implementation
+             }
+         }).show(this)
 ``` 
 
 #### For dismissing the dialog.
