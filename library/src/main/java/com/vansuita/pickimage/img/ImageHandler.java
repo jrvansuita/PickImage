@@ -112,7 +112,7 @@ public class ImageHandler {
     }
 
 
-    private Bitmap rotate(Bitmap bitmap, int degrees) {
+    public Bitmap rotate(Bitmap bitmap, int degrees) {
         if (bitmap != null && degrees != 0) {
             Matrix matrix = new Matrix();
             matrix.postRotate(degrees);
