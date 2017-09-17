@@ -105,13 +105,21 @@ public class PickImageDialog extends PickImageBaseDialog {
                 granted = granted && i == PackageManager.PERMISSION_GRANTED;
 
             if (granted) {
-                if (!launchSystemDialog())
-                    launchCamera();
+                if (!launchSystemDialog()) {
+                    if (grantResults.length == 1) {
+                        launchGallery();
+                    } else {
+                        launchCamera();
+                    }
+                }
             } else {
                 dismissAllowingStateLoss();
+
+                if (grantResults.length > 1)
+                    Keep.with(getActivity()).askedForPermission();
             }
 
-            Keep.with(getActivity()).askedForPermission();
+
         }
     }
 

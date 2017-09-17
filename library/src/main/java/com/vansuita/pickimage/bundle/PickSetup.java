@@ -261,12 +261,14 @@ public class PickSetup implements Serializable {
         return iconGravity;
     }
 
-    public void setIconGravity(@IconGravity int iconGravity) {
+    public PickSetup setIconGravity(@IconGravity int iconGravity) {
         this.iconGravity = iconGravity;
+        return this;
     }
 
-    public void setIconGravityInt(int iconGravity) {
+    public PickSetup setIconGravityInt(int iconGravity) {
         this.iconGravity = iconGravity;
+        return this;
     }
 
 

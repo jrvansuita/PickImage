@@ -77,6 +77,9 @@ public class IntentResolver {
 
     public void launchCamera(Fragment listener) {
         if (getCameraIntent().resolveActivity(activity.getPackageManager()) != null) {
+
+            cameraFile().delete();
+
             listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
         }
     }
@@ -94,10 +97,11 @@ public class IntentResolver {
 
     private File cameraFile() {
         if (saveFile == null) {
-            //File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PickResult.class.getSimpleName());
+            // File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"teste");
 
             File directory = new File(activity.getFilesDir(), "picked");
             directory.mkdirs();
+
             saveFile = new File(directory, activity.getString(R.string.image_file_name));
 
             Log.i("File-PickImage", saveFile.getAbsolutePath());
@@ -120,7 +124,7 @@ public class IntentResolver {
         } catch (Exception e) {
             if (e.getMessage().contains("ProviderInfo.loadXmlMetaData")) {
                 throw new Error(activity.getString(R.string.wrong_authority));
-            }else{
+            } else {
                 throw e;
             }
         }
@@ -159,7 +163,7 @@ public class IntentResolver {
         }
     }
 
-    private String[] getMandatoryCameraPermissions() {
+    private String[] getAllPermissionsNeeded() {
         return new String[]{
                 Manifest.permission.CAMERA,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -169,7 +173,7 @@ public class IntentResolver {
         if (Keep.with(activity).neverAskedForPermissionYet())
             return false;
 
-        for (String permission : getMandatoryCameraPermissions()) {
+        for (String permission : getAllPermissionsNeeded()) {
             if (((ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED)
                     && (!ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)))) {
                 return true;
@@ -179,13 +183,21 @@ public class IntentResolver {
         return false;
     }
 
+    public boolean requestCameraPermissions(Fragment listener) {
+        return requestPermissions(listener, getAllPermissionsNeeded());
+    }
+
+    public boolean requestGalleryPermissions(Fragment listener) {
+        return requestPermissions(listener, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
     /**
      * resquest permission to use camera and write files
      */
-    public boolean requestCameraPermissions(Fragment listener) {
+    public boolean requestPermissions(Fragment listener, String... permissionsNeeded) {
         List<String> list = new ArrayList<>();
 
-        for (String permission : getMandatoryCameraPermissions())
+        for (String permission : permissionsNeeded)
             if (ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_DENIED)
                 list.add(permission);
 
@@ -197,7 +209,6 @@ public class IntentResolver {
         listener.requestPermissions(list.toArray(new String[list.size()]), REQUESTER);
         return false;
     }
-
 
     public boolean fromCamera(Intent data) {
         return (data == null || data.getData() == null || data.getData().toString().contains(cameraFile().toString()));
