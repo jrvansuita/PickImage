@@ -1,9 +1,9 @@
+# Fork of https://github.com/jrvansuita/PickImage
+- Added support for multiple camera files and storing them on sdcard/Pictures/[AppName]
+
 <!-- Library Logo -->
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 
-<!-- Buy me a cup of coffe -->
-<a href='https://ko-fi.com/A406JCM' style='margin:13px;' target='_blank' align="right"><img align="right" height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' alt='Buy Me a Coffee at ko-fi.com' /></a>
-<a href='https://play.google.com/store/apps/details?id=com.vansuita.pickimage.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank' align="right"><img align="right" height='36' src='https://s20.postimg.org/muzx3w4jh/google_play_badge.png' alt='Get it on Google Play' /></a>
 # PickImage
 
 
@@ -14,8 +14,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 </br> 
 
 <!-- JitPack integration -->
-[![JitPack](https://jitpack.io/v/jrvansuita/PickImage.svg)](https://jitpack.io/#jrvansuita/PickImage)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PickImage-green.svg?)](https://android-arsenal.com/details/1/4614) [![MaterialUp](https://img.shields.io/badge/MaterialUp-PickImage-6ad0d9.svg?)](https://www.uplabs.com/posts/pickimage) [![ghit.me](https://ghit.me/badge.svg?repo=jrvansuita/PickImage)](https://ghit.me/repo/jrvansuita/PickImage)
+[![JitPack](https://jitpack.io/v/oxied/PickImage.svg)](https://jitpack.io/#oxied/PickImage)
 
 # Dialog screenshots
 
@@ -29,11 +28,7 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
 <img src="images/dialogs/dark_vertical_left.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_top.png" height='auto' width='280'/><img src="images/dialogs/dark_horizontal_left.png" height='auto' width='280'/>
 
 #### System dialog.
-<img src="images/dialogs/all_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/>
-
-[![Appetize.io](https://img.shields.io/badge/Apptize.io-Run%20Now-brightgreen.svg?)](https://appetize.io/embed/91gknbry9vrtz281b7jy244e0m?device=nexus7&maxSize=50&autoplay=true&orientation=portrait&deviceColor=black) [![Demo](https://img.shields.io/badge/Demo-Download-blue.svg)](http://apk-dl.com/dl/com.vansuita.pickimage.sample)
- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/118bb89e3bed43e2b462201654224a60)](https://www.codacy.com/app/jrvansuita/PickImage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jrvansuita/PickImage&amp;utm_campaign=Badge_Grade) <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
- 
+<img src="images/dialogs/all_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/camera_system_dialog.png" height='auto' width='280'/><img src="images/dialogs/images_system_dialog.png" height='auto' width='280'/> 
  
 # Setup
 
@@ -47,7 +42,7 @@ allprojects {
 }
 ```
      
-#### Step #2. Add the dependency ([See latest release](https://jitpack.io/#jrvansuita/PickImage)).
+#### Step #2. Add the dependency ([See latest release](https://jitpack.io/#oxied/PickImage)).
 ```groovy
 dependencies {
     compile 'com.github.jrvansuita:PickImage:+'
