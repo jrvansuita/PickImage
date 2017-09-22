@@ -1,6 +1,5 @@
 package com.vansuita.pickimage.async;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 
@@ -23,9 +22,9 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
     private WeakReference<PickSetup> weakSetup;
     private OnFinish onFinish;
 
-    public AsyncImageResult(Activity activity, PickSetup setup) {
-        this.weakIntentResolver = new WeakReference<IntentResolver>(new IntentResolver(activity, setup));
-        this.weakSetup = new WeakReference<PickSetup>(setup);
+    public AsyncImageResult(IntentResolver intentResolver, PickSetup setup) {
+        this.weakIntentResolver = new WeakReference<>(intentResolver);
+        this.weakSetup = new WeakReference<>(setup);
     }
 
     public AsyncImageResult setOnFinish(OnFinish onFinish) {

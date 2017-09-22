@@ -138,6 +138,7 @@ PickSetup setup = new PickSetup()
             .setIconGravity(Gravity.LEFT)
             .setButtonOrientation(LinearLayoutCompat.VERTICAL)
             .setSystemDialog(false)
+            .setCameraToPictures(false)
             .setGalleryIcon(yourIcon)
             .setCameraIcon(yourIcon);
 /*... and more to come. */
