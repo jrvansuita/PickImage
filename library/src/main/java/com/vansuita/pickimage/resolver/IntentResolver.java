@@ -135,10 +135,6 @@ public class IntentResolver {
     }
 
     private Uri cameraUriForProvider() {
-        if (setup.isCameraToPictures()) {
-            return cameraUri();
-        }
-
         try {
             return FileProvider.getUriForFile(activity, getAuthority(), cameraFile());
         } catch (Exception e) {
