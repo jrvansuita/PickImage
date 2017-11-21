@@ -131,7 +131,7 @@ public class ImageHandler {
 
     public Bitmap decode() throws FileNotFoundException {
         //Notify image changed
-        context.getContentResolver().notifyChange(uri, null);
+        // context.getContentResolver().notifyChange(uri, null);
 
         if (setup.getWidth() == 0 && setup.getHeight() == 0) {
             setup.setWidth(setup.getMaxSize());
