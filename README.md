@@ -1,5 +1,3 @@
-# Fork of https://github.com/jrvansuita/PickImage
-- Added support for multiple camera files and storing them on sdcard/Pictures/[AppName]
 
 <!-- Library Logo -->
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
