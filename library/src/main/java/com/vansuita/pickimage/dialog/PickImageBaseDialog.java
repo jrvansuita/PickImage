@@ -264,9 +264,8 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         return this;
     }
 
-
     protected AsyncImageResult getAsyncResult() {
-        return new AsyncImageResult(getActivity(), setup).setOnFinish(new AsyncImageResult.OnFinish() {
+        return new AsyncImageResult(resolver, setup).setOnFinish(new AsyncImageResult.OnFinish() {
             @Override
             public void onFinish(PickResult pickResult) {
                 if (onPickResult != null)

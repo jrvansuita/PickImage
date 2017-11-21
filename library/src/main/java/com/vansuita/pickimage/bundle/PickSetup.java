@@ -50,13 +50,14 @@ public class PickSetup implements Serializable {
 
     private boolean systemDialog;
 
+    private boolean isCameraToPictures;
+
     @OrientationMode
     private int buttonOrientation;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({LinearLayout.VERTICAL, LinearLayout.HORIZONTAL})
     public @interface OrientationMode {
-
     }
 
     @IconGravity
@@ -256,6 +257,15 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+    public boolean isCameraToPictures() {
+        return isCameraToPictures;
+    }
+
+    public PickSetup setCameraToPictures(boolean isCameraToPictures) {
+        this.isCameraToPictures = isCameraToPictures;
+        return this;
+    }
+
     @IconGravity
     public int getIconGravity() {
         return iconGravity;
@@ -287,6 +297,7 @@ public class PickSetup implements Serializable {
                 .setButtonOrientation(LinearLayout.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
                 .setSystemDialog(false)
+                .setCameraToPictures(true)
                 .setGalleryIcon(R.drawable.gallery);
     }
 

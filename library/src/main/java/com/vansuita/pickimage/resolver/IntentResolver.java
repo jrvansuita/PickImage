@@ -3,10 +3,12 @@ package com.vansuita.pickimage.resolver;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -21,7 +23,9 @@ import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.keep.Keep;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -96,16 +100,28 @@ public class IntentResolver {
     }
 
     private File cameraFile() {
-        if (saveFile == null) {
-            // File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"teste");
-
-            File directory = new File(activity.getFilesDir(), "picked");
-            directory.mkdirs();
-
-            saveFile = new File(directory, activity.getString(R.string.image_file_name));
-
-            Log.i("File-PickImage", saveFile.getAbsolutePath());
+        if (saveFile != null) {
+            return saveFile;
         }
+
+        File directory;
+        String imageFileName;
+        if (setup.isCameraToPictures()) {
+            ApplicationInfo applicationInfo = activity.getApplicationInfo();
+            int stringId = applicationInfo.labelRes;
+            String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : activity.getString(stringId);
+            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), appName);
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            imageFileName = timeStamp + ".jpg";
+        } else {
+            directory = new File(activity.getFilesDir(), "picked");
+            imageFileName = activity.getString(R.string.image_file_name);
+        }
+
+        // File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"teste");
+        directory.mkdirs();
+        saveFile = new File(directory, imageFileName);
+        Log.i("File-PickImage", saveFile.getAbsolutePath());
 
         return saveFile;
     }
