@@ -21,6 +21,7 @@ import com.vansuita.pickimage.async.AsyncImageResult;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
+import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickClick;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.resolver.IntentResolver;
@@ -56,8 +57,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private Boolean validProviders = null;
 
-    private IPickResult onPickResult;
-    private IPickClick onClick;
+  private IPickResult onPickResult;
+  private IPickClick onClick;
+  private IPickCancel onPickCancel;
 
 
     @Nullable
@@ -156,8 +158,10 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.cancel) {
+    public void onClick(View view)
+     {
+      if (view.getId() == R.id.cancel) {
+                onPickCancel.onCancelClick();
                 dismiss();
             } else {
                 if (view.getId() == R.id.camera) {
@@ -264,6 +268,14 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         return this;
     }
 
+
+  protected PickImageBaseDialog setOnPickCancel(IPickCancel onPickCancel)
+   {
+    this.onPickCancel = onPickCancel;
+    return this;
+   }
+
+
     protected AsyncImageResult getAsyncResult() {
         return new AsyncImageResult(resolver, setup).setOnFinish(new AsyncImageResult.OnFinish() {
             @Override
@@ -304,5 +316,4 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
             dismissAllowingStateLoss();
         }
     }
-
 }
