@@ -58,6 +58,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private IPickResult onPickResult;
     private IPickClick onClick;
+    private IPickCancel onPickCancel;
 
 
     @Nullable
@@ -156,8 +157,10 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.cancel) {
+    public void onClick(View view)
+     {
+      if (view.getId() == R.id.cancel) {
+                onPickCancel.onCancelClick();
                 dismiss();
             } else {
                 if (view.getId() == R.id.camera) {

@@ -79,6 +79,12 @@ public class PickImageDialog extends PickImageBaseDialog {
     }
 
     @Override
+    public PickImageDialog setOnPickCancel(IPickCancel onPickCancel) {
+        return (PickImageDialog) super.setOnPickCancel(onPickCancel);
+    }
+
+
+  @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IntentResolver.REQUESTER) {

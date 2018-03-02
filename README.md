@@ -114,7 +114,13 @@ PickImageDialog.build(new PickSetup())
                   public void onPickResult(PickResult r) {
                      //TODO: do what you have to...
                   }
-            }).show(getSupportFragmentManager());
+            })
+			.setOnPickCancel(new IPickCancel() {
+			   @Override
+			   public void onCancelClick() {
+					//TODO: do what you have to if user clicked cancel
+			   }
+			}).show(getSupportFragmentManager());
 ```
 
 #### Step #4 - Customize you Dialog using PickSetup.
