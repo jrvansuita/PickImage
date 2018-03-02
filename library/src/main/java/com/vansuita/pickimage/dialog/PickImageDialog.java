@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.keep.Keep;
+import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickClick;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.resolver.IntentResolver;
@@ -79,9 +80,10 @@ public class PickImageDialog extends PickImageBaseDialog {
     }
 
     @Override
-    public PickImageDialog setOnPickCancel(IPickCancel onPickCancel) {
-        return (PickImageDialog) super.setOnPickCancel(onPickCancel);
-    }
+  public PickImageDialog setOnPickCancel(IPickCancel onPickCancel)
+   {
+    return (PickImageDialog) super.setOnPickCancel(onPickCancel);
+   }
 
 
   @Override
