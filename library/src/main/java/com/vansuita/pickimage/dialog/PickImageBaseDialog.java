@@ -57,9 +57,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private Boolean validProviders = null;
 
-  private IPickResult onPickResult;
-  private IPickClick onClick;
-  private IPickCancel onPickCancel;
+    private IPickResult onPickResult;
+    private IPickClick onClick;
+    private IPickCancel onPickCancel;
 
 
     @Nullable
@@ -158,9 +158,8 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
-    public void onClick(View view)
-     {
-      if (view.getId() == R.id.cancel) {
+        public void onClick(View view) {
+            if (view.getId() == R.id.cancel) {
                 onPickCancel.onCancelClick();
                 dismiss();
             } else {
@@ -269,11 +268,10 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
     }
 
 
-  protected PickImageBaseDialog setOnPickCancel(IPickCancel onPickCancel)
-   {
-    this.onPickCancel = onPickCancel;
-    return this;
-   }
+    protected PickImageBaseDialog setOnPickCancel(IPickCancel onPickCancel) {
+        this.onPickCancel = onPickCancel;
+        return this;
+    }
 
 
     protected AsyncImageResult getAsyncResult() {

@@ -166,7 +166,7 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
         setup.setSystemDialog(getBool(R.string.key_system_dialog));
 
         //setup.setWidth(800).setHeight(700);
-
+        //setup.setVideo(true);
 
         if (getBool(R.string.key_colored_icons)) {
             setup.setGalleryIcon(R.mipmap.gallery_colored);
