@@ -3,4 +3,5 @@
     <string name="provider_package">.com.vansuita.pickimage.provider</string>
     <string name="image_file_name">current</string>
     <string name="image_content_type">image/*</string>
+    <string name="video_content_type">video/*</string>
 </resources>

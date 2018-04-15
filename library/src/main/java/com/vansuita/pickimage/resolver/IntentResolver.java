@@ -70,7 +70,11 @@ public class IntentResolver {
 
     private Intent getCameraIntent() {
         if (cameraIntent == null) {
-            cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (setup.isVideo()) {
+                cameraIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+            } else {
+                cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            }
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUriForProvider());
 
             applyProviderPermission();
@@ -149,7 +153,11 @@ public class IntentResolver {
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {
             galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            galleryIntent.setType(activity.getString(R.string.image_content_type));
+            if (setup.isVideo()) {
+                galleryIntent.setType(activity.getString(R.string.video_content_type));
+            } else {
+                galleryIntent.setType(activity.getString(R.string.image_content_type));
+            }
         }
 
         return galleryIntent;

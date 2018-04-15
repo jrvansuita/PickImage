@@ -50,6 +50,8 @@ public class PickSetup implements Serializable {
 
     private boolean systemDialog;
 
+    private boolean video;
+
     private boolean isCameraToPictures;
 
     @OrientationMode
@@ -281,6 +283,14 @@ public class PickSetup implements Serializable {
         return this;
     }
 
+    public boolean isVideo() {
+        return video;
+    }
+
+    public PickSetup setVideo(boolean video){
+        this.video = video;
+        return this;
+    }
 
     public PickSetup() {
         setTitle("Choose")
@@ -298,7 +308,8 @@ public class PickSetup implements Serializable {
                 .setCameraIcon(R.drawable.camera)
                 .setSystemDialog(false)
                 .setCameraToPictures(true)
-                .setGalleryIcon(R.drawable.gallery);
+                .setGalleryIcon(R.drawable.gallery)
+                .setVideo(false);
     }
 
 }
