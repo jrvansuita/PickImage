@@ -180,7 +180,12 @@ dialog.dismiss();
 new PickSetup().setWidth(600).setHeight(800);
 ```
 
-     
+#### Not just an ImagePicker anymore! You can pick video too.
+You can tell the setup to pick video instead of photo! (default option if you don't mention is to pick Image)
+```java
+new PickSetup().setVideo(true);
+```
+  
 # Sample app code.
  You can take a look at the sample app [located on this project](/app/).
  
