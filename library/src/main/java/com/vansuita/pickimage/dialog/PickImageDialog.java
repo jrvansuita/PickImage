@@ -1,5 +1,6 @@
 package com.vansuita.pickimage.dialog;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -114,7 +115,7 @@ public class PickImageDialog extends PickImageBaseDialog {
 
             if (granted) {
                 if (!launchSystemDialog()) {
-                    if (grantResults.length == 1) {
+                    if (hasCameraPermission(permissions, grantResults)) {
                         launchGallery();
                     } else {
                         launchCamera();
@@ -129,6 +130,15 @@ public class PickImageDialog extends PickImageBaseDialog {
 
 
         }
+    }
+
+    private boolean hasCameraPermission(String[] permissions, int[] grantResults) {
+        int cameraIndex = 0;
+        while(cameraIndex < permissions.length && !permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
+            cameraIndex++;
+        }
+
+        return cameraIndex < permissions.length && permissions[cameraIndex].equals(Manifest.permission.CAMERA);
     }
 
 
