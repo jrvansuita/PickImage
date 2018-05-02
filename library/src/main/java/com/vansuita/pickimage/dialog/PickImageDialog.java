@@ -115,7 +115,16 @@ public class PickImageDialog extends PickImageBaseDialog {
 
             if (granted) {
                 if (!launchSystemDialog()) {
-                    if (hasCameraPermission(permissions, grantResults)) {
+                    // See if the CAMERA permission is among the granted ones
+                    int cameraIndex = -1;
+                    for (int i = 0; i < permissions.length; i++) {
+                        if (permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
+                            cameraIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (cameraIndex != -1) {
                         launchGallery();
                     } else {
                         launchCamera();
@@ -127,20 +136,8 @@ public class PickImageDialog extends PickImageBaseDialog {
                 if (grantResults.length > 1)
                     Keep.with(getActivity()).askedForPermission();
             }
-
-
         }
     }
-
-    private boolean hasCameraPermission(String[] permissions, int[] grantResults) {
-        int cameraIndex = 0;
-        while(cameraIndex < permissions.length && !permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
-            cameraIndex++;
-        }
-
-        return cameraIndex < permissions.length && permissions[cameraIndex].equals(Manifest.permission.CAMERA);
-    }
-
 
 
    /* public static void forceDismiss(FragmentManager fm) {
