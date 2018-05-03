@@ -160,7 +160,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.cancel) {
-                onPickCancel.onCancelClick();
+                if (onPickCancel != null) {
+                    onPickCancel.onCancelClick();
+                }
                 dismiss();
             } else {
                 if (view.getId() == R.id.camera) {
