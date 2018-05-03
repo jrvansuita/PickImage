@@ -97,6 +97,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
         if (onPickResult == null && getActivity() instanceof IPickResult)
             onPickResult = (IPickResult) getActivity();
+
+        if (onPickCancel == null && getActivity() instanceof IPickCancel)
+            onPickCancel = (IPickCancel) getActivity();
     }
 
 
