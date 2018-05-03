@@ -254,14 +254,14 @@ public class IntentResolver {
     private void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         final String saveFilePath = savedInstanceState.getString(SAVE_FILE_PATH_TAG);
 
-        if (saveFilePath == null) {
-            throw new NullPointerException();
+        if (saveFilePath != null) {
+            saveFile = new File(saveFilePath);
         }
-
-        saveFile = new File(saveFilePath);
     }
 
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString(SAVE_FILE_PATH_TAG, saveFile.getAbsolutePath());
+        if (saveFile != null) {
+            outState.putString(SAVE_FILE_PATH_TAG, saveFile.getAbsolutePath());
+        }
     }
 }

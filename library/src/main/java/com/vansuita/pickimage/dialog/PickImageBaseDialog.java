@@ -119,7 +119,10 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
         this.setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
 
-        Bundle resolverState = savedInstanceState.getBundle(RESOLVER_STATE_TAG);
+        Bundle resolverState = null;
+        if (savedInstanceState != null) {
+            resolverState = savedInstanceState.getBundle(RESOLVER_STATE_TAG);
+        }
         this.resolver = new IntentResolver(getActivity(), setup, resolverState);
     }
 
