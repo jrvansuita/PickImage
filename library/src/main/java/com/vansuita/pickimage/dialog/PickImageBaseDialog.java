@@ -36,6 +36,7 @@ import static com.vansuita.pickimage.R.layout.dialog;
 public abstract class PickImageBaseDialog extends DialogFragment implements IPickClick {
 
     protected static final String SETUP_TAG = "SETUP_TAG";
+    protected static final String RESOLVER_STATE_TAG = "resolverState";
     public static final String DIALOG_FRAGMENT_TAG = PickImageBaseDialog.class.getSimpleName();
 
     private PickSetup setup;
@@ -68,7 +69,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         View view = inflater.inflate(dialog, null, false);
 
         onAttaching();
-        onInitialize();
+        onInitialize(savedInstanceState);
 
         if (isValidProviders()) {
             onBindViewsHolders(view);
@@ -84,6 +85,16 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Bundle resolverState = new Bundle();
+        this.resolver.onSaveInstanceState(resolverState);
+
+        outState.putBundle(RESOLVER_STATE_TAG, resolverState);
     }
 
     private void onAttaching() {
@@ -103,14 +114,19 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
     }
 
 
-    protected void onInitialize() {
+    protected void onInitialize(Bundle savedInstanceState) {
         if (getDialog().getWindow() != null) {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
         this.setup = (PickSetup) getArguments().getSerializable(SETUP_TAG);
-        this.resolver = new IntentResolver(getActivity(), setup);
+
+        Bundle resolverState = null;
+        if (savedInstanceState != null) {
+            resolverState = savedInstanceState.getBundle(RESOLVER_STATE_TAG);
+        }
+        this.resolver = new IntentResolver(getActivity(), setup, resolverState);
     }
 
 
@@ -163,8 +179,9 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.cancel) {
-                if (onPickCancel != null)
+                if (onPickCancel != null) {
                     onPickCancel.onCancelClick();
+                }
                 dismiss();
             } else {
                 if (view.getId() == R.id.camera) {
