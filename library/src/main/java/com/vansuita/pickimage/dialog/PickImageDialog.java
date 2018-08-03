@@ -118,14 +118,13 @@ public class PickImageDialog extends PickImageBaseDialog {
                     // See if the CAMERA permission is among the granted ones
                     int cameraIndex = -1;
                     for (int i = 0; i < permissions.length; i++) {
-                        cameraIndex = i;
-                         if (permissions[cameraIndex].equals(Manifest.permission.CAMERA)) {
+                         if (permissions[i].equals(Manifest.permission.CAMERA)) {
                             cameraIndex = i;
                              break;
                          }
                     }
 
-                    if (cameraIndex != -1) {
+                    if (cameraIndex == -1) {
                         launchGallery();
                     } else {
                         launchCamera();
