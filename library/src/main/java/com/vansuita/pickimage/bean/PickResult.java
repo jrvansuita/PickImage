@@ -3,6 +3,8 @@ package com.vansuita.pickimage.bean;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import com.vansuita.pickimage.enums.EPickType;
+
 /**
  * Created by jrvansuita build 02/12/16.
  */
@@ -12,6 +14,7 @@ public class PickResult {
     private Uri uri;
     private String path;
     private Throwable error;
+    private EPickType ebickType;
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -51,5 +54,13 @@ public class PickResult {
 
     public String getPath() {
         return path;
+    }
+
+    public EPickType getEbickType() {
+        return ebickType;
+    }
+
+    public void setEbickType(EPickType ebickType) {
+        this.ebickType = ebickType;
     }
 }
