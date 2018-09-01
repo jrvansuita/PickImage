@@ -64,9 +64,9 @@ public class AsyncImageResult extends AsyncTask<Intent, Void, PickResult> {
                     .setBitmap(imageHandler.decode());
 
             if(fromCamera)
-                result.setEbickType(EPickType.CAMERA);
+                result.setPickType(EPickType.CAMERA);
             else
-                result.setEbickType(EPickType.GALLERY);
+                result.setPickType(EPickType.GALLERY);
 
             return result;
         } catch (Exception e) {

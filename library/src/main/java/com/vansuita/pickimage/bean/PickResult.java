@@ -14,7 +14,7 @@ public class PickResult {
     private Uri uri;
     private String path;
     private Throwable error;
-    private EPickType ebickType;
+    private EPickType ePickType;
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -56,11 +56,11 @@ public class PickResult {
         return path;
     }
 
-    public EPickType getEbickType() {
-        return ebickType;
+    public EPickType getPickType() {
+        return ePickType;
     }
 
-    public void setEbickType(EPickType ebickType) {
-        this.ebickType = ebickType;
+    public void setPickType(EPickType ePickType) {
+        this.ePickType = ePickType;
     }
 }
