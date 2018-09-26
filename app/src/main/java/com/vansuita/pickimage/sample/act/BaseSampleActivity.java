@@ -1,6 +1,5 @@
 package com.vansuita.pickimage.sample.act;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
