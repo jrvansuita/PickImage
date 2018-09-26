@@ -1,18 +1,30 @@
 apply plugin: 'com.android.application'
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId 'com.vansuita.pickimage.sample'
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 4
         versionName "1.0"
     }
 }
 
 dependencies {
-    compile project(':library')
-    compile 'com.jrummyapps:colorpicker:2.0.4'
+    implementation project(':library')
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.jrummyapps:colorpicker:2.0.4'
 }

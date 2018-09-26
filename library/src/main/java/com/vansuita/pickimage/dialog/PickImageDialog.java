@@ -4,9 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.keep.Keep;
@@ -15,7 +12,11 @@ import com.vansuita.pickimage.listeners.IPickClick;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.resolver.IntentResolver;
 
-import static android.app.Activity.RESULT_OK;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 
 /**

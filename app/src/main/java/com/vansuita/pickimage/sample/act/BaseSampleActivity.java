@@ -1,13 +1,12 @@
 package com.vansuita.pickimage.sample.act;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,6 +15,10 @@ import android.widget.ScrollView;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.sample.R;
+
+import org.jetbrains.annotations.Nullable;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by jrvansuita build 30/01/17.

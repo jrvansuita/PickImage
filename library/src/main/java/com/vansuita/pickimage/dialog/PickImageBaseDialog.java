@@ -5,10 +5,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutCompat;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +127,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         if (savedInstanceState != null) {
             resolverState = savedInstanceState.getBundle(RESOLVER_STATE_TAG);
         }
-        this.resolver = new IntentResolver(getActivity(), setup, resolverState);
+        this.resolver = new IntentResolver((AppCompatActivity) getActivity(), setup, resolverState);
     }
 
 

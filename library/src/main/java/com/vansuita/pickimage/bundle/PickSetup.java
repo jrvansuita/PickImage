@@ -1,7 +1,7 @@
 package com.vansuita.pickimage.bundle;
 
 import android.graphics.Color;
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 

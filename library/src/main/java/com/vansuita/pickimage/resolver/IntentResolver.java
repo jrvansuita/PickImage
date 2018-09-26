@@ -1,7 +1,6 @@
 package com.vansuita.pickimage.resolver;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -12,11 +11,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.vansuita.pickimage.R;
@@ -30,6 +24,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 /**
  * Created by jrvansuita build 07/02/17.
  */
@@ -39,7 +40,7 @@ public class IntentResolver {
     public static final int REQUESTER = 99;
     public static final String SAVE_FILE_PATH_TAG = "savePath";
 
-    private Activity activity;
+    private AppCompatActivity activity;
 
     private PickSetup setup;
     private Intent galleryIntent;
@@ -47,7 +48,7 @@ public class IntentResolver {
     private File saveFile;
 
 
-    public IntentResolver(Activity activity, PickSetup setup, Bundle savedInstanceState) {
+    public IntentResolver(AppCompatActivity activity, PickSetup setup, Bundle savedInstanceState) {
         this.activity = activity;
         this.setup = setup;
 
@@ -247,7 +248,7 @@ public class IntentResolver {
         return (data == null || data.getData() == null || data.getData().toString().contains(cameraFile().toString()));
     }
 
-    public Activity getActivity() {
+    public AppCompatActivity getActivity() {
         return activity;
     }
 

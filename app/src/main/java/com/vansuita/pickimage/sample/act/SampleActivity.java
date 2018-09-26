@@ -1,13 +1,14 @@
 package com.vansuita.pickimage.sample.act;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
+
+import org.jetbrains.annotations.Nullable;
 
 public class SampleActivity extends BaseSampleActivity implements IPickResult /*, IPickClick */ {
 
