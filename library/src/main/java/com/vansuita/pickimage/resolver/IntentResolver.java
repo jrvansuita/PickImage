@@ -109,22 +109,26 @@ public class IntentResolver {
         }
 
         File directory;
-        String imageFileName;
+        String fileName;
         if (setup.isCameraToPictures()) {
             ApplicationInfo applicationInfo = activity.getApplicationInfo();
             int stringId = applicationInfo.labelRes;
             String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : activity.getString(stringId);
             directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), appName);
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            imageFileName = timeStamp + ".jpg";
+            if (setup.isVideo()) {
+                fileName = timeStamp + ".mp4";
+            } else {
+                fileName = timeStamp + ".jpg";
+            }
         } else {
             directory = new File(activity.getFilesDir(), "picked");
-            imageFileName = activity.getString(R.string.image_file_name);
+            fileName = activity.getString(R.string.image_file_name);
         }
 
         // File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"teste");
         directory.mkdirs();
-        saveFile = new File(directory, imageFileName);
+        saveFile = new File(directory, fileName);
         Log.i("File-PickImage", saveFile.getAbsolutePath());
 
         return saveFile;
@@ -235,7 +239,7 @@ public class IntentResolver {
     }
 
     public boolean fromCamera(Intent data) {
-        return (data == null || data.getData() == null || data.getData().toString().contains(cameraFile().toString()));
+        return (data == null || data.getData() == null || data.getData().toString().contains(cameraFile().toString()) || data.getData().toString().toString().contains("to_be_replaced"));
     }
 
     public Activity getActivity() {
