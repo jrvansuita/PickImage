@@ -8,9 +8,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -35,6 +37,8 @@ import java.util.List;
 public class IntentResolver {
 
     public static final int REQUESTER = 99;
+    public static final String SAVE_FILE_PATH_TAG = "savePath";
+
     private Activity activity;
 
     private PickSetup setup;
@@ -42,9 +46,14 @@ public class IntentResolver {
     private Intent cameraIntent;
     private File saveFile;
 
-    public IntentResolver(Activity activity, PickSetup setup) {
+
+    public IntentResolver(Activity activity, PickSetup setup, Bundle savedInstanceState) {
         this.activity = activity;
         this.setup = setup;
+
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+        }
     }
 
     private Intent loadSystemPackages(Intent intent) {
@@ -244,5 +253,19 @@ public class IntentResolver {
 
     public Activity getActivity() {
         return activity;
+    }
+
+    private void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        final String saveFilePath = savedInstanceState.getString(SAVE_FILE_PATH_TAG);
+
+        if (saveFilePath != null) {
+            saveFile = new File(saveFilePath);
+        }
+    }
+
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        if (saveFile != null) {
+            outState.putString(SAVE_FILE_PATH_TAG, saveFile.getAbsolutePath());
+        }
     }
 }
