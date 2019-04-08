@@ -5,11 +5,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.cardview.widget.CardView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickClick;
+import com.vansuita.pickimage.listeners.IPickError;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.resolver.IntentResolver;
 import com.vansuita.pickimage.util.Util;
@@ -62,7 +65,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
     private IPickResult onPickResult;
     private IPickClick onClick;
     private IPickCancel onPickCancel;
-
+    private IPickError onErrorListener;
 
     @Nullable
     @Override
@@ -128,6 +131,7 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
             resolverState = savedInstanceState.getBundle(RESOLVER_STATE_TAG);
         }
         this.resolver = new IntentResolver((AppCompatActivity) getActivity(), setup, resolverState);
+        this.resolver.setErrorListener(this.onErrorListener);
     }
 
 
@@ -295,6 +299,10 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
         return this;
     }
 
+    protected PickImageBaseDialog setOnPickError(IPickError onErrorListener) {
+        this.onErrorListener = onErrorListener;
+        return this;
+    }
 
     protected AsyncImageResult getAsyncResult() {
         return new AsyncImageResult(resolver, setup).setOnFinish(new AsyncImageResult.OnFinish() {

@@ -9,6 +9,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.keep.Keep;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickClick;
+import com.vansuita.pickimage.listeners.IPickError;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.vansuita.pickimage.resolver.IntentResolver;
 
@@ -82,13 +83,16 @@ public class PickImageDialog extends PickImageBaseDialog {
     }
 
     @Override
-  public PickImageDialog setOnPickCancel(IPickCancel onPickCancel)
-   {
-    return (PickImageDialog) super.setOnPickCancel(onPickCancel);
-   }
+    public PickImageDialog setOnPickCancel(IPickCancel onPickCancel) {
+        return (PickImageDialog) super.setOnPickCancel(onPickCancel);
+    }
 
+    @Override
+    public PickImageDialog setOnPickError(IPickError error) {
+        return (PickImageDialog) super.setOnPickError(error);
+    }
 
-  @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IntentResolver.REQUESTER) {
@@ -119,10 +123,10 @@ public class PickImageDialog extends PickImageBaseDialog {
                     // See if the CAMERA permission is among the granted ones
                     int cameraIndex = -1;
                     for (int i = 0; i < permissions.length; i++) {
-                         if (permissions[i].equals(Manifest.permission.CAMERA)) {
+                        if (permissions[i].equals(Manifest.permission.CAMERA)) {
                             cameraIndex = i;
-                             break;
-                         }
+                            break;
+                        }
                     }
 
                     if (cameraIndex == -1) {

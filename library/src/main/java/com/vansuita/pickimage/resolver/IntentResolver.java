@@ -17,6 +17,7 @@ import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.keep.Keep;
+import com.vansuita.pickimage.listeners.IPickError;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,7 @@ public class IntentResolver {
     private Intent cameraIntent;
     private File saveFile;
 
+    private IPickError onError;
 
     public IntentResolver(AppCompatActivity activity, PickSetup setup, Bundle savedInstanceState) {
         this.activity = activity;
@@ -178,7 +180,15 @@ public class IntentResolver {
     }
 
     public void launchGallery(Fragment listener) {
-        listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+        try {
+            listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+        } catch (Exception e) {
+            if (onError != null) {
+                onError.onErrorLaunchingGallery(e);
+            } else {
+                throw e;
+            }
+        }
     }
 
     public void launchSystemChooser(Fragment listener) {
@@ -268,5 +278,9 @@ public class IntentResolver {
         if (saveFile != null) {
             outState.putString(SAVE_FILE_PATH_TAG, saveFile.getAbsolutePath());
         }
+    }
+
+    public void setErrorListener(IPickError onError) {
+        this.onError = onError;
     }
 }

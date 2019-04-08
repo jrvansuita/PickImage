@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
+import com.vansuita.pickimage.listeners.IPickError;
 import com.vansuita.pickimage.listeners.IPickResult;
 
 import org.jetbrains.annotations.Nullable;
@@ -27,6 +28,12 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
 
         PickImageDialog.build(setup)
                 //.setOnClick(this)
+                .setOnPickError(new IPickError() {
+                    @Override
+                    public void onErrorLaunchingGallery(Exception exception) {
+                        Toast.makeText(getApplicationContext(), "ERROR OCCURED", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .show(this);
 
         //If you don't have an Activity, you can set the FragmentManager
