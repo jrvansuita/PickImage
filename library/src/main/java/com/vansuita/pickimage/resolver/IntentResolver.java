@@ -124,7 +124,7 @@ public class IntentResolver {
             ApplicationInfo applicationInfo = activity.getApplicationInfo();
             int stringId = applicationInfo.labelRes;
             String appName = stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : activity.getString(stringId);
-            directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), appName);
+            directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES), appName);
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             if (setup.isVideo()) {
                 fileName = timeStamp + ".mp4";
