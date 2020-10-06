@@ -1,6 +1,7 @@
 package com.vansuita.pickimage.resolver;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bundle.PickSetup;
@@ -178,7 +180,11 @@ public class IntentResolver {
     }
 
     public void launchGallery(Fragment listener) {
-        listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+        try {
+            listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(listener.getContext(), listener.getContext().getString(R.string.gallery_app_not_found), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void launchSystemChooser(Fragment listener) {
