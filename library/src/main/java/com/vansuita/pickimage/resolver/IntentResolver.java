@@ -98,7 +98,8 @@ public class IntentResolver {
 
             cameraFile().delete();
 
-            listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
+            Intent chooser = Intent.createChooser(getCameraIntent(), setup.getCameraChooserTitle());
+            listener.startActivityForResult(chooser, REQUESTER);
         }
     }
 
@@ -177,8 +178,10 @@ public class IntentResolver {
         return galleryIntent;
     }
 
-    public void launchGallery(Fragment listener) {
-        listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+    public void launchGallery(Fragment listener,String title) {
+        Intent intent = Intent.createChooser(getGalleryIntent(),title);
+        listener.startActivityForResult(intent, REQUESTER);
+       // listener.startActivityForResult(loadSystemPackages(), REQUESTER);
     }
 
     public void launchSystemChooser(Fragment listener) {
