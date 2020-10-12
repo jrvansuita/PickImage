@@ -52,6 +52,9 @@ public class PickSetup implements Serializable {
 
     private boolean video;
 
+    private String galleryChooserTitle = "";
+    private String cameraChooserTitle = "";
+
     private boolean isCameraToPictures;
 
     @OrientationMode
@@ -290,6 +293,23 @@ public class PickSetup implements Serializable {
     public PickSetup setVideo(boolean video){
         this.video = video;
         return this;
+    }
+
+
+    public String getGalleryChooserTitle() {
+        return galleryChooserTitle;
+    }
+
+    public void setGalleryChooserTitle(String galleryChooserTitle) {
+        this.galleryChooserTitle = galleryChooserTitle;
+    }
+
+    public String getCameraChooserTitle() {
+        return cameraChooserTitle;
+    }
+
+    public void setCameraChooserTitle(String cameraChooserTitle) {
+        this.cameraChooserTitle = cameraChooserTitle;
     }
 
     public PickSetup() {

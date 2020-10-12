@@ -100,7 +100,8 @@ public class IntentResolver {
 
             cameraFile().delete();
 
-            listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
+            Intent chooser = Intent.createChooser(getCameraIntent(), setup.getCameraChooserTitle());
+            listener.startActivityForResult(chooser, REQUESTER);
         }
     }
 
@@ -179,10 +180,11 @@ public class IntentResolver {
         return galleryIntent;
     }
 
-    public void launchGallery(Fragment listener) {
+    public void launchGallery(Fragment listener,String title) {
+        Intent intent = Intent.createChooser(getGalleryIntent(),title);
         try {
-            listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
-        } catch (ActivityNotFoundException e) {
+          listener.startActivityForResult(intent, REQUESTER);
+          } catch (ActivityNotFoundException e) {
             Toast.makeText(listener.getContext(), listener.getContext().getString(R.string.gallery_app_not_found), Toast.LENGTH_SHORT).show();
         }
     }
