@@ -1,6 +1,7 @@
 package com.vansuita.pickimage.resolver;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.vansuita.pickimage.R;
 import com.vansuita.pickimage.bundle.PickSetup;
@@ -98,7 +100,8 @@ public class IntentResolver {
 
             cameraFile().delete();
 
-            listener.startActivityForResult(loadSystemPackages(getCameraIntent()), REQUESTER);
+            Intent chooser = Intent.createChooser(getCameraIntent(), setup.getCameraChooserTitle());
+            listener.startActivityForResult(chooser, REQUESTER);
         }
     }
 
@@ -177,8 +180,13 @@ public class IntentResolver {
         return galleryIntent;
     }
 
-    public void launchGallery(Fragment listener) {
-        listener.startActivityForResult(loadSystemPackages(getGalleryIntent()), REQUESTER);
+    public void launchGallery(Fragment listener,String title) {
+        Intent intent = Intent.createChooser(getGalleryIntent(),title);
+        try {
+          listener.startActivityForResult(intent, REQUESTER);
+          } catch (ActivityNotFoundException e) {
+            Toast.makeText(listener.getContext(), listener.getContext().getString(R.string.gallery_app_not_found), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void launchSystemChooser(Fragment listener) {

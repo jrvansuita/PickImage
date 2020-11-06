@@ -8,4 +8,5 @@
     <string name="no_providers">No providers available to show.</string>
     <string name="wrong_authority">FileProvider not declared or has wrong authority. (Must be ${applicationId}.com.vansuita.pickimage.provider, check your AndroidManifest.xml)</string>
     <string name="activity_destroyed">Activity was destroyed, can\'t handle pick image result.</string>
+    <string name="gallery_app_not_found">Gallery app not found.</string>
 </resources>
