@@ -17,97 +17,92 @@
         card_view:cardCornerRadius="4dp"
         card_view:cardElevation="3dp">
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/second_layer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:visibility="gone">
 
-            <LinearLayout
-                android:id="@+id/second_layer"
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/loading_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:visibility="gone">
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:text="@string/loading"
+                android:textColor="@color/cancel_selector"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-                <ProgressBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/first_layer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="15dp">
 
-                <TextView
-                    android:id="@+id/loading_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="15dp"
-                    android:text="@string/loading"
-                    android:textColor="@color/cancel_selector"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/first_layer"
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="15dp">
+                android:padding="10dp"
+                android:text="@string/choose"
+                android:textColor="@android:color/secondary_text_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/buttons_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:minWidth="250dp"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/camera"
+                    style="@style/option"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/choose"
-                    android:textColor="@android:color/secondary_text_light"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:id="@+id/buttons_holder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/camera"
+                    android:drawablePadding="10dp"
                     android:gravity="left|center_vertical"
-                    android:minWidth="250dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/camera"
-                        style="@style/option"
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="0.5"
-                        android:drawableLeft="@drawable/camera"
-                        android:drawablePadding="10dp"
-                        android:gravity="left|center_vertical"
-                        android:text="@string/camera" />
-
-                    <TextView
-                        android:id="@+id/gallery"
-                        style="@style/option"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="0.5"
-                        android:drawableLeft="@drawable/gallery"
-                        android:drawablePadding="10dp"
-                        android:gravity="left|center_vertical"
-                        android:text="@string/gallery" />
-
-                </LinearLayout>
+                    android:text="@string/camera" />
 
                 <TextView
-                    android:id="@+id/cancel"
+                    android:id="@+id/gallery"
+                    style="@style/option"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:padding="10dp"
-                    android:text="@string/cancel"
-                    android:textAllCaps="true"
-                    android:textColor="@color/cancel_selector"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0.5"
+                    android:drawableLeft="@drawable/gallery"
+                    android:drawablePadding="10dp"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/gallery" />
+
             </LinearLayout>
 
-        </FrameLayout>
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="10dp"
+                android:text="@string/cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/cancel_selector"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 </FrameLayout>
