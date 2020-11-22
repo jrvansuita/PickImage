@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Library</string>
     <string name="camera">Camera</string>
+    <string name="default_camera_chooser_title">Capture using</string>
+    <string name="default_gallery_chooser_title">Pick using</string>
     <string name="gallery">Gallery</string>
     <string name="choose">Choose</string>
     <string name="cancel">Cancel</string>

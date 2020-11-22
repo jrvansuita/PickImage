@@ -22,7 +22,6 @@ public class SampleActivity extends BaseSampleActivity implements IPickResult /*
     @Override
     protected void onImageViewClick() {
         PickSetup setup = new PickSetup();
-
         super.customize(setup);
 
         PickImageDialog.build(setup)
