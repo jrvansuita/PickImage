@@ -8,6 +8,8 @@
     <string name="cancel_text">Cancel Button Text</string>
     <string name="camera_button_text">Camera Button Text</string>
     <string name="gallery_button_text">Gallery Button Text</string>
+    <string name="camera_intent_chooser_title">Camera Intent Chooser Title</string>
+    <string name="gallery_intent_chooser_title">Gallery Intent Chooser Title</string>
     <string name="background_color">Dialog Background Color</string>
     <string name="title_color">Dialog Title Color</string>
     <string name="button_text_color">Buttons Text Color</string>
@@ -45,4 +47,6 @@
     <string name="key_providers">key_providers</string>
     <string name="key_buttons_orientation">key_buttons_orientation</string>
     <string name="key_icon_gravity">key_icon_gravity</string>
+    <string name="key_title_camera_intent_chooser">key_title_camera_intent_chooser</string>
+    <string name="key_title_gallery_intent_chooser">key_title_gallery_intent_chooser</string>
 </resources>

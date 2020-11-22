@@ -167,6 +167,9 @@ public abstract class BaseSampleActivity extends AppCompatActivity {
         setup.setButtonOrientationInt(getNum(R.string.key_buttons_orientation));
         setup.setSystemDialog(getBool(R.string.key_system_dialog));
 
+        setup.setCameraChooserTitle(getStr(R.string.key_title_camera_intent_chooser));
+        setup.setGalleryChooserTitle(getStr(R.string.key_title_gallery_intent_chooser));
+
         //setup.setWidth(800).setHeight(700);
         //setup.setVideo(true);
 

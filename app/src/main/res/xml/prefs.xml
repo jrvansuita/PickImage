@@ -36,6 +36,19 @@
             android:summary="@string/provide_text"
             android:title="@string/gallery_button_text" />
 
+
+        <EditTextPreference
+            android:defaultValue="@string/default_camera_chooser_title"
+            android:key="@string/key_title_camera_intent_chooser"
+            android:summary="@string/provide_text"
+            android:title="@string/camera_intent_chooser_title" />
+
+        <EditTextPreference
+            android:defaultValue="@string/default_gallery_chooser_title"
+            android:key="@string/key_title_gallery_intent_chooser"
+            android:summary="@string/provide_text"
+            android:title="@string/gallery_intent_chooser_title" />
+
     </PreferenceCategory>
 
 

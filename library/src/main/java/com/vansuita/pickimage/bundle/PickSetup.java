@@ -300,16 +300,18 @@ public class PickSetup implements Serializable {
         return galleryChooserTitle;
     }
 
-    public void setGalleryChooserTitle(String galleryChooserTitle) {
+    public PickSetup setGalleryChooserTitle(String galleryChooserTitle) {
         this.galleryChooserTitle = galleryChooserTitle;
+        return this;
     }
 
     public String getCameraChooserTitle() {
         return cameraChooserTitle;
     }
 
-    public void setCameraChooserTitle(String cameraChooserTitle) {
+    public PickSetup setCameraChooserTitle(String cameraChooserTitle) {
         this.cameraChooserTitle = cameraChooserTitle;
+        return this;
     }
 
     public PickSetup() {
@@ -322,6 +324,8 @@ public class PickSetup implements Serializable {
                 .setMaxSize(300)
                 .setWidth(0)
                 .setHeight(0)
+                .setGalleryChooserTitle("Pick from")
+                .setCameraChooserTitle("Capture using")
                 .setPickTypes(EPickType.CAMERA, EPickType.GALLERY)
                 .setProgressText("Loading...")
                 .setButtonOrientation(LinearLayout.VERTICAL)
