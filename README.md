@@ -1,7 +1,7 @@
 <!-- Library Logo -->
 <img src="https://github.com/jrvansuita/PickImage/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="1" vspace="1">
 
-<!-- Buy me a cup of coffe -->
+<!-- Buy me a cup of coffee -->
 <a href='https://ko-fi.com/A406JCM' style='margin:13px;' target='_blank' align="right"><img align="right" height='36' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' alt='Buy Me a Coffee at ko-fi.com' /></a>
 <a href='https://play.google.com/store/apps/details?id=com.vansuita.pickimage.sample&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank' align="right"><img align="right" height='36' src='https://s20.postimg.org/muzx3w4jh/google_play_badge.png' alt='Get it on Google Play' /></a>
 # PickImage
@@ -136,7 +136,7 @@ PickSetup setup = new PickSetup()
             .setButtonTextColor(yourColor)
             .setDimAmount(yourFloat)
             .setFlip(true)
-            .setMaxSize(500)
+            .setMaxSize
             .setPickTypes(EPickType.GALLERY, EPickType.CAMERA)
             .setCameraButtonText(yourText)
             .setGalleryButtonText(yourText)
@@ -144,7 +144,9 @@ PickSetup setup = new PickSetup()
             .setButtonOrientation(LinearLayoutCompat.VERTICAL)
             .setSystemDialog(false)
             .setGalleryIcon(yourIcon)
-            .setCameraIcon(yourIcon);
+            .setCameraIcon(yourIcon)
+            .setGalleryChooserTitle(yourText)
+            .setCameraChooserTitle(yourText);
 /*... and more to come. */
 ```
 
