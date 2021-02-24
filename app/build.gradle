@@ -9,12 +9,12 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId 'com.vansuita.pickimage.sample'
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 4
         versionName "1.0"
     }

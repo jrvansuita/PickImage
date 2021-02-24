@@ -96,13 +96,11 @@ public class IntentResolver {
     }
 
     public void launchCamera(Fragment listener) {
-        if (getCameraIntent().resolveActivity(activity.getPackageManager()) != null) {
 
             cameraFile().delete();
 
             Intent chooser = Intent.createChooser(getCameraIntent(), setup.getCameraChooserTitle());
             listener.startActivityForResult(chooser, REQUESTER);
-        }
     }
 
     /**
