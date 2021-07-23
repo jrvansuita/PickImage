@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.keep.Keep;
@@ -87,10 +88,10 @@ public class PickImageDialog extends PickImageBaseDialog {
     return (PickImageDialog) super.setOnPickCancel(onPickCancel);
    }
 
-
   @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+      Log.d("onActivityResult","requestCode => "+requestCode +"; Result Code => "+resultCode);
         if (requestCode == IntentResolver.REQUESTER) {
             if (resultCode == RESULT_OK) {
                 //Show progress
