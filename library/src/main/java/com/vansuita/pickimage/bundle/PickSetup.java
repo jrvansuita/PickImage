@@ -54,6 +54,7 @@ public class PickSetup implements Serializable {
 
     private String galleryChooserTitle = "";
     private String cameraChooserTitle = "";
+    private boolean useChooser = true;
 
     private boolean isCameraToPictures;
 
@@ -79,6 +80,15 @@ public class PickSetup implements Serializable {
 
     public PickSetup setCancelText(String text) {
         this.cancelText = text;
+        return this;
+    }
+
+    public boolean isUseChooser() {
+        return useChooser;
+    }
+
+    public PickSetup setUseChooser(boolean useChooser) {
+        this.useChooser = useChooser;
         return this;
     }
 
@@ -330,6 +340,7 @@ public class PickSetup implements Serializable {
                 .setProgressText("Loading...")
                 .setButtonOrientation(LinearLayout.VERTICAL)
                 .setCameraIcon(R.drawable.camera)
+                .setUseChooser(false)
                 .setSystemDialog(false)
                 .setCameraToPictures(true)
                 .setGalleryIcon(R.drawable.gallery)

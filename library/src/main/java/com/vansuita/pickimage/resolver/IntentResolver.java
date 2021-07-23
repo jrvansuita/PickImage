@@ -33,6 +33,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+
 /**
  * Created by jrvansuita build 07/02/17.
  */
@@ -87,6 +90,8 @@ public class IntentResolver {
             } else {
                 cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             }
+            cameraIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+            cameraIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUriForProvider());
 
             applyProviderPermission();
@@ -97,9 +102,16 @@ public class IntentResolver {
 
     public void launchCamera(Fragment listener) {
 
-            cameraFile().delete();
 
-            Intent chooser = Intent.createChooser(getCameraIntent(), setup.getCameraChooserTitle());
+            cameraFile().delete();
+        saveFile = null;
+
+
+
+            Intent chooser = getCameraIntent();
+            if (setup.isUseChooser()){
+                chooser = Intent.createChooser(chooser, setup.getCameraChooserTitle());
+            }
             listener.startActivityForResult(chooser, REQUESTER);
     }
 
@@ -110,7 +122,7 @@ public class IntentResolver {
         List<ResolveInfo> resInfoList = activity.getPackageManager().queryIntentActivities(cameraIntent, PackageManager.MATCH_DEFAULT_ONLY);
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
-            activity.grantUriPermission(packageName, cameraUriForProvider(), Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            activity.grantUriPermission(packageName, cameraUriForProvider(), FLAG_GRANT_WRITE_URI_PERMISSION | FLAG_GRANT_READ_URI_PERMISSION);
         }
     }
 
@@ -138,7 +150,9 @@ public class IntentResolver {
         }
 
         // File directory = new File(activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"teste");
-        directory.mkdirs();
+        if (!directory.exists())
+            directory.mkdirs();
+
         saveFile = new File(directory, fileName);
         Log.i("File-PickImage", saveFile.getAbsolutePath());
 
@@ -167,7 +181,14 @@ public class IntentResolver {
 
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {
-            galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                galleryIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
+                galleryIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
+            }else{
+                galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            }
             if (setup.isVideo()) {
                 galleryIntent.setType(activity.getString(R.string.video_content_type));
             } else {
@@ -179,7 +200,10 @@ public class IntentResolver {
     }
 
     public void launchGallery(Fragment listener,String title) {
-        Intent intent = Intent.createChooser(getGalleryIntent(),title);
+        Intent intent = getGalleryIntent();
+        if (setup.isUseChooser()){
+            intent = Intent.createChooser(intent, title);
+        }
         try {
           listener.startActivityForResult(intent, REQUESTER);
           } catch (ActivityNotFoundException e) {

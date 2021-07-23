@@ -15,7 +15,7 @@ public class Keep {
     private static final String ASKED_FOR_PERMISSION = "ASKED_FOR_PERMISSION";
 
     Keep(Context context) {
-        this.pref = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+        this.pref = context.getSharedPreferences("testing", Context.MODE_PRIVATE);
     }
 
     public static Keep with(Context context) {
