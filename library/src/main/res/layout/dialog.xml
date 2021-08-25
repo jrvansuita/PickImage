@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:visibility="gone"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@android:color/white"
         card_view:cardCornerRadius="4dp"
