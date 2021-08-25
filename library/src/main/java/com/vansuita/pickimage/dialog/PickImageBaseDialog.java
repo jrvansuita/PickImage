@@ -5,11 +5,13 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.cardview.widget.CardView;
 import androidx.appcompat.widget.LinearLayoutCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -196,50 +198,57 @@ public abstract class PickImageBaseDialog extends DialogFragment implements IPic
 
 
     private void onSetup() {
-        if (setup.getBackgroundColor() != android.R.color.white) {
-            card.setCardBackgroundColor(setup.getBackgroundColor());
+        if (showCamera && !showGallery) {
+            launchCamera();
+        } else if (showGallery && !showCamera) {
+            launchGallery();
+        } else {
+            card.setVisibility(View.VISIBLE);
+            if (setup.getBackgroundColor() != android.R.color.white) {
+                card.setCardBackgroundColor(setup.getBackgroundColor());
 
-            if (showCamera)
-                Util.background(tvCamera, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
+                if (showCamera)
+                    Util.background(tvCamera, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
 
-            if (showGallery)
-                Util.background(tvGallery, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
+                if (showGallery)
+                    Util.background(tvGallery, Util.getAdaptiveRippleDrawable(setup.getBackgroundColor()));
+            }
+
+            tvTitle.setTextColor(setup.getTitleColor());
+
+            if (setup.getButtonTextColor() != 0) {
+                tvCamera.setTextColor(setup.getButtonTextColor());
+                tvGallery.setTextColor(setup.getButtonTextColor());
+            }
+
+            if (setup.getProgressTextColor() != 0)
+                tvProgress.setTextColor(setup.getProgressTextColor());
+
+            if (setup.getCancelTextColor() != 0)
+                tvCancel.setTextColor(setup.getCancelTextColor());
+
+            if (setup.getCameraButtonText() != null)
+                tvCamera.setText(setup.getCameraButtonText());
+
+            if (setup.getGalleryButtonText() != null)
+                tvGallery.setText(setup.getGalleryButtonText());
+
+            tvCancel.setText(setup.getCancelText());
+            tvTitle.setText(setup.getTitle());
+            tvProgress.setText(setup.getProgressText());
+
+            showProgress(false);
+
+            Util.gone(tvCamera, !showCamera);
+            Util.gone(tvGallery, !showGallery);
+
+            llButtons.setOrientation(setup.getButtonOrientation() == LinearLayoutCompat.HORIZONTAL ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+
+            Util.setIcon(tvCamera, setup.getCameraIcon(), setup.getIconGravity());
+            Util.setIcon(tvGallery, setup.getGalleryIcon(), setup.getIconGravity());
+
+            Util.setDimAmount(setup.getDimAmount(), getDialog());
         }
-
-        tvTitle.setTextColor(setup.getTitleColor());
-
-        if (setup.getButtonTextColor() != 0) {
-            tvCamera.setTextColor(setup.getButtonTextColor());
-            tvGallery.setTextColor(setup.getButtonTextColor());
-        }
-
-        if (setup.getProgressTextColor() != 0)
-            tvProgress.setTextColor(setup.getProgressTextColor());
-
-        if (setup.getCancelTextColor() != 0)
-            tvCancel.setTextColor(setup.getCancelTextColor());
-
-        if (setup.getCameraButtonText() != null)
-            tvCamera.setText(setup.getCameraButtonText());
-
-        if (setup.getGalleryButtonText() != null)
-            tvGallery.setText(setup.getGalleryButtonText());
-
-        tvCancel.setText(setup.getCancelText());
-        tvTitle.setText(setup.getTitle());
-        tvProgress.setText(setup.getProgressText());
-
-        showProgress(false);
-
-        Util.gone(tvCamera, !showCamera);
-        Util.gone(tvGallery, !showGallery);
-
-        llButtons.setOrientation(setup.getButtonOrientation() == LinearLayoutCompat.HORIZONTAL ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
-
-        Util.setIcon(tvCamera, setup.getCameraIcon(), setup.getIconGravity());
-        Util.setIcon(tvGallery, setup.getGalleryIcon(), setup.getIconGravity());
-
-        Util.setDimAmount(setup.getDimAmount(), getDialog());
     }
 
 
