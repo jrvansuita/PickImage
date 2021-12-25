@@ -50,7 +50,7 @@ allprojects {
 #### Step #2. Add the dependency ([See latest release](https://jitpack.io/#jrvansuita/PickImage)).
 ```groovy
 dependencies {
-    compile 'com.github.jrvansuita:PickImage:+'
+    implementation 'com.github.jrvansuita:PickImage:+'
 }
 ```
 # Implementation
