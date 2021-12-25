@@ -61,7 +61,7 @@ The use of this library can cause [INSTALL_FAILED_CONFLICTING_PROVIDER](https://
 <manifest ...>
     <application ...>
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.com.vansuita.pickimage.provider"
             android:exported="false"
             android:grantUriPermissions="true"
