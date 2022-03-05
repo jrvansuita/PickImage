@@ -233,8 +233,7 @@ public class IntentResolver {
 
     private String[] getAllPermissionsNeeded() {
         return new String[]{
-                Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                Manifest.permission.CAMERA};
     }
 
     public boolean wasCameraPermissionDeniedForever() {
@@ -255,9 +254,6 @@ public class IntentResolver {
         return requestPermissions(listener, getAllPermissionsNeeded());
     }
 
-    public boolean requestGalleryPermissions(Fragment listener) {
-        return requestPermissions(listener, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-    }
 
     /**
      * resquest permission to use camera and write files
