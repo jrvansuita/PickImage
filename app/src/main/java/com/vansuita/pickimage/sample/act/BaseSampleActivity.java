@@ -15,8 +15,7 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 import com.vansuita.pickimage.sample.R;
 
-import org.jetbrains.annotations.Nullable;
-
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
