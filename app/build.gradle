@@ -10,7 +10,6 @@ buildscript {
 
 android {
     compileSdkVersion 31
-    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId 'com.vansuita.pickimage.sample'
         minSdkVersion 14
@@ -23,8 +22,7 @@ android {
 dependencies {
     implementation project(':library')
 
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.jrummyapps:colorpicker:2.0.4'
 }

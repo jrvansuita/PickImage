@@ -7,12 +7,24 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.webkit.MimeTypeMap;
 
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.enums.EPickType;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import static android.graphics.BitmapFactory.decodeStream;
 
@@ -160,8 +172,68 @@ public class ImageHandler {
         if (provider.equals(EPickType.CAMERA)) {
             return uri.getPath();
         } else {
-            return getGalleryPath();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                return getGalleryNewPath(uri);
+            } else {
+                return getGalleryPath();
+            }
+
         }
+    }
+
+    private String getGalleryNewPath(Uri uri){
+        File folder = new File(context.getFilesDir()+"/Pictures");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+
+        File galleryFile = new File(folder.getAbsolutePath(), getGalleryFileName(uri));
+        try {
+            FileOutputStream fos = new FileOutputStream(galleryFile);
+            InputStream fis = context.getContentResolver().openInputStream(uri);
+            copy(fis, fos);
+            fos.close();
+            fis.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return galleryFile.getPath();
+
+    }
+
+    void copy(InputStream source, OutputStream target) throws IOException {
+        byte[] buf = new byte[8192];
+        int length;
+        while ((length = source.read(buf)) > 0) {
+            target.write(buf, 0, length);
+        }
+    }
+
+    private String getGalleryFileName(Uri uri) {
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(uri, null, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } catch (Exception e) {
+            return "FILE_"+getTimestampString()+"."+getExtension(uri);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    private String getExtension(Uri uri) {
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        String extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
+        return (extension != null) ? extension : "";
+    }
+
+    private String getTimestampString() {
+        Calendar date = Calendar.getInstance();
+        return new SimpleDateFormat("yyyy MM dd hh mm ss", Locale.US).format(date.getTime()).replace(" ", "");
     }
 
     private String getGalleryPath() {
