@@ -3,6 +3,7 @@ package com.vansuita.pickimage.resolver;
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -62,17 +63,6 @@ public class IntentResolver {
         }
     }
 
-    private Intent loadSystemPackages(Intent intent) {
-        List<ResolveInfo> resInfo = activity.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_SYSTEM_ONLY);
-
-        if (!resInfo.isEmpty()) {
-            String packageName = resInfo.get(0).activityInfo.packageName;
-            intent.setPackage(packageName);
-        }
-
-        return intent;
-    }
-
     public boolean isCamerasAvailable() {
         String feature = PackageManager.FEATURE_CAMERA;
 
@@ -101,18 +91,13 @@ public class IntentResolver {
     }
 
     public void launchCamera(Fragment listener) {
-
-
-            cameraFile().delete();
+        cameraFile().delete();
         saveFile = null;
-
-
-
-            Intent chooser = getCameraIntent();
-            if (setup.isUseChooser()){
-                chooser = Intent.createChooser(chooser, setup.getCameraChooserTitle());
-            }
-            listener.startActivityForResult(chooser, REQUESTER);
+        Intent chooser = getCameraIntent();
+        if (setup.isUseChooser()){
+            chooser = Intent.createChooser(chooser, setup.getCameraChooserTitle());
+        }
+        listener.startActivityForResult(chooser, REQUESTER);
     }
 
     /**
@@ -182,7 +167,11 @@ public class IntentResolver {
     private Intent getGalleryIntent() {
         if (galleryIntent == null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+                //galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                //Better Intent Action
+                 galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+
                 galleryIntent.addCategory(Intent.CATEGORY_OPENABLE);
                 galleryIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
                 galleryIntent.addFlags(FLAG_GRANT_WRITE_URI_PERMISSION);
