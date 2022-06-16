@@ -37,12 +37,21 @@ This is an [**Android**](https://developer.android.com) project. It shows a [Dia
  
 # Setup
 
-#### Step #1. Add the JitPack repository to your build file:
+#### Step #1. Add the JitPack repository to your build.gradle file:
 ```gradle
 allprojects {
     repositories {
-	...
 	maven { url "https://jitpack.io" }
+    }
+}
+```
+#### Step #1.1 Or add the JitPack repository to the settings.gradle file:
+
+```gradle
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+       maven { url 'https://jitpack.io' }
     }
 }
 ```
